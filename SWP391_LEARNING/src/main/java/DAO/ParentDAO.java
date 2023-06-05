@@ -27,7 +27,7 @@ public class ParentDAO {
               String query = "SELECT * "
                       + "FROM [Parent]";
               try {
-                     conn = new DBContext().getConnection(); // mo ket noi sql
+                     conn = DBContext.getConnection(); // mo ket noi sql
                      ps = conn.prepareStatement(query); // quang cau lenh vao sql
                      rs = ps.executeQuery(); // Tra ve ket qua
                      while (rs.next()) {
