@@ -1,21 +1,24 @@
 package Entity;
 
 public class admin {
-    private int adminID;
+    private String adminID;
     private String adminAccount;
     private String adminPassword;
 
-    public admin(int adminID, String adminAccount, String adminPassword) {
+    public admin() {
+    }
+
+    public admin(String adminID, String adminAccount, String adminPassword) {
         this.adminID = adminID;
         this.adminAccount = adminAccount;
         this.adminPassword = adminPassword;
     }
 
-    public int getAdminID() {
+    public String getAdminID() {
         return adminID;
     }
 
-    public void setAdminID(int adminID) {
+    public void setAdminID(String adminID) {
         this.adminID = adminID;
     }
 
@@ -34,4 +37,6 @@ public class admin {
     public void setAdminPassword(String adminPassword) {
         this.adminPassword = adminPassword;
     }
+
+    
 }

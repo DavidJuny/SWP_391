@@ -37,9 +37,10 @@ public class KidDAO {
                                     new kid(
                                             rs.getString(1),
                                             rs.getString(2),
-                                            rs.getString(3),
                                             rs.getString(4),
                                             rs.getString(5),
+                                            rs.getString(3),
+                                            rs.getString(7),
                                             rs.getString(6)));
                      }
               } catch (Exception e) {
@@ -68,6 +69,7 @@ public class KidDAO {
 
        public kid checkExistedAccount(String username) {
               for (kid u : kidList) {
+                  String check = u.getKidAccount();
                      if (u.getKidAccount().equals(username)) {
                             return u;
                      }
