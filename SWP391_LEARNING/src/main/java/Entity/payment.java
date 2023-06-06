@@ -2,9 +2,14 @@ package Entity;
 
 public class payment {
     private int paymentID;
-    private int parentID;
+    private String parentID;
 
-    public payment(int paymentID, int parentID) {
+    public payment() {
+    }
+    
+    
+
+    public payment(int paymentID, String parentID) {
         this.paymentID = paymentID;
         this.parentID = parentID;
     }
@@ -17,11 +22,13 @@ public class payment {
         this.paymentID = paymentID;
     }
 
-    public int getParentID() {
+    public String getParentID() {
         return parentID;
     }
 
-    public void setParentID(int parentID) {
+    public void setParentID(String parentID) {
         this.parentID = parentID;
     }
+
+    
 }
