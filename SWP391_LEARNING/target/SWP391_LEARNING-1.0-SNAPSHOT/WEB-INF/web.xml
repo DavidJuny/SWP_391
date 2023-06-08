@@ -33,6 +33,10 @@
         <servlet-name>Kid_RegisterController</servlet-name>
         <servlet-class>Controller.Kid_RegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentController</servlet-name>
+        <servlet-class>Controller.PaymentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -60,6 +64,10 @@
     <servlet-mapping>
         <servlet-name>Kid_RegisterController</servlet-name>
         <url-pattern>/Kid_RegisterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentController</servlet-name>
+        <url-pattern>/PaymentController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

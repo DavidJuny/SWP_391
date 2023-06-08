@@ -4,7 +4,6 @@ public class report {
     private int reportID;
     private int kidID;
     private int courseID;
-    private int parentID;
     private int courseGrade;
     private String detailReport;
     private int quizGrade;
@@ -12,11 +11,10 @@ public class report {
     private int listeningGrade;
     private int speakingGrade;
 
-    public report(int reportID, int kidID, int courseID, int parentID, int courseGrade, String detailReport, int quizGrade, int readingGrade, int listeningGrade, int speakingGrade) {
+    public report(int reportID, int kidID, int courseID, int courseGrade, String detailReport, int quizGrade, int readingGrade, int listeningGrade, int speakingGrade) {
         this.reportID = reportID;
         this.kidID = kidID;
         this.courseID = courseID;
-        this.parentID = parentID;
         this.courseGrade = courseGrade;
         this.detailReport = detailReport;
         this.quizGrade = quizGrade;
@@ -47,14 +45,6 @@ public class report {
 
     public void setCourseID(int courseID) {
         this.courseID = courseID;
-    }
-
-    public int getParentID() {
-        return parentID;
-    }
-
-    public void setParentID(int parentID) {
-        this.parentID = parentID;
     }
 
     public int getCourseGrade() {

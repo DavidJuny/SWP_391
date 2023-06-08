@@ -4,12 +4,16 @@ import java.util.Date;
 
 public class kid {
 
-       private String kidID, parentID;
-       private String kidAccount, kidPassword, kidName, kidImage;
-       private String kidBrithday;
+    private String kidID, parentID;
+    private String kidAccount, kidPassword, kidName, kidImage;
+    private String kidBrithday;
 
-       public kid() {
-       }
+    public kid() {
+    }
+
+    public kid(String kidID) {
+        this.kidID = kidID;
+    }
 
     public kid(String kidID, String parentID, String kidAccount, String kidPassword, String kidName, String kidImage, String kidBrithday) {
         this.kidID = kidID;
@@ -76,7 +80,5 @@ public class kid {
     public void setKidBrithday(String kidBrithday) {
         this.kidBrithday = kidBrithday;
     }
-
-       
 
 }

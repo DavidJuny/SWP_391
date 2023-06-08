@@ -10,9 +10,7 @@ import DAO.ParentDAO;
 import Entity.admin;
 import Entity.kid;
 import Entity.parent;
-import com.sun.jersey.json.impl.writer.A2EXmlStreamWriterProxy;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -25,6 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author PC
  */
+
 public class LoginController extends HttpServlet {
 
     /**

@@ -9,6 +9,7 @@ import Entity.parent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -40,8 +41,7 @@ public class ParentDAO {
                                             rs.getString(5),
                                             rs.getString(6)));
                      }
-              } catch (Exception e) {
-                     e.printStackTrace();
+              } catch (ClassNotFoundException | SQLException e) {
               }
               return parentList;
        }
@@ -76,7 +76,7 @@ public class ParentDAO {
        public void register(String username, String fullname, String password, String sex, int number) {
               String query = "INSERT INTO dbo.Parent(parentAccount, parentPassword, parentName, parentSex, parentNumber) VALUES(?,?,?,?,?)";
               try {
-                     conn = new DBContext().getConnection();
+                     conn = DBContext.getConnection();
                      ps = conn.prepareStatement(query);
                      ps.setString(1, username);
                      ps.setString(2, password);
@@ -84,14 +84,13 @@ public class ParentDAO {
                      ps.setString(4, sex);
                      ps.setInt(5, number);
                      ps.executeUpdate();
-              } catch (Exception e) {
-                     e.printStackTrace();
+              } catch (ClassNotFoundException | SQLException e) {
               }
        }
 
-       public static void main(String[] args) {
-              ParentDAO parentDAO = new ParentDAO();
-              parentDAO.getAllParents();
+//       public static void main(String[] args) {
+//              ParentDAO parentDAO = new ParentDAO();
+//              parentDAO.getAllParents();
 //              parent user = parentDAO.checkExistedAccount("Nguyen123");
 //              if (user == null) {
 //                     System.out.println("no");
@@ -100,6 +99,6 @@ public class ParentDAO {
 //              parent a = parentDAO.checkLogin("nguyen123", "123");
 //              parentDAO.register("Nguyen123", "Nguyen Hanh Nguyen", "333", "Male", 010230110);
 //              System.out.println(a);
-       }
+//       }
 
 }
