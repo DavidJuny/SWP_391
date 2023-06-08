@@ -21,13 +21,13 @@ public class DBContext {
               return conn;
        }
 
-       public static void main(String[] args) throws SQLException, ClassNotFoundException {
-              try (Connection conn = getConnection()) {
-                     if (conn == null) {
-                            System.out.println("Fail");
-                     } else {
-                            System.out.println("Success");
-                     }
-              }
-       }
+//       public static void main(String[] args) throws SQLException, ClassNotFoundException {
+//              try (Connection conn = getConnection()) {
+//                     if (conn == null) {
+//                            System.out.println("Fail");
+//                     } else {
+//                            System.out.println("Success");
+//                     }
+//              }
+//       }
 }

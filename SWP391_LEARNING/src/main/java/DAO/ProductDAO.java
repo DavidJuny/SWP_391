@@ -96,4 +96,19 @@ public class ProductDAO {
         }
     }
 
+    public boolean checkStatusKidLearning(String kidID) {
+        String query = "SELECT [status] FROM dbo.KidLearning WHERE kidID = ?";
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, kidID);
+            rs = ps.executeQuery();
+            rs.next();
+            String status = rs.getString(1);
+            if (status.equals("Lock")) return true;
+        } catch (ClassNotFoundException | SQLException e) {
+        }
+        return false;
+    }
+
 }

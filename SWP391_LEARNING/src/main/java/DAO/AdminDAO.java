@@ -6,10 +6,10 @@ package DAO;
 
 import DBcontext.DBContext;
 import Entity.admin;
-import Entity.kid;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +27,7 @@ public class AdminDAO {
         String query = "SELECT * "
                       + "FROM [Admin]";
          try {
-                     conn = new DBContext().getConnection(); 
+                     conn = DBContext.getConnection(); 
                      ps = conn.prepareStatement(query); 
                      rs = ps.executeQuery(); 
                      while (rs.next()) {
@@ -37,8 +37,7 @@ public class AdminDAO {
                                             rs.getString(2),
                                             rs.getString(3)));
                      }
-              } catch (Exception e) {
-                     e.printStackTrace();
+              } catch (ClassNotFoundException | SQLException e) {
               }
               return adminList;     
     }

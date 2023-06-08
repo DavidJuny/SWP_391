@@ -93,6 +93,7 @@ public class KidDAO {
 //              }
 //              kidDAO.registerk("Pa1", "Nguyen Hanh Nguyen", "kiddo", "123", "2023-01-01", "a");
 //    }
+    
     public kid takeLastKid() {
         String query = "SELECT TOP 1 * FROM dbo.Kids ORDER BY CAST(SUBSTRING(kidID, PATINDEX('%[0-9]%', kidID), LEN(kidID)) AS INTEGER) DESC";
         try {

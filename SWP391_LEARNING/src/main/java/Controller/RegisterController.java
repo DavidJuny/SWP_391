@@ -49,7 +49,6 @@ public class RegisterController extends HttpServlet {
                             try {
                                    parentDAO.register(username, password, fullname, sex, phone);
                             } catch (Exception e) {
-                                   e.printStackTrace();
                             }
 
                             response.sendRedirect("login.jsp");
