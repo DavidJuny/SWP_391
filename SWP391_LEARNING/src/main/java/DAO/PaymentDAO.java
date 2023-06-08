@@ -6,11 +6,11 @@ package DAO;
 
 import DBcontext.DBContext;
 import Entity.detail_payment;
-import Entity.kid;
 import Entity.payment;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -29,17 +29,16 @@ public class PaymentDAO {
         String query = "SELECT * "
                 + "FROM [Payment]";
         try {
-            conn = new DBContext().getConnection(); // mo ket noi sql
-            ps = conn.prepareStatement(query); // quang cau lenh vao sql
-            rs = ps.executeQuery(); // Tra ve ket qua
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 paymentList.add(
                         new payment(
                                 Integer.parseInt(rs.getString(1)),
                                 rs.getString(2)));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | NumberFormatException | SQLException e) {
         }
         return paymentList;
     }
@@ -48,9 +47,9 @@ public class PaymentDAO {
         String query = "SELECT * "
                 + "FROM [DetailPayment]";
         try {
-            conn = new DBContext().getConnection(); // mo ket noi sql
-            ps = conn.prepareStatement(query); // quang cau lenh vao sql
-            rs = ps.executeQuery(); // Tra ve ket qua
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 detailList.add(
                         new detail_payment(
@@ -61,8 +60,7 @@ public class PaymentDAO {
                                 rs.getString(5),
                                 rs.getString(6)));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | NumberFormatException | SQLException e) {
         }
         return detailList;
     }
@@ -71,22 +69,20 @@ public class PaymentDAO {
         String query = "INSERT INTO dbo.Payment([parentID]) VALUES (?)";
         String query2 = "SELECT TOP 1 *\n"
                 + "FROM dbo.Payment\n"
-                + "ORDER BY [paymentID] DESC;";
+                + "ORDER BY [paymentID] DESC";
         payment payment = null;
         try {
-            conn = new DBContext().getConnection();
+            conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, parentID);
             ps.executeUpdate();
-            ps.close();
-            conn.close();
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
+            PreparedStatement ps1 = null;
+            ps1 = conn.prepareStatement(query2);
+            rs = ps1.executeQuery();
             while (rs.next()) {
                 payment = new payment(Integer.parseInt(rs.getString(1)), rs.getString(2));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | NumberFormatException | SQLException e) {
         }
         return payment;
     }
@@ -95,7 +91,7 @@ public class PaymentDAO {
         String query = "INSERT INTO dbo.DetailPayment([paymentID],[courseID],[amountCourse],[datePayment],[status]) \n"
                 + " VALUES (?,?,?,?,?)";
         try {
-            conn = new DBContext().getConnection();
+            conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, Integer.toString(paymentID));
             ps.setString(2, courseID);
@@ -103,8 +99,7 @@ public class PaymentDAO {
             ps.setString(4, datePayment);
             ps.setString(5, status);
             ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException e) {
         }
     }
 

@@ -32,6 +32,7 @@ public class MainController extends HttpServlet {
        private static final String HOME_PAGE = "homepage.jsp";
        private static final String REGISTER = "RegisterController";
        private static final String CREATE = "Kid_RegisterController";
+       private static final String PAYMENT = "PaymentController";
 
        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
@@ -51,6 +52,9 @@ public class MainController extends HttpServlet {
                      }
                      if (action.equals("Create")) {
                             url = CREATE;
+                     }
+                     if (action.equals("Payment")) {
+                            url = PAYMENT;
                      }
 
               } catch (Exception e) {

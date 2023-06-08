@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 public class PaymentController extends HttpServlet {
 
     private static final String ERROR = "payment.jsp";
-    private static final String SUCCESS = "payment.jsp";
+    private static final String SUCCESS = "homepage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class PaymentController extends HttpServlet {
             String kidName = request.getParameter("kidName");
             payment payment = paymentDAO.AddPayment(parentID);
             int paymentID = payment.getPaymentID();
-            paymentDAO.AddDetailPayment(paymentID, courseID, ammountCourse, formattedDate, "Done");
+            paymentDAO.AddDetailPayment(paymentID, courseID, ammountCourse, formattedDate, "Done");           
             url = SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
