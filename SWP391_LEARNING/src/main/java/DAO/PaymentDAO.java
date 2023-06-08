@@ -76,8 +76,7 @@ public class PaymentDAO {
             ps = conn.prepareStatement(query);
             ps.setString(1, parentID);
             ps.executeUpdate();
-            PreparedStatement ps1 = null;
-            ps1 = conn.prepareStatement(query2);
+            PreparedStatement ps1 = conn.prepareStatement(query2);
             rs = ps1.executeQuery();
             while (rs.next()) {
                 payment = new payment(Integer.parseInt(rs.getString(1)), rs.getString(2));

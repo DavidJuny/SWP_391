@@ -4,7 +4,9 @@
  */
 package Controller;
 
+import DAO.KidDAO;
 import DAO.PaymentDAO;
+import DAO.ProductDAO;
 import Entity.parent;
 import Entity.payment;
 import java.io.IOException;
@@ -32,6 +34,8 @@ public class PaymentController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             PaymentDAO paymentDAO = new PaymentDAO();
+            KidDAO kidDAO = new KidDAO();
+            ProductDAO proDAO = new ProductDAO();
             LocalDate currentDate = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String formattedDate = currentDate.format(formatter);
@@ -39,13 +43,19 @@ public class PaymentController extends HttpServlet {
             String courseID = request.getParameter("courseID");
             parent parent = (parent) session.getAttribute("PARENT");
             String parentID = parent.getParentID();
-            String kidName = request.getParameter("kidName");
-            payment payment = paymentDAO.AddPayment(parentID);
-            int paymentID = payment.getPaymentID();
-            paymentDAO.AddDetailPayment(paymentID, courseID, ammountCourse, formattedDate, "Done");           
-            url = SUCCESS;
-        } catch (Exception e) {
-            e.printStackTrace();
+            String kidName = request.getParameter("kidName"); // lay ben trang payment.jsp cho phep parent lua chon kid theo ten de mua khoa hoc cho.
+            String kidID = kidDAO.findkidID(kidName, parentID);
+            if (proDAO.checkStatusKidLearning(kidID)) {
+                payment payment = paymentDAO.AddPayment(parentID);
+                int paymentID = payment.getPaymentID();
+                paymentDAO.AddDetailPayment(paymentID, courseID, ammountCourse, formattedDate, "Done");
+                proDAO.changeKidLearning(kidID, courseID); // thay doi status Lock thanh Unlock
+                request.setAttribute("msg", "Payment successfully");
+                url = SUCCESS;
+            } else {
+                request.setAttribute("msg", "Your kid already have this course!!!");
+            }
+        } catch (NumberFormatException e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

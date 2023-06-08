@@ -6,10 +6,6 @@
 </web-app>-->
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>Controller.test</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>MainController</servlet-name>
         <servlet-class>Controller.MainController</servlet-class>
     </servlet>
@@ -26,10 +22,6 @@
         <servlet-class>Controller.RegisterController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Kid_LoginCotroller</servlet-name>
-        <servlet-class>Controller.Kid_LoginCotroller</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Kid_RegisterController</servlet-name>
         <servlet-class>Controller.Kid_RegisterController</servlet-class>
     </servlet>
@@ -37,10 +29,6 @@
         <servlet-name>PaymentController</servlet-name>
         <servlet-class>Controller.PaymentController</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -56,10 +44,6 @@
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/RegisterController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Kid_LoginCotroller</servlet-name>
-        <url-pattern>/Kid_LoginCotroller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Kid_RegisterController</servlet-name>
