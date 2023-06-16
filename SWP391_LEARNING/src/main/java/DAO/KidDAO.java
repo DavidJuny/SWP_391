@@ -35,18 +35,17 @@ public class KidDAO {
                 kidList.add(
                         new kid(
                                 rs.getString(1),
+                                rs.getString(3),
                                 rs.getString(2),
                                 rs.getString(4),
-                                rs.getString(5),
-                                rs.getString(3),
-                                rs.getString(7),
-                                rs.getString(6)));
+                                rs.getString(6),
+                                rs.getString(5)));
             }
         } catch (ClassNotFoundException | SQLException e) {
         }
         return kidList;
     }
-
+// chuan bi sua
     public kid registerk(String parentID, String kidName, String kidAccount, String kidPassword, String kidBrithday, String kidImage) {
         String query = "INSERT INTO [dbo].[Kids]([parentID],[kidName],[kidAccount],[kidPassword],[kidBirthday],[kidImage])\n"
                 + "VALUES (?,?,?,?,?,?)";

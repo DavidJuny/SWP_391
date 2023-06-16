@@ -33,9 +33,8 @@ public class AdminDAO {
                      while (rs.next()) {
                             adminList.add(
                                     new admin(
-                                            rs.getString(1),
-                                            rs.getString(2),
-                                            rs.getString(3)));
+                                            rs.getString(1),                                           
+                                            rs.getString(2)));
                      }
               } catch (ClassNotFoundException | SQLException e) {
               }

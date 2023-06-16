@@ -1,11 +1,9 @@
 package Entity;
 
-import java.util.Date;
-
 public class kid {
 
     private String kidID, parentID;
-    private String kidAccount, kidPassword, kidName, kidImage;
+    private String kidAccount, kidName, kidImage;
     private String kidBrithday;
 
     public kid() {
@@ -13,16 +11,6 @@ public class kid {
 
     public kid(String kidID) {
         this.kidID = kidID;
-    }
-
-    public kid(String kidID, String parentID, String kidAccount, String kidPassword, String kidName, String kidImage, String kidBrithday) {
-        this.kidID = kidID;
-        this.parentID = parentID;
-        this.kidAccount = kidAccount;
-        this.kidPassword = kidPassword;
-        this.kidName = kidName;
-        this.kidImage = kidImage;
-        this.kidBrithday = kidBrithday;
     }
 
     public String getKidID() {
@@ -49,14 +37,6 @@ public class kid {
         this.kidAccount = kidAccount;
     }
 
-    public String getKidPassword() {
-        return kidPassword;
-    }
-
-    public void setKidPassword(String kidPassword) {
-        this.kidPassword = kidPassword;
-    }
-
     public String getKidName() {
         return kidName;
     }
@@ -78,6 +58,15 @@ public class kid {
     }
 
     public void setKidBrithday(String kidBrithday) {
+        this.kidBrithday = kidBrithday;
+    }
+
+    public kid(String kidID, String parentID, String kidAccount, String kidName, String kidImage, String kidBrithday) {
+        this.kidID = kidID;
+        this.parentID = parentID;
+        this.kidAccount = kidAccount;
+        this.kidName = kidName;
+        this.kidImage = kidImage;
         this.kidBrithday = kidBrithday;
     }
 
