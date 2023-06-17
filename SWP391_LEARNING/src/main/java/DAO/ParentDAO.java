@@ -5,6 +5,7 @@
 package DAO;
 
 import DBcontext.DBContext;
+import Entity.accountUser;
 import Entity.parent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,87 +19,57 @@ import java.util.ArrayList;
  */
 public class ParentDAO {
 
-       Connection conn = null;
-       PreparedStatement ps = null;
-       ResultSet rs = null;
-       ArrayList<parent> parentList = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    ArrayList<parent> parentList = new ArrayList<>();
 
-       public ArrayList<parent> getAllParents() {
+    public ParentDAO() {
+        parentList.clear();
+    }
 
-              String query = "SELECT * "
-                      + "FROM [Parent]";
-              try {
-                     conn = DBContext.getConnection(); // mo ket noi sql
-                     ps = conn.prepareStatement(query); // quang cau lenh vao sql
-                     rs = ps.executeQuery(); // Tra ve ket qua
-                     while (rs.next()) {
-                            parentList.add(
-                                    new parent(
-                                            rs.getString(1),
-                                            rs.getString(2),
-                                            rs.getString(3),
-                                            rs.getString(4),
-                                            rs.getString(5),
-                                            rs.getString(6)));
-                     }
-              } catch (ClassNotFoundException | SQLException e) {
-              }
-              return parentList;
-       }
+    public ArrayList<parent> getAllParents() {
+        String query = "SELECT * "
+                + "FROM [Parent]";
+        try {
+            conn = DBContext.getConnection(); // mo ket noi sql
+            ps = conn.prepareStatement(query); // quang cau lenh vao sql
+            rs = ps.executeQuery(); // Tra ve ket qua
+            while (rs.next()) {
+                parentList.add(
+                        new parent(
+                                rs.getString(1),
+                                rs.getString(2),
+                                rs.getString(3),
+                                rs.getString(4),
+                                rs.getString(5)));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+        }
+        return parentList;
+    }
 
-       public parent checkLogin(String username, String password) {
-              for (parent u : parentList) {
-                     if (u.getParentAccount().equals(username) && u.getParentPassword().equals(password)) {
-                            return u;
-                     }
-              }
-              return null;
-       }
+    public void register(String username, String fullname, String sex, String number) {
+        String query = "INSERT INTO dbo.Parent(account, parentName, parentSex, parentNumber) VALUES(?,?,?,?)";
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, fullname);
+            ps.setString(3, sex);
+            ps.setString(4, number);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+        }
+    }
 
-       public parent checkForgotPassword(String username) {
-              for (parent u : parentList) {
-                     if (u.getParentAccount().equals(username)) {
-                            return u;
-                     }
-              }
-              return null;
-       }
-
-       public parent checkExistedAccount(String username) {
-              for (parent u : parentList) {
-                     if (u.getParentAccount().equals(username)) {
-                            return u;
-                     }
-              }
-              return null;
-       }
-
-       public void register(String username, String fullname, String password, String sex, int number) {
-              String query = "INSERT INTO dbo.Parent(parentAccount, parentPassword, parentName, parentSex, parentNumber) VALUES(?,?,?,?,?)";
-              try {
-                     conn = DBContext.getConnection();
-                     ps = conn.prepareStatement(query);
-                     ps.setString(1, username);
-                     ps.setString(2, password);
-                     ps.setString(3, fullname);
-                     ps.setString(4, sex);
-                     ps.setInt(5, number);
-                     ps.executeUpdate();
-              } catch (ClassNotFoundException | SQLException e) {
-              }
-       }
-
-//       public static void main(String[] args) {
-//              ParentDAO parentDAO = new ParentDAO();
-//              parentDAO.getAllParents();
-//              parent user = parentDAO.checkExistedAccount("Nguyen123");
-//              if (user == null) {
-//                     System.out.println("no");
-//              }
-//              System.out.print(parentDAO.getAllParents().toString());
-//              parent a = parentDAO.checkLogin("nguyen123", "123");
-//              parentDAO.register("Nguyen123", "Nguyen Hanh Nguyen", "333", "Male", 010230110);
-//              System.out.println(a);
-//       }
+    public parent getParent(String account) {
+        for (parent u : parentList) {
+            if (u.getParentAccount().equals(account)) {
+                return u;
+            }
+        }
+        return null;
+    }
 
 }

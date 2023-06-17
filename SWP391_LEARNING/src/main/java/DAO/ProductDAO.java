@@ -5,6 +5,7 @@
 package DAO;
 
 import DBcontext.DBContext;
+import Entity.kid;
 import Entity.kidlearning;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,43 +23,15 @@ public class ProductDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public void addLearningKid1(String kidID) {
+    public void addLearningKid(String kidID, String courseID) {
         String query = "INSERT INTO dbo.KidLearning(kidID, courseID, status) VALUES(?,?,?)";
 
         try {
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, kidID);
-            ps.setString(2, "C1");
-            ps.setString(3, "Lock");
-            ps.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
-        }
-    }
-
-    public void addLearningKid2(String kidID) {
-        String query = "INSERT INTO dbo.KidLearning(kidID, courseID, status) VALUES(?,?,?)";
-
-        try {
-            conn = DBContext.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, kidID);
-            ps.setString(2, "C2");
-            ps.setString(3, "Lock");
-            ps.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
-        }
-    }
-
-    public void addLearningKid3(String kidID) {
-        String query = "INSERT INTO dbo.KidLearning(kidID, courseID, status) VALUES(?,?,?)";
-
-        try {
-            conn = DBContext.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, kidID);
-            ps.setString(2, "C3");
-            ps.setString(3, "Lock");
+            ps.setString(2, courseID);
+            ps.setString(3, "Learning");
             ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
         }
@@ -84,29 +57,12 @@ public class ProductDAO {
         return list;
     }
 
-    public void changeKidLearning(String kidID, String courseID) {
-        String query = "UPDATE dbo.KidLearning SET [status] = 'Unlock' WHERE courseID = ? AND kidID = ?";
-        try {
-            conn = DBContext.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, courseID);
-            ps.setString(2, kidID);
-            ps.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
-        }
-    }
-
-    public boolean checkStatusKidLearning(String kidID) {
-        String query = "SELECT [status] FROM dbo.KidLearning WHERE kidID = ?";
-        try {
-            conn = DBContext.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, kidID);
-            rs = ps.executeQuery();
-            rs.next();
-            String status = rs.getString(1);
-            if (status.equals("Lock")) return true;
-        } catch (ClassNotFoundException | SQLException e) {
+    public boolean checkStatusKidLearning(String kidID, String courseID) {
+        ArrayList<kidlearning> list = getAllKidlearning();
+        for (kidlearning u : list) {
+            if (u.getKidID().equals(kidID) && u.getCourseID().equals(courseID)) {
+                return true;
+            }
         }
         return false;
     }
