@@ -45,11 +45,11 @@ public class PaymentController extends HttpServlet {
             String parentID = parent.getParentID();
             String kidName = request.getParameter("kidName"); // lay ben trang payment.jsp cho phep parent lua chon kid theo ten de mua khoa hoc cho.
             String kidID = kidDAO.findkidID(kidName, parentID);
-            if (proDAO.checkStatusKidLearning(kidID)) {
+            if (proDAO.checkStatusKidLearning(kidID, courseID)) {
                 payment payment = paymentDAO.AddPayment(parentID);
                 int paymentID = payment.getPaymentID();
                 paymentDAO.AddDetailPayment(paymentID, courseID, ammountCourse, formattedDate, "Done");
-                proDAO.changeKidLearning(kidID, courseID); // thay doi status Lock thanh Unlock
+                proDAO.addLearningKid(kidID, courseID);
                 request.setAttribute("msg", "Payment successfully");
                 url = SUCCESS;
             } else {

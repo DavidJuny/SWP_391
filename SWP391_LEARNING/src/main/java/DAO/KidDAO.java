@@ -23,6 +23,10 @@ public class KidDAO {
     ResultSet rs = null;
     ArrayList<kid> kidList = new ArrayList<>();
 
+    public KidDAO() {
+        kidList.clear();
+    }
+
     public ArrayList<kid> getAllKids() {
 
         String query = "SELECT * "
@@ -46,34 +50,30 @@ public class KidDAO {
         return kidList;
     }
 // chuan bi sua
-    public kid registerk(String parentID, String kidName, String kidAccount, String kidPassword, String kidBrithday, String kidImage) {
-        String query = "INSERT INTO [dbo].[Kids]([parentID],[kidName],[kidAccount],[kidPassword],[kidBirthday],[kidImage])\n"
-                + "VALUES (?,?,?,?,?,?)";
-        String query1 = "SELECT TOP 1 * FROM dbo.Kids ORDER BY CAST(SUBSTRING(kidID, PATINDEX('%[0-9]%', kidID), LEN(kidID)) AS INTEGER) DESC";
+
+    public void registerk(String parentID, String kidName, String kidAccount, String kidBrithday, String kidImage) {
+        String query = "INSERT INTO [dbo].[Kids]([account],[parentID],[kidName],[kidBirthday],[kidImage])\n"
+                + "VALUES (?,?,?,?,?)";
+//        String query1 = "SELECT TOP 1 * FROM dbo.Kids ORDER BY CAST(SUBSTRING(kidID, PATINDEX('%[0-9]%', kidID), LEN(kidID)) AS INTEGER) DESC";
         try {
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, parentID);
-            ps.setString(2, kidName);
-            ps.setString(3, kidAccount);
-            ps.setString(4, kidPassword);
-            ps.setString(5, kidBrithday);
-            ps.setString(6, kidImage);
+            ps.setString(1, kidAccount);
+            ps.setString(2, parentID);
+            ps.setString(3, kidName);
+            ps.setString(4, kidBrithday);
+            ps.setString(5, kidImage);
             ps.executeUpdate();
-            PreparedStatement ps1 = conn.prepareStatement(query1);
-            rs = ps1.executeQuery();
-            rs.next();
-            String kidID = rs.getString("kidID");
-            kid kid = new kid(kidID);
-            return kid;
+//            PreparedStatement ps1 = conn.prepareStatement(query1);
+//            rs = ps1.executeQuery();
+//            rs.next();
+//            String kidID = rs.getString("kidID");
         } catch (ClassNotFoundException | SQLException e) {
         }
-        return null;
     }
 
     public kid checkExistedAccount(String username) {
         for (kid u : kidList) {
-//            String check = u.getKidAccount();
             if (u.getKidAccount().equals(username)) {
                 return u;
             }
@@ -81,33 +81,20 @@ public class KidDAO {
         return null;
     }
 
-//    public static void main(String[] args) {
-//        KidDAO kidDAO = new KidDAO();
-//        ArrayList<kid> kidList = new ArrayList<>();
-//
-//              kidList = kidDAO.getAllKids();
-//
-//              for (kid i : kidList) {
-//                     System.out.println(i);
-//              }
-//              kidDAO.registerk("Pa1", "Nguyen Hanh Nguyen", "kiddo", "123", "2023-01-01", "a");
+//    public kid takeLastKid() {
+//        String query = "SELECT TOP 1 * FROM dbo.Kids ORDER BY CAST(SUBSTRING(kidID, PATINDEX('%[0-9]%', kidID), LEN(kidID)) AS INTEGER) DESC";
+//        try {
+//            conn = DBContext.getConnection();
+//            ps = conn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//            rs.next();
+//            String kidID = rs.getString("kidID");
+//            kid kid = new kid(kidID);
+//            return kid;
+//        } catch (ClassNotFoundException | SQLException e) {
+//        }
+//        return null;
 //    }
-    
-    public kid takeLastKid() {
-        String query = "SELECT TOP 1 * FROM dbo.Kids ORDER BY CAST(SUBSTRING(kidID, PATINDEX('%[0-9]%', kidID), LEN(kidID)) AS INTEGER) DESC";
-        try {
-            conn = DBContext.getConnection();
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            rs.next();
-            String kidID = rs.getString("kidID");
-            kid kid = new kid(kidID);
-            return kid;
-        } catch (ClassNotFoundException | SQLException e) {
-        }
-        return null;
-    }
-
     public String findkidID(String kidName, String parentID) {
         String query = "SELECT kidID FROM dbo.Kids WHERE kidName = ? AND parentID = ?";
         try {

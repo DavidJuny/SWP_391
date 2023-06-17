@@ -4,14 +4,13 @@
  */
 package Controller;
 
-import DAO.AdminDAO;
+import DAO.AccountDAO;
 import DAO.KidDAO;
 import DAO.ParentDAO;
-import Entity.admin;
+import Entity.accountUser;
 import Entity.kid;
 import Entity.parent;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +22,6 @@ import javax.servlet.http.HttpSession;
  *
  * @author PC
  */
-
 public class LoginController extends HttpServlet {
 
     /**
@@ -39,6 +37,9 @@ public class LoginController extends HttpServlet {
     private static final String SUCCESS_PARENT = "homepage.jsp";
     private static final String SUCCESS_ADMIN = "admin.jsp";
     private static final String FAILED = "login.jsp";
+    private static final String ADMIN = "Ad";
+    private static final String PARENT = "Pa";
+    private static final String KID = "K";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,66 +48,58 @@ public class LoginController extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-//                     String remember = request.getParameter("remember");
+            String remember = request.getParameter("remember");
+            HttpSession session = request.getSession();
+            AccountDAO dao = new AccountDAO();
             ParentDAO parentDAO = new ParentDAO();
             KidDAO kidDAO = new KidDAO();
-            AdminDAO adminDAO = new AdminDAO();
-            ArrayList<parent> parentList = parentDAO.getAllParents();
-            ArrayList<kid> kidList = kidDAO.getAllKids();
-            ArrayList<admin> adminList = adminDAO.getAllAdmins();
-            parent parentAcc = parentDAO.checkLogin(username, password);
-            kid kidAcc = kidDAO.checkExistedAccount(username);
-            admin adminAcc = adminDAO.checkExistedAdmin(username);
-            if (parentAcc == null && kidAcc == null && adminAcc == null) {
-                String msg = "Account does not exist!!";
+            kidDAO.getAllKids();
+            parentDAO.getAllParents();
+            dao.getAllAccount();
+            accountUser account = dao.checkLoginAccount(username, password);
+            if (account == null) {
+                String msg = "Wrong password or username!!!";
                 request.setAttribute("login_msg", msg);
             } else {
-//phan quyen
-//                String parentID = parentAcc.getParentID().substring(0, 1);
-                if (kidAcc != null) {
-//                    String kidID = kidAcc.getKidID().substring(0, 1);
-                    HttpSession session = request.getSession();
-                    session.setAttribute("KID", kidAcc);
+                if (account.getRoleID().equals(ADMIN)) {
+                    session.setAttribute("ADMIN", account);
                     Cookie cookieUsername = new Cookie("cookieUsername", username);
                     cookieUsername.setMaxAge(60 * 60);
                     Cookie cookiePassword = new Cookie("cookiePassword", password);
                     cookiePassword.setMaxAge(60 * 60);
-//                            Cookie cookieRemember = new Cookie("cookieRemember", remember);
-//                            cookieRemember.setMaxAge(60 * 60);
+//                  Cookie cookieRemember = new Cookie("cookieRemember", remember);
+//                  cookieRemember.setMaxAge(60 * 60);
                     response.addCookie(cookieUsername);
                     response.addCookie(cookiePassword);
-//                            response.addCookie(cookieRemember);
+//                  response.addCookie(cookieRemember);
+                    url = SUCCESS_ADMIN;
+                } else if (account.getRoleID().equals(KID)) {
+                    kid kid = kidDAO.checkExistedAccount(account.getAccount());
+                    session.setAttribute("KID", kid);
+                    Cookie cookieUsername = new Cookie("cookieUsername", username);
+                    cookieUsername.setMaxAge(60 * 60);
+                    Cookie cookiePassword = new Cookie("cookiePassword", password);
+                    cookiePassword.setMaxAge(60 * 60);
+                    Cookie cookieRemember = new Cookie("cookieRemember", remember);
+                    cookieRemember.setMaxAge(60 * 60);
+                    response.addCookie(cookieUsername);
+                    response.addCookie(cookiePassword);
+                    response.addCookie(cookieRemember);
                     url = SUCCESS_KID;
-                }
-                if (parentAcc != null) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("PARENT", parentAcc);
+                } else if (account.getRoleID().equals(PARENT)) {
+                    parent parent = parentDAO.getParent(account.getAccount());
+                    session.setAttribute("PARENT", parent);
                     Cookie cookieUsername = new Cookie("cookieUsername", username);
                     cookieUsername.setMaxAge(60 * 60);
                     Cookie cookiePassword = new Cookie("cookiePassword", password);
                     cookiePassword.setMaxAge(60 * 60);
-//                            Cookie cookieRemember = new Cookie("cookieRemember", remember);
-//                            cookieRemember.setMaxAge(60 * 60);
+                    Cookie cookieRemember = new Cookie("cookieRemember", remember);
+                    cookieRemember.setMaxAge(60 * 60);
                     response.addCookie(cookieUsername);
                     response.addCookie(cookiePassword);
-//                            response.addCookie(cookieRemember);
+                    response.addCookie(cookieRemember);
                     url = SUCCESS_PARENT;
                 }
-                if (adminAcc != null) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("ADMIN", parentAcc);
-                    Cookie cookieUsername = new Cookie("cookieUsername", username);
-                    cookieUsername.setMaxAge(60 * 60);
-                    Cookie cookiePassword = new Cookie("cookiePassword", password);
-                    cookiePassword.setMaxAge(60 * 60);
-//                            Cookie cookieRemember = new Cookie("cookieRemember", remember);
-//                            cookieRemember.setMaxAge(60 * 60);
-                    response.addCookie(cookieUsername);
-                    response.addCookie(cookiePassword);
-//                            response.addCookie(cookieRemember);
-                    url = SUCCESS_ADMIN;
-                }
-
             }
         } catch (Exception e) {
         } finally {

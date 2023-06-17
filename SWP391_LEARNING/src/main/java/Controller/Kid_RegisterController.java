@@ -4,8 +4,10 @@
  */
 package Controller;
 
+import DAO.AccountDAO;
 import DAO.KidDAO;
 import DAO.ProductDAO;
+import Entity.accountUser;
 import Entity.kid;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +34,6 @@ public class Kid_RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        kid kid;
         try (PrintWriter out = response.getWriter()) {
             String parentID = request.getParameter("parentID");
             String kusername = request.getParameter("kusername");
@@ -48,16 +49,13 @@ public class Kid_RegisterController extends HttpServlet {
                 request.getRequestDispatcher("profile.jsp").forward(request, response);
             } else {
                 KidDAO kidDAO = new KidDAO();
-                ProductDAO proDAO = new ProductDAO();
-                kidDAO.getAllKids();
-                kid user = kidDAO.checkExistedAccount(kusername);
-                if (user == null) { //continue to signup
+                AccountDAO accDAO = new AccountDAO();
+                accDAO.getAllAccount();
+                accountUser account = accDAO.checkExsit(kusername);
+                if (account == null) { //continue to signup
                     try {
-                        kid = kidDAO.registerk(parentID, kfullname, kusername, kpassword, kbirthday, kimage);
-                        //insert vao table KidLearning co status Lock cho 3 course C1, C2, C3
-                        proDAO.addLearningKid1(kid.getKidID());
-                        proDAO.addLearningKid2(kid.getKidID());
-                        proDAO.addLearningKid3(kid.getKidID());
+                        accDAO.register(kusername, kpassword, "K");
+                        kidDAO.registerk(parentID, kfullname, kusername, kbirthday, kimage);
                     } catch (Exception e) {
                     }
                     request.setAttribute("msg", "Your account has been created !");
