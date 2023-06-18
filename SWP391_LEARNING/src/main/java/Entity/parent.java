@@ -7,6 +7,15 @@ public class parent {
     private String parentName;
     private String parentSex;
     private String parentPhone;
+    private accountUser account;
+
+    public accountUser getAccount() {
+        return account;
+    }
+
+    public void setAccount(accountUser account) {
+        this.account = account;
+    }
 
     public String getParentID() {
         return parentID;
@@ -48,12 +57,13 @@ public class parent {
         this.parentPhone = parentPhone;
     }
 
-    public parent(String parentID, String parentAccount, String parentName, String parentSex, String parentPhone) {
+    public parent(String parentID, String parentAccount, String parentName, String parentSex, String parentPhone,accountUser account) {
         this.parentID = parentID;
         this.parentAccount = parentAccount;
         this.parentName = parentName;
         this.parentSex = parentSex;
         this.parentPhone = parentPhone;
+        this.account=account;
     }
 
     public parent() {

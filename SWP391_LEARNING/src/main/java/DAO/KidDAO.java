@@ -5,12 +5,18 @@
 package DAO;
 
 import DBcontext.DBContext;
+import Entity.accountUser;
 import Entity.kid;
+import Entity.parent;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -29,27 +35,69 @@ public class KidDAO {
 
     public ArrayList<kid> getAllKids() {
 
-        String query = "SELECT * "
-                + "FROM [Kids]";
-        try {
-            conn = DBContext.getConnection(); // mo ket noi sql
-            ps = conn.prepareStatement(query); // quang cau lenh vao sql
-            rs = ps.executeQuery(); // Tra ve ket qua
+        String query = "SELECT p.*, u.* "
+                + "FROM [Kids] p "
+                + "JOIN [AccountUser] u ON p.account = u.account";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try (Connection conn = DBContext.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+
             while (rs.next()) {
-                kidList.add(
-                        new kid(
-                                rs.getString(1),
-                                rs.getString(3),
-                                rs.getString(2),
-                                rs.getString(4),
-                                rs.getString(6),
-                                rs.getString(5)));
+                String kidID = rs.getString(1);
+                String kidAccount = rs.getString(2);
+                String parentID = rs.getString(3);
+                String kidName = rs.getString(4);
+                java.sql.Date sqlBirthDate = rs.getDate(5);
+                String kidImage = rs.getString(6);
+
+                String account = rs.getString(7);
+                String password = rs.getString(8);
+                String roleID = rs.getString(9);
+                String status = rs.getString(10);
+
+                // Convert the SQL Date to java.util.Date
+                Date birthDate = null;
+                if (sqlBirthDate != null) {
+                    try {
+                        birthDate = dateFormat.parse(sqlBirthDate.toString());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                accountUser accountUser = new accountUser(account, password, roleID, status);
+                kid kid = new kid(kidID, parentID, kidAccount, kidName, kidImage, birthDate, accountUser);
+                kidList.add(kid);
             }
         } catch (ClassNotFoundException | SQLException e) {
         }
         return kidList;
     }
 // chuan bi sua
+public void updateStatus(String account) {
+    String query = "UPDATE [AccountUser] SET status = CASE WHEN status = 'active' THEN 'ban' ELSE 'active' END WHERE account = ?";
+
+    try {
+        conn = DBContext.getConnection();
+        ps = conn.prepareStatement(query);
+        ps.setString(1, account);
+
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("Status updated successfully.");
+        } else {
+            System.out.println("Status update failed.");
+        }
+    } catch (ClassNotFoundException | SQLException e) {
+        // Handle exceptions
+    } finally {
+        // Close resources
+    }
+}
+
 
     public void registerk(String parentID, String kidName, String kidAccount, String kidBrithday, String kidImage) {
         String query = "INSERT INTO [dbo].[Kids]([account],[parentID],[kidName],[kidBirthday],[kidImage])\n"
