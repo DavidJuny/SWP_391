@@ -1,10 +1,22 @@
 package Entity;
 
+
+import java.util.Date;
+
 public class kid {
 
     private String kidID, parentID;
     private String kidAccount, kidName, kidImage;
-    private String kidBrithday;
+    private Date kidBrithday;
+    private accountUser account;
+
+    public accountUser getAccount() {
+        return account;
+    }
+
+    public void setAccount(accountUser account) {
+        this.account = account;
+    }
 
     public kid() {
     }
@@ -53,21 +65,22 @@ public class kid {
         this.kidImage = kidImage;
     }
 
-    public String getKidBrithday() {
+    public Date getKidBrithday() {
         return kidBrithday;
     }
 
-    public void setKidBrithday(String kidBrithday) {
+    public void setKidBrithday(Date kidBrithday) {
         this.kidBrithday = kidBrithday;
     }
 
-    public kid(String kidID, String parentID, String kidAccount, String kidName, String kidImage, String kidBrithday) {
+    public kid(String kidID, String parentID, String kidAccount, String kidName, String kidImage, Date kidBrithday,accountUser account) {
         this.kidID = kidID;
         this.parentID = parentID;
         this.kidAccount = kidAccount;
         this.kidName = kidName;
         this.kidImage = kidImage;
         this.kidBrithday = kidBrithday;
+        this.account=account;
     }
 
 }

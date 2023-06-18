@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet {
      */
     private static final String SUCCESS_KID = "kidpage.jsp";
     private static final String SUCCESS_PARENT = "homepage.jsp";
-    private static final String SUCCESS_ADMIN = "admin.jsp";
+    private static final String SUCCESS_ADMIN = "index_admin.jsp";
     private static final String FAILED = "login.jsp";
     private static final String ADMIN = "Ad";
     private static final String PARENT = "Pa";

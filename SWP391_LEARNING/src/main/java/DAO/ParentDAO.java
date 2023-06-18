@@ -29,8 +29,10 @@ public class ParentDAO {
     }
 
     public ArrayList<parent> getAllParents() {
-        String query = "SELECT * "
-                + "FROM [Parent]";
+        String query = "SELECT p.*, u.* "
+                + "FROM [Parent] p "
+                + "JOIN [AccountUser] u ON p.account = u.account";
+
         try {
             conn = DBContext.getConnection(); // mo ket noi sql
             ps = conn.prepareStatement(query); // quang cau lenh vao sql
@@ -42,12 +44,40 @@ public class ParentDAO {
                                 rs.getString(2),
                                 rs.getString(3),
                                 rs.getString(4),
-                                rs.getString(5)));
+                                rs.getString(5),
+                                new accountUser(
+                                        rs.getString(6),
+                                        rs.getString(7),
+                                        rs.getString(8),
+                                        rs.getString(9)
+                                )));
+
             }
         } catch (ClassNotFoundException | SQLException e) {
         }
         return parentList;
     }
+    public void updateStatus(String account) {
+        String query = "UPDATE [AccountUser] SET status = CASE WHEN status = 'active' THEN 'ban' ELSE 'active' END WHERE account = ?";
+
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, account);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Status updated successfully.");
+            } else {
+                System.out.println("Status update failed.");
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            // Handle exceptions
+        } finally {
+            // Close resources
+        }
+    }
+
 
     public void register(String username, String fullname, String sex, String number) {
         String query = "INSERT INTO dbo.Parent(account, parentName, parentSex, parentNumber) VALUES(?,?,?,?)";
