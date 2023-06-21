@@ -34,6 +34,8 @@ public class LogoutController extends HttpServlet {
                      /* TODO output your page here. You may use following sample code. */
                      HttpSession session = request.getSession();
                      session.removeAttribute("PARENT");
+                     session.removeAttribute("KID");
+
                      response.sendRedirect("homepage.jsp");
               }
        }

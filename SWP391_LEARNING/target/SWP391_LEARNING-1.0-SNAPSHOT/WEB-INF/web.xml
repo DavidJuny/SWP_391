@@ -37,8 +37,10 @@
         <servlet-name>CourseController</servlet-name>
         <servlet-class>Controller.CourseController</servlet-class>
     </servlet>
-
-
+    <servlet>
+        <servlet-name>Kid_CourseController</servlet-name>
+        <servlet-class>Controller.Kid_CourseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -70,6 +72,10 @@
     <servlet-mapping>
         <servlet-name>CourseController</servlet-name>
         <url-pattern>/CourseController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Kid_CourseController</servlet-name>
+        <url-pattern>/Kid_CourseController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>
