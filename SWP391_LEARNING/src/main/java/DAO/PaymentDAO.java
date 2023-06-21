@@ -6,6 +6,7 @@ package DAO;
 
 import DBcontext.DBContext;
 import Entity.detail_payment;
+import Entity.kidlearning;
 import Entity.payment;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,43 +23,33 @@ public class PaymentDAO {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    ArrayList<payment> paymentList = new ArrayList<>();
     ArrayList<detail_payment> detailList = new ArrayList<>();
 
-    public ArrayList<payment> getAllPayment() {
-        String query = "SELECT * "
-                + "FROM [Payment]";
+    public ArrayList<detail_payment> getAllPayment() {
+        String query = "SELECT p.*, u.*, k.* FROM [DetailPayment] p \n"
+                + "JOIN [Payment] u ON p.paymentID = u.paymentID\n"
+                + "JOIN [KidLearning] k ON p.kidlearningID = k.kidlearningID";
         try {
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                paymentList.add(
-                        new payment(
-                                Integer.parseInt(rs.getString(1)),
-                                rs.getString(2)));
-            }
-        } catch (ClassNotFoundException | NumberFormatException | SQLException e) {
-        }
-        return paymentList;
-    }
+                int detailID = Integer.parseInt(rs.getString(1));
+                int paymentID = Integer.parseInt(rs.getString(2));
+                int kidLearningID = Integer.parseInt(rs.getString(3));
+                float ammount = Float.parseFloat(rs.getString(4));
+                String date = rs.getString(5);
+                String status = rs.getString(6);
+                String parentID = rs.getString(8);
+                String kidID = rs.getString(10);
+                String courseID = rs.getString(11);
 
-    public ArrayList<detail_payment> getAllDetailPayment() {
-        String query = "SELECT * "
-                + "FROM [DetailPayment]";
-        try {
-            conn = DBContext.getConnection();
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                detailList.add(
-                        new detail_payment(
-                                Integer.parseInt(rs.getString(1)),
-                                Integer.parseInt(rs.getString(2)),
-                                rs.getString(3),
-                                Float.parseFloat(rs.getString(4)),
-                                rs.getString(5),
-                                rs.getString(6)));
+                payment payment = new payment(paymentID, parentID);
+                kidlearning kidlearning = new kidlearning(kidLearningID, kidID, courseID);
+                detail_payment detail = new detail_payment(detailID, paymentID, kidLearningID, ammount, date, status, payment, kidlearning);
+
+                detailList.add(detail);
+
             }
         } catch (ClassNotFoundException | NumberFormatException | SQLException e) {
         }

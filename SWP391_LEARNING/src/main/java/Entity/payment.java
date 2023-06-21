@@ -1,13 +1,12 @@
 package Entity;
 
 public class payment {
+
     private int paymentID;
     private String parentID;
 
     public payment() {
     }
-    
-    
 
     public payment(int paymentID, String parentID) {
         this.paymentID = paymentID;
@@ -30,5 +29,4 @@ public class payment {
         this.parentID = parentID;
     }
 
-    
 }

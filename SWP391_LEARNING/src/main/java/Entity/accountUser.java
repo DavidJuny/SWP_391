@@ -22,6 +22,11 @@ public class accountUser {
         this.status = status;
     }
 
+    public accountUser(String account, String roleID) {
+        this.account = account;
+        this.roleID = roleID;
+    }
+
     public String getAccount() {
         return account;
     }

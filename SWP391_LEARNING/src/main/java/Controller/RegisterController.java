@@ -7,8 +7,6 @@ package Controller;
 import DAO.AccountDAO;
 import DAO.ParentDAO;
 import Entity.accountUser;
-import Entity.parent;
-import com.sun.jersey.json.impl.writer.A2EXmlStreamWriterProxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

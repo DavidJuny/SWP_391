@@ -7,7 +7,6 @@ package DAO;
 import DBcontext.DBContext;
 import Entity.accountUser;
 import Entity.kid;
-import Entity.parent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

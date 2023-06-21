@@ -12,15 +12,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CourseController extends HttpServlet {
-    private static final String CourseTable ="course_tables.jsp";
+
+    private static final String CourseTable = "course_tables.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-
-
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -36,13 +35,9 @@ public class CourseController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         CourseDAO courseDAO = new CourseDAO();
-        ArrayList<course> courses = new ArrayList<>();
-        courses=courseDAO.GetCourses();
-        request.setAttribute("courses",courses);
+        ArrayList<course> courses = courseDAO.GetCourses();
+        request.setAttribute("courses", courses);
         request.getRequestDispatcher(CourseTable).forward(request, response);
-
-
-
     }
 
     /**
@@ -58,41 +53,38 @@ public class CourseController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         String action = request.getParameter("action");
-        CourseDAO courseDao= new CourseDAO();
+        CourseDAO courseDao = new CourseDAO();
 
-        if (action != null && action.equals("CreateCourse"))
-        {
+        if (action != null && action.equals("CreateCourse")) {
             String courseId = request.getParameter("courseId");
             String courseName = request.getParameter("courseName");
             String courseImage = request.getParameter("courseImage");
             String courseLevel = request.getParameter("courseLevel");
 
-            course course = new course(courseId,courseName,courseImage,courseLevel);
+            course course = new course(courseId, courseName, courseImage, courseLevel);
             try {
                 courseDao.addCourse(course);
                 response.sendRedirect("CourseController");
             } catch (SQLException e) {
                 request.setAttribute("error", "Error adding course: " + e.getMessage());
-                request.getRequestDispatcher("CreateCourseForm.jsp").forward(request, response);           }
+                request.getRequestDispatcher("CreateCourseForm.jsp").forward(request, response);
+            }
 
-        }else         if (action != null && action.equals("DeleteCourse"))
-        {
+        } else if (action != null && action.equals("DeleteCourse")) {
             String courseId = request.getParameter("courseId");
             courseDao.deleteCourse(courseId);
             response.sendRedirect("CourseController");
-        }else         if (action != null && action.equals("UpdateCourse"))
-        {
+        } else if (action != null && action.equals("UpdateCourse")) {
             String courseId = request.getParameter("courseId");
             String courseName = request.getParameter("courseName");
             String courseImage = request.getParameter("courseImage");
             String courseLevel = request.getParameter("courseLevel");
-            course course = new course(courseId,courseName,courseImage,courseLevel);
+            course course = new course(courseId, courseName, courseImage, courseLevel);
 
             try {
                 courseDao.updateCourse(course);
                 response.sendRedirect("CourseController");
-            }catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
