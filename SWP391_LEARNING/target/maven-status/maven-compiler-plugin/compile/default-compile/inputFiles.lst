@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\admin\Desktop\LearningEnglish\SWP_391\SWP391_LEARNING\src\main\java\DAO\KidDAO.java
 C:\Users\admin\Desktop\LearningEnglish\SWP_391\SWP391_LEARNING\src\main\java\DAO\AccountDAO.java
 C:\Users\admin\Desktop\LearningEnglish\SWP_391\SWP391_LEARNING\src\main\java\Entity\parent.java
@@ -31,3 +32,37 @@ C:\Users\admin\Desktop\LearningEnglish\SWP_391\SWP391_LEARNING\src\main\java\Ent
 C:\Users\admin\Desktop\LearningEnglish\SWP_391\SWP391_LEARNING\src\main\java\Controller\AdminController.java
 C:\Users\admin\Desktop\LearningEnglish\SWP_391\SWP391_LEARNING\src\main\java\DAO\ProductDAO.java
 C:\Users\admin\Desktop\LearningEnglish\SWP_391\SWP391_LEARNING\src\main\java\Entity\feedback.java
+=======
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\lessonItem.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\kid.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\payment.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\parent.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\report.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\LogoutController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\PaymentController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DAO\CourseDAO.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\course.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DAO\AdminDAO.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\question.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DAO\ProductDAO.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DAO\ParentDAO.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DAO\AccountDAO.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\accountUser.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\feedback.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\topic.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\detail_payment.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\AdminController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\admin.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\answer_feedback.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\Kid_CourseController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\RegisterController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\MainController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\LoginController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DAO\PaymentDAO.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\lesson.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\CourseController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Entity\kidlearning.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\Controller\Kid_RegisterController.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DAO\KidDAO.java
+D:\Work\SWP RE\main git\SWP391_LEARNING\src\main\java\DBcontext\DBContext.java
+>>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a

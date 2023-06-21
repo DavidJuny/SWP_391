@@ -22,6 +22,10 @@
               <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
               <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
               <link rel="stylesheet" href="assets/css/aos.css">
+              <link href="assets/css/course.css" rel="stylesheet" type="text/css"/>
+              <link href="assets/css/kid_profile.css" rel="stylesheet" type="text/css"/>
+
+
 
               <!-- MAIN CSS -->
               <link rel="stylesheet" href="assets/css/style.css">
@@ -70,27 +74,43 @@
                                    <nav class="site-navigation text-left mr-auto d-none d-lg-block" role="navigation">
                                           <ul class="site-menu main-menu js-clone-nav mr-auto ">
                                                  <li class="active"><a href="homepage.jsp" class="nav-link">Home</a></li>
-                                                 <li><a href="about.jsp" class="nav-link">About</a></li>
-                                                 <li><a href="packages.jsp" class="nav-link">Packages</a></li>
-                                                 <li><a href="gallery.jsp" class="nav-link">Gallery</a></li>
-                                                 <li><a href="pricing.jsp" class="nav-link">Pricing</a></li>
-                                                 <li><a href="contact.jsp" class="nav-link">Contact</a></li>
+                                                        <c:if test="${ sessionScope.KID == null}">
+                                                        <li><a href="about.jsp" class="nav-link">About</a></li>
+                                                        <li><a href="gallery.jsp" class="nav-link">Gallery</a></li>
+                                                        <li><a href="contact.jsp" class="nav-link">Contact</a></li>
+                                                        </c:if>
+                                                        <c:if test="${ sessionScope.KID != null}">
+                                                        <li><a href="Kid_CourseController" class="nav-link">Course</a></li>
+                                                        </c:if>
                                           </ul>
                                    </nav>
                                    <div class="top-social ml-auto">
 
-                                          <c:if test="${sessionScope.PARENT == null}">
+                                          <c:if test="${sessionScope.PARENT == null && sessionScope.KID == null}">
                                                  <a href="login.jsp" class="nav-link"> Login<i class="fa fa-sign-in fa-fw fa-lg" aria-hidden="true"></i></a>
                                                  </c:if>
 
                                           <c:if test="${sessionScope.PARENT != null}">
                                                  <div class="dropdown">
                                                         <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                               <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                                                               <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
                                                         </a>
 
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                <li><a class="dropdown-item"  href="profile.jsp"><span class="fa fa-user fa-fw"></span>Profile</a></li>
+                                                               <li><a  href="LogoutController"><span class=" fa fa-sign-out fa-fw""></span>Log out</a></li>
+                                                        </ul>
+                                                 </div>
+                                          </c:if>
+                                          <c:if test="${sessionScope.KID != null}">
+                                                 <div class="dropdown">
+                                                        <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                               <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+                                                        </a>
+
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                               <li><a class="dropdown-item"  href="kid_profile.jsp"><span class="fa fa-user fa-fw"></span>Profile</a></li>
+
                                                                <li><a  href="LogoutController"><span class=" fa fa-sign-out fa-fw""></span>Log out</a></li>
                                                         </ul>
                                                  </div>

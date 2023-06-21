@@ -1,17 +1,46 @@
+<<<<<<< HEAD
+=======
+Controller\CourseController.class
+Controller\RegisterController.class
+Controller\LogoutController.class
+>>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a
 Entity\feedback.class
 Controller\MainController.class
 DAO\ParentDAO.class
+DAO\CourseDAO.class
+DAO\AdminDAO.class
 DAO\KidDAO.class
+<<<<<<< HEAD
+=======
+DAO\ProductDAO.class
+>>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a
 Entity\admin.class
 Entity\question.class
+DAO\PaymentDAO.class
+Entity\accountUser.class
 Entity\report.class
 Entity\course.class
+<<<<<<< HEAD
+=======
+Controller\AdminController.class
+>>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a
 Entity\detail_payment.class
 Entity\lesson.class
 Entity\payment.class
 Entity\kidlearning.class
+Controller\PaymentController.class
 Entity\parent.class
 Entity\kid.class
+<<<<<<< HEAD
 Controller\LoginController.class
 DBcontext\DBContext.class
+=======
+Controller\Kid_CourseController.class
+Controller\Kid_RegisterController.class
+Entity\answer_feedback.class
+DAO\AccountDAO.class
+Controller\LoginController.class
+DBcontext\DBContext.class
+Entity\lessonItem.class
+>>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a
 Entity\topic.class

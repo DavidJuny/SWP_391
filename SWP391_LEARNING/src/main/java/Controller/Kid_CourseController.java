@@ -4,8 +4,12 @@
  */
 package Controller;
 
+import DAO.ProductDAO;
+import Entity.kid;
+import Entity.kidlearning;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author PC
  */
-public class LogoutController extends HttpServlet {
+public class Kid_CourseController extends HttpServlet {
 
        /**
         * Processes requests for both HTTP <code>GET</code> and
@@ -32,15 +36,20 @@ public class LogoutController extends HttpServlet {
               response.setContentType("text/html;charset=UTF-8");
               try (PrintWriter out = response.getWriter()) {
                      /* TODO output your page here. You may use following sample code. */
+                     ProductDAO kidlearning = new ProductDAO();
                      HttpSession session = request.getSession();
-                     session.removeAttribute("PARENT");
-                     session.removeAttribute("KID");
-
-                     response.sendRedirect("homepage.jsp");
+                     kid kidacc = (kid) session.getAttribute("KID");
+                     if (kidacc != null) {
+                            ArrayList< kidlearning> kidlearningList = kidlearning.getAllKidlearningbyID(kidacc.getKidID());
+                            request.setAttribute("KIDLEARNING", kidlearningList);
+                            request.getRequestDispatcher("course.jsp").forward(request, response);
+                     } else {
+                            response.sendRedirect("homepage.jsp");
+                     }
               }
        }
-
        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
        /**
         * Handles the HTTP <code>GET</code> method.
         *
