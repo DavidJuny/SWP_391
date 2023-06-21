@@ -1,20 +1,43 @@
 package Entity;
 
 public class detail_payment {
+
     private int detailPaymentID;
     private int paymentID;
-    private String courseID;
+    private int kidLearningID;
     private float amountCourse;
     private String datePayment;
     private String status;
+    private payment payment;
+    private kidlearning kidlearning;
 
-    public detail_payment(int detailPaymentID, int paymentID, String courseID, float amountCourse, String datePayment, String status) {
+    public detail_payment(int detailPaymentID, int paymentID, int kidLearningID, float amountCourse, String datePayment, String status, payment payment, kidlearning kidlearning) {
         this.detailPaymentID = detailPaymentID;
         this.paymentID = paymentID;
-        this.courseID = courseID;
+        this.kidLearningID = kidLearningID;
         this.amountCourse = amountCourse;
         this.datePayment = datePayment;
         this.status = status;
+        this.payment = payment;
+        this.kidlearning = kidlearning;
+    }
+    
+    
+
+    public kidlearning getKidlearning() {
+        return kidlearning;
+    }
+
+    public void setKidlearning(kidlearning kidlearning) {
+        this.kidlearning = kidlearning;
+    }
+    
+    public payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(payment payment) {
+        this.payment = payment;
     }
 
     public int getDetailPaymentID() {
@@ -33,12 +56,12 @@ public class detail_payment {
         this.paymentID = paymentID;
     }
 
-    public String getCourseID() {
-        return courseID;
+    public int getKidLearningID() {
+        return kidLearningID;
     }
 
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
+    public void setKidLearningID(int kidLearningID) {
+        this.kidLearningID = kidLearningID;
     }
 
     public float getAmountCourse() {

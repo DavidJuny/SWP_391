@@ -60,7 +60,7 @@
                                                                       <label class="form-label" for="labelsex">Sex</label>
                                                                </div>
                                                                <div class="form-outline mb-3">
-                                                                      <input type="password" id="labelphone" name="phone" class="form-control" required=""/>
+                                                                      <input type="text" id="labelphone" name="phone" class="form-control" required=""/>
                                                                       <label class="form-label" for="labelphone">Phone number</label>
                                                                </div>
 

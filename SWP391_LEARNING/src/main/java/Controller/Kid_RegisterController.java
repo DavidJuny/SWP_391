@@ -6,9 +6,7 @@ package Controller;
 
 import DAO.AccountDAO;
 import DAO.KidDAO;
-import DAO.ProductDAO;
 import Entity.accountUser;
-import Entity.kid;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

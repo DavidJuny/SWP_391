@@ -31,7 +31,7 @@ public class ProductDAO {
             ps = conn.prepareStatement(query);
             ps.setString(1, kidID);
             ps.setString(2, courseID);
-            ps.setString(3, "Learning");
+            ps.setString(3, "Lock");
             ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
         }

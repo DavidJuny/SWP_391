@@ -1,14 +1,43 @@
 package Entity;
 
 public class feedback {
-    private int feedbackID;
-    private int feedbackerID;
-    private String content;
 
-    public feedback(int feedbackID, int feedbackerID, String content) {
+    private int feedbackID;
+    private String content;
+    private String adminID;
+    private String answer;
+    private accountUser accountFeedback;
+
+    public feedback(int feedbackID, String content, String adminID, String answer, accountUser accountFeedback) {
         this.feedbackID = feedbackID;
-        this.feedbackerID = feedbackerID;
         this.content = content;
+        this.adminID = adminID;
+        this.answer = answer;
+        this.accountFeedback = accountFeedback;
+    }
+
+    public String getAdminID() {
+        return adminID;
+    }
+
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public accountUser getAccountFeedback() {
+        return accountFeedback;
+    }
+
+    public void setAccountFeedback(accountUser accountFeedback) {
+        this.accountFeedback = accountFeedback;
     }
 
     public int getFeedbackID() {
@@ -17,14 +46,6 @@ public class feedback {
 
     public void setFeedbackID(int feedbackID) {
         this.feedbackID = feedbackID;
-    }
-
-    public int getFeedbackerID() {
-        return feedbackerID;
-    }
-
-    public void setFeedbackerID(int feedbackerID) {
-        this.feedbackerID = feedbackerID;
     }
 
     public String getContent() {

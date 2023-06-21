@@ -1,6 +1,5 @@
 package Entity;
 
-
 import java.util.Date;
 
 public class kid {
@@ -73,14 +72,14 @@ public class kid {
         this.kidBrithday = kidBrithday;
     }
 
-    public kid(String kidID, String parentID, String kidAccount, String kidName, String kidImage, Date kidBrithday,accountUser account) {
+    public kid(String kidID, String parentID, String kidAccount, String kidName, String kidImage, Date kidBrithday, accountUser account) {
         this.kidID = kidID;
         this.parentID = parentID;
         this.kidAccount = kidAccount;
         this.kidName = kidName;
         this.kidImage = kidImage;
         this.kidBrithday = kidBrithday;
-        this.account=account;
+        this.account = account;
     }
 
 }

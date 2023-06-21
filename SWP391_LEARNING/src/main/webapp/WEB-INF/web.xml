@@ -37,8 +37,14 @@
         <servlet-name>CourseController</servlet-name>
         <servlet-class>Controller.CourseController</servlet-class>
     </servlet>
-
-
+    <servlet>
+        <servlet-name>ViewPaymentController</servlet-name>
+        <servlet-class>Controller.ViewPaymentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackController</servlet-name>
+        <servlet-class>Controller.FeedbackController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -70,6 +76,14 @@
     <servlet-mapping>
         <servlet-name>CourseController</servlet-name>
         <url-pattern>/CourseController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPaymentController</servlet-name>
+        <url-pattern>/ViewPaymentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackController</servlet-name>
+        <url-pattern>/FeedbackController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
                 String msg = "Wrong password or username!!!";
                 request.setAttribute("login_msg", msg);
             } else {
-                if (account.getRoleID().equals(ADMIN)) {
+                if (account.getRoleID().equals(ADMIN) && account.getStatus().equalsIgnoreCase("active")) {
                     session.setAttribute("ADMIN", account);
                     Cookie cookieUsername = new Cookie("cookieUsername", username);
                     cookieUsername.setMaxAge(60 * 60);
@@ -73,7 +73,7 @@ public class LoginController extends HttpServlet {
                     response.addCookie(cookiePassword);
 //                  response.addCookie(cookieRemember);
                     url = SUCCESS_ADMIN;
-                } else if (account.getRoleID().equals(KID)) {
+                } else if (account.getRoleID().equals(KID) && account.getStatus().equalsIgnoreCase("active")) {
                     kid kid = kidDAO.checkExistedAccount(account.getAccount());
                     session.setAttribute("KID", kid);
                     Cookie cookieUsername = new Cookie("cookieUsername", username);
@@ -86,7 +86,7 @@ public class LoginController extends HttpServlet {
                     response.addCookie(cookiePassword);
                     response.addCookie(cookieRemember);
                     url = SUCCESS_KID;
-                } else if (account.getRoleID().equals(PARENT)) {
+                } else if (account.getRoleID().equals(PARENT) && account.getStatus().equalsIgnoreCase("active")) {
                     parent parent = parentDAO.getParent(account.getAccount());
                     session.setAttribute("PARENT", parent);
                     Cookie cookieUsername = new Cookie("cookieUsername", username);
