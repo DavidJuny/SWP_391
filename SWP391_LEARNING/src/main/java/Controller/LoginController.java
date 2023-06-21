@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String SUCCESS_KID = "kidpage.jsp";
+    private static final String SUCCESS_KID = "homepage.jsp";
     private static final String SUCCESS_PARENT = "homepage.jsp";
     private static final String SUCCESS_ADMIN = "index_admin.jsp";
     private static final String FAILED = "login.jsp";
