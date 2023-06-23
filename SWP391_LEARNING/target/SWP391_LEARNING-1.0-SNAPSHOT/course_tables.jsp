@@ -284,7 +284,7 @@
                         <input type="file" name="courseImage" accept="image/*">
                       </td>
                       <td class="align-middle text-center">
-                        <input type="text" class="text-secondary text-xs font-weight-bold" value = "${course.courseLevel}">
+                        <input type="text" class="text-secondary text-xs font-weight-bold" name="courseLevel" value = "${course.courseLevel}">
                       </td>
                       <td class="align-middle">
                         <button class="text-secondary font-weight-bold text-xs" type="submit" name ="action" value="UpdateCourse">
