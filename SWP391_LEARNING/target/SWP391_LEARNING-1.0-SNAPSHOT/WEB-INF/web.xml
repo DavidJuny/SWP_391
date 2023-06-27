@@ -38,17 +38,23 @@
         <servlet-class>Controller.CourseController</servlet-class>
     </servlet>
     <servlet>
+<!--<<<<<<< HEAD-->
         <servlet-name>ViewPaymentController</servlet-name>
         <servlet-class>Controller.ViewPaymentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FeedbackController</servlet-name>
         <servlet-class>Controller.FeedbackController</servlet-class>
-
-    </servlet>
+            </servlet>
+<!--=======-->
     <servlet>
         <servlet-name>Kid_CourseController</servlet-name>
         <servlet-class>Controller.Kid_CourseController</servlet-class>
+<!-->>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a-->
+    </servlet>
+        <servlet>
+        <servlet-name>ParentController</servlet-name>
+        <servlet-class>Controller.ParentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>QuestionController</servlet-name>
@@ -88,6 +94,7 @@
         <url-pattern>/CourseController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<!--<<<<<<< HEAD-->
         <servlet-name>ViewPaymentController</servlet-name>
         <url-pattern>/ViewPaymentController</url-pattern>
     </servlet-mapping>
@@ -104,6 +111,12 @@
         <servlet-name>QuestionController</servlet-name>
         <url-pattern>/QuestionController</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ParentController</servlet-name>
+        <url-pattern>/ParentController</url-pattern>
+    </servlet-mapping>
+    
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>
     </welcome-file-list>

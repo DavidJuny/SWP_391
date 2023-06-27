@@ -97,7 +97,7 @@
                                                         </a>
 
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                               <li><a class="dropdown-item"  href="profile.jsp"><span class="fa fa-user fa-fw"></span>Profile</a></li>
+                                                               <li><a class="dropdown-item"  href="ParentController?parentID=${PARENT.parentID}"><span class="fa fa-user fa-fw"></span>Profile</a></li>
                                                                <li><a  href="LogoutController"><span class=" fa fa-sign-out fa-fw""></span>Log out</a></li>
                                                         </ul>
                                                  </div>

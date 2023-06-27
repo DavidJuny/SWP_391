@@ -165,4 +165,50 @@ public void updateStatus(String account) {
         return null;
     }
 
+     public ArrayList<kid> findkidByID(String parentID) {
+        String query = "SELECT p.*, u.* "
+                + "FROM [Kids] p "
+                + "JOIN [AccountUser] u ON p.account = u.account WHERE parentID = ? ";
+          ArrayList<kid> childrenList = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, parentID);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+               String kidID = rs.getString(1);
+                String kidAccount = rs.getString(2);
+                String kidName = rs.getString(4);
+                java.sql.Date sqlBirthDate = rs.getDate(5);
+                String kidImage = rs.getString(6);
+
+                String account = rs.getString(7);
+                String password = rs.getString(8);
+                String roleID = rs.getString(9);
+                String status = rs.getString(10);
+
+                 Date birthDate = null;
+                if (sqlBirthDate != null) {
+                    try {
+                        birthDate = dateFormat.parse(sqlBirthDate.toString());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                
+                accountUser accountUser = new accountUser(account, password, roleID, status);
+                kid kids = new kid(kidID, parentID, kidAccount, kidName, kidImage, birthDate, accountUser);
+                childrenList.add(kids);
+
+
+            }
+            
+        } catch (ClassNotFoundException | SQLException e) {
+        }
+        return childrenList;
+    }
+    
 }
