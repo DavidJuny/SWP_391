@@ -56,6 +56,11 @@
         <servlet-name>ParentController</servlet-name>
         <servlet-class>Controller.ParentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuestionController</servlet-name>
+        <servlet-class>Controller.QuestionController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -96,12 +101,15 @@
     <servlet-mapping>
         <servlet-name>FeedbackController</servlet-name>
         <url-pattern>/FeedbackController</url-pattern>
-        </servlet-mapping>
-<!--=======-->
+
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Kid_CourseController</servlet-name>
         <url-pattern>/Kid_CourseController</url-pattern>
-<!-->>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a-->
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionController</servlet-name>
+        <url-pattern>/QuestionController</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
