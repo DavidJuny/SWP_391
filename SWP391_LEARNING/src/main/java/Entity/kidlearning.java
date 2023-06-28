@@ -5,9 +5,9 @@ public class kidlearning {
     private int kidlearningID;
     private String kidID;
     private String courseID;
-    private String courseName;
-    private String courseImage;
-    private String courseLevel;
+       private String courseName;
+       private String courseImage;
+       private String courseLevel;
     private String status;
 
     public kidlearning() {
