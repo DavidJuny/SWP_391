@@ -57,7 +57,7 @@
                    
                    
            <div class="more-btn">
-              <a href="addChildren.jsp" class="inline-option-btn">add your children</a>
+              <a href="profile.jsp" class="inline-option-btn">add your children</a>
            </div>
 
         </section>
