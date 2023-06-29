@@ -18,7 +18,7 @@
 
               <div class="ftco-blocks-cover-1">
                      <!-- data-stellar-background-ratio="0.5" style="background-image: url('images/hero_1.jpg')" -->
-                     <div class="site-section-cover overlay" data-stellar-background-ratio="0.5" style="background-image: url('images/hero_1.jpg')">
+                     <div class="site-section-cover overlay" data-stellar-background-ratio="0.5" style="background-image: url('assets/images/hero_1.jpg')">
                             <div class="container">
                                    <div class="row align-items-center ">
 
@@ -38,9 +38,7 @@
                             <div class="line"></div>
                             <br>
                             <div class="row">
-                                   <c:if test="${KIDLEARNING == null}  ">
-                                          <p>You haven't pay for any course at the moment</p>
-                                   </c:if>
+
                                    <c:if test="${KIDLEARNING != null}  ">
 
                                           <c:forEach  var="i"  items="${KIDLEARNING}">

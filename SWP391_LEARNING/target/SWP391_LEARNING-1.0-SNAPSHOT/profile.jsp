@@ -16,7 +16,7 @@
               <%@include file="header.jsp" %>
               <div class="ftco-blocks-cover-1">
                      <!-- data-stellar-background-ratio="0.5" style="background-image: url('images/hero_1.jpg')" -->
-                     <div class="site-section-cover overlay" data-stellar-background-ratio="0.5" style="background-image: url('images/hero_1.jpg')">
+                     <div class="site-section-cover overlay" data-stellar-background-ratio="0.5" style="background-image:url('assets/images/hero_1.jpg')">
                             <div class="container">
                                    <div class="row align-items-center ">
 
@@ -30,7 +30,7 @@
                      </div>
               </div>
 
-              <div class="site-section bg-light" id="contact-section">
+              <div class="site-section bg-light">
                      <div class="container">
                             <div class="row justify-content-center text-center">
                                    <div class="col-7 text-center mb-5">
@@ -104,6 +104,8 @@
                             </div>
                      </div>
               </div>
+
+
               <%@include file="footer.jsp" %>
        </body>
 </html>
