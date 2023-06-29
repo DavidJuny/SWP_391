@@ -41,7 +41,7 @@ public class ParentController extends HttpServlet {
          KidDAO kidDAO = new KidDAO();
          ArrayList<kid> listKid = kidDAO.findkidByID(parentID);
          HttpSession session = request.getSession();
-         if(listKid.size()>0){
+         if(!listKid.isEmpty()){
              session.setAttribute("LISTKID", listKid);
                 url = SUCCES;
          }

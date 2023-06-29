@@ -7,6 +7,7 @@ package DAO;
 import DBcontext.DBContext;
 import Entity.accountUser;
 import Entity.kid;
+import Entity.parent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,10 +40,7 @@ public class KidDAO {
                 + "JOIN [AccountUser] u ON p.account = u.account";
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        try (Connection conn = DBContext.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
-
+        try (Connection conn = DBContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 String kidID = rs.getString(1);
@@ -75,28 +73,47 @@ public class KidDAO {
         }
         return kidList;
     }
-// chuan bi sua
-public void updateStatus(String account) {
-    String query = "UPDATE [AccountUser] SET status = CASE WHEN status = 'active' THEN 'ban' ELSE 'active' END WHERE account = ?";
 
-    try {
-        conn = DBContext.getConnection();
-        ps = conn.prepareStatement(query);
-        ps.setString(1, account);
-
-        int rowsAffected = ps.executeUpdate();
-        if (rowsAffected > 0) {
-            System.out.println("Status updated successfully.");
-        } else {
-            System.out.println("Status update failed.");
+    public ArrayList<kid> getAllKidbyParentID(String parentID) {
+        ArrayList<kid> kids = new ArrayList<>();
+        for (kid i : kidList) {
+            if (i.getParentID().equals(parentID)) {
+                kids.add(i);
+            }
         }
-    } catch (ClassNotFoundException | SQLException e) {
-        // Handle exceptions
-    } finally {
-        // Close resources
+        return kids;
     }
-}
 
+    public static void main(String[] args) {
+        KidDAO test = new KidDAO();
+        test.getAllKids();
+        ArrayList<kid> pa = test.getAllKidbyParentID("Panguyen12");
+        for (kid i : pa) {
+            System.out.println(i.toString());
+        }
+    }
+
+// chuan bi sua
+    public void updateStatus(String account) {
+        String query = "UPDATE [AccountUser] SET status = CASE WHEN status = 'active' THEN 'ban' ELSE 'active' END WHERE account = ?";
+
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, account);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Status updated successfully.");
+            } else {
+                System.out.println("Status update failed.");
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            // Handle exceptions
+        } finally {
+            // Close resources
+        }
+    }
 
     public void registerk(String parentID, String kidName, String kidAccount, String kidBrithday, String kidImage) {
         String query = "INSERT INTO [dbo].[Kids]([account],[parentID],[kidName],[kidBirthday],[kidImage])\n"
@@ -165,11 +182,11 @@ public void updateStatus(String account) {
         return null;
     }
 
-     public ArrayList<kid> findkidByID(String parentID) {
+    public ArrayList<kid> findkidByID(String parentID) {
         String query = "SELECT p.*, u.* "
                 + "FROM [Kids] p "
                 + "JOIN [AccountUser] u ON p.account = u.account WHERE parentID = ? ";
-          ArrayList<kid> childrenList = new ArrayList<>();
+        ArrayList<kid> childrenList = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
@@ -177,9 +194,9 @@ public void updateStatus(String account) {
             ps = conn.prepareStatement(query);
             ps.setString(1, parentID);
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
-               String kidID = rs.getString(1);
+                String kidID = rs.getString(1);
                 String kidAccount = rs.getString(2);
                 String kidName = rs.getString(4);
                 java.sql.Date sqlBirthDate = rs.getDate(5);
@@ -190,7 +207,7 @@ public void updateStatus(String account) {
                 String roleID = rs.getString(9);
                 String status = rs.getString(10);
 
-                 Date birthDate = null;
+                Date birthDate = null;
                 if (sqlBirthDate != null) {
                     try {
                         birthDate = dateFormat.parse(sqlBirthDate.toString());
@@ -198,17 +215,16 @@ public void updateStatus(String account) {
                         e.printStackTrace();
                     }
                 }
-                
+
                 accountUser accountUser = new accountUser(account, password, roleID, status);
                 kid kids = new kid(kidID, parentID, kidAccount, kidName, kidImage, birthDate, accountUser);
                 childrenList.add(kids);
 
-
             }
-            
+
         } catch (ClassNotFoundException | SQLException e) {
         }
         return childrenList;
     }
-    
+
 }

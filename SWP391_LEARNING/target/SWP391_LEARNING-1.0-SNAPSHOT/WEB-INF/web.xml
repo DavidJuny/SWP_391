@@ -14,7 +14,7 @@
         <servlet-class>Controller.LoginController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogoutController</servlet-name>
+        <servlet-name>LogoutController</servlet-name>`
         <servlet-class>Controller.LogoutController</servlet-class>
     </servlet>
     <servlet>
