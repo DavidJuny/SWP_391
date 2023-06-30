@@ -13,15 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author PC
  */
 public class Parent_CourseController extends HttpServlet {
-
-       private static final String ERROR = "parent_course.jsp";
 
        /**
         * Processes requests for both HTTP <code>GET</code> and
@@ -35,20 +32,21 @@ public class Parent_CourseController extends HttpServlet {
        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               response.setContentType("text/html;charset=UTF-8");
-              /* TODO output your page here. You may use following sample code. */
-              String url = ERROR;
-              try {
-                     CourseDAO cdao = new CourseDAO();
-                     ArrayList<course> clist = cdao.GetCourses();
-                     request.setAttribute("COURSELIST", clist);
-              } catch (Exception e) {
-                     e.printStackTrace();
-              } finally {
-                     request.getRequestDispatcher(url).forward(request, response);
+              try (PrintWriter out = response.getWriter()) {
+                     /* TODO output your page here. You may use following sample code. */
+                     try {
+                            CourseDAO cdao = new CourseDAO();
+                            ArrayList<course> clist = cdao.GetCourses();
+                            request.setAttribute("COURSELIST", clist);
+                     } catch (Exception e) {
+                            e.printStackTrace();
+                     } finally {
+                            request.getRequestDispatcher("parent_course.jsp").forward(request, response);
+                     }
               }
        }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+       // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
        /**
         * Handles the HTTP <code>GET</code> method.
         *

@@ -14,9 +14,9 @@
         <servlet-class>Controller.LoginController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogoutController</servlet-name>`
-        <servlet-class>Controller.LogoutController</servlet-class>
-    </servlet>
+              <servlet-name>LogoutController</servlet-name>`
+              <servlet-class>Controller.LogoutController</servlet-class>
+       </servlet>
     <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>Controller.RegisterController</servlet-class>
@@ -38,21 +38,18 @@
         <servlet-class>Controller.CourseController</servlet-class>
     </servlet>
     <servlet>
-<!--<<<<<<< HEAD-->
         <servlet-name>ViewPaymentController</servlet-name>
         <servlet-class>Controller.ViewPaymentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FeedbackController</servlet-name>
         <servlet-class>Controller.FeedbackController</servlet-class>
-            </servlet>
-<!--=======-->
+    </servlet>
     <servlet>
         <servlet-name>Kid_CourseController</servlet-name>
         <servlet-class>Controller.Kid_CourseController</servlet-class>
-<!-->>>>>>> 957f52182d3a1013db2ce4ad726eca5d8bd84e5a-->
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ParentController</servlet-name>
         <servlet-class>Controller.ParentController</servlet-class>
     </servlet>
@@ -60,7 +57,14 @@
         <servlet-name>QuestionController</servlet-name>
         <servlet-class>Controller.QuestionController</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>Parent_CourseController</servlet-name>
+        <servlet-class>Controller.Parent_CourseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentInfoController</servlet-name>
+        <servlet-class>Controller.PaymentInfoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -94,14 +98,12 @@
         <url-pattern>/CourseController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<!--<<<<<<< HEAD-->
         <servlet-name>ViewPaymentController</servlet-name>
         <url-pattern>/ViewPaymentController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FeedbackController</servlet-name>
         <url-pattern>/FeedbackController</url-pattern>
-
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Kid_CourseController</servlet-name>
@@ -111,12 +113,18 @@
         <servlet-name>QuestionController</servlet-name>
         <url-pattern>/QuestionController</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>ParentController</servlet-name>
         <url-pattern>/ParentController</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>Parent_CourseController</servlet-name>
+        <url-pattern>/Parent_CourseController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentInfoController</servlet-name>
+        <url-pattern>/PaymentInfoController</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>
     </welcome-file-list>
