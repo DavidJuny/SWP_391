@@ -65,7 +65,7 @@
 
                                                  <div class="form-group row">
                                                         <div class="col-md-8">
-                                                               <label class="form-label" for="labelkfullname">Fullname</label>
+                                                               <label class="form-label" for="labelkusername">Fullname</label>
                                                                <input type="text" class="form-control" name="kfullname" required="">
                                                         </div>
                                                         <div class="col-md-4">

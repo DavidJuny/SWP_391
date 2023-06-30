@@ -99,9 +99,9 @@ public class ProductDAO {
         ArrayList<kidlearning> list = getAllKidlearningbyID(kidID);
         for (kidlearning u : list) {
             if (u.getKidID().equals(kidID) && u.getCourseID().equals(courseID)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
