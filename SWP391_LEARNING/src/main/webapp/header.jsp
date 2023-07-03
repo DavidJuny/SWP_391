@@ -98,7 +98,12 @@
 
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                <li><a class="dropdown-item"  href="ParentController?parentID=${PARENT.parentID}"><span class="fa fa-user fa-fw"></span>Profile</a></li>
+<<<<<<< Updated upstream
                                                                <li><a  href="LogoutController"><span class=" fa fa-sign-out fa-fw""></span>Log out</a></li>
+=======
+                                                               <li><a class="dropdown-item"  href="payment.jsp"><span class="fa fa-shopping-cart fa-fw"></span>Payment</a></li>
+                                                               <li><a  href="LogoutController"><span class="fa fa-sign-out fa-fw""></span>Log out</a></li>
+>>>>>>> Stashed changes
                                                         </ul>
                                                  </div>
                                           </c:if>
