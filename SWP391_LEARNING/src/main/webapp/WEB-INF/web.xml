@@ -14,7 +14,7 @@
         <servlet-class>Controller.LoginController</servlet-class>
     </servlet>
     <servlet>
-              <servlet-name>LogoutController</servlet-name>`
+              <servlet-name>LogoutController</servlet-name>
               <servlet-class>Controller.LogoutController</servlet-class>
        </servlet>
     <servlet>
@@ -66,13 +66,10 @@
         <servlet-class>Controller.PaymentInfoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LessonController</servlet-name>
-        <servlet-class>Controller.LessonController</servlet-class>
+        <servlet-name>STTController</servlet-name>
+        <servlet-class>Controller.STTController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>LessonItemController</servlet-name>
-        <servlet-class>Controller.LessonItemController</servlet-class>
-    </servlet>
+
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -134,10 +131,14 @@
         <url-pattern>/PaymentInfoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>STTController</servlet-name>
+        <url-pattern>/STTController</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
         <servlet-name>LessonController</servlet-name>
         <url-pattern>/LessonController</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+     <servlet-mapping>
         <servlet-name>LessonItemController</servlet-name>
         <url-pattern>/LessonItemController</url-pattern>
     </servlet-mapping>
