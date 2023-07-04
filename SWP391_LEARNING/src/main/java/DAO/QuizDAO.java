@@ -147,7 +147,7 @@ public class QuizDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     int lessonItemID = rs.getInt("lessonItemID");
-                    String lessonID = rs.getString("lessonID");
+                    int lessonID = rs.getInt("lessonID");
                     String itemTypeID = rs.getString("itemTypeID");
                     String content = rs.getString("content");
 

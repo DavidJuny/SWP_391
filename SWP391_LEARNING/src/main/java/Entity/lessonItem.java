@@ -9,19 +9,28 @@ package Entity;
  * @author admin
  */
 public class lessonItem {
-    
+
     private int lessonItemID;
-    private String lessonID;
+    private int lessonID;
     private String itemTypeID;
+    private String itemTypeName;
     private String content;
 
     public lessonItem() {
     }
-    
-    public lessonItem(int lessonItemID, String lessonID, String itemTypeID, String content) {
+
+    public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String content) {
         this.lessonItemID = lessonItemID;
         this.lessonID = lessonID;
         this.itemTypeID = itemTypeID;
+        this.content = content;
+    }
+
+    public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String itemTypeName, String content) {
+        this.lessonItemID = lessonItemID;
+        this.lessonID = lessonID;
+        this.itemTypeID = itemTypeID;
+        this.itemTypeName = itemTypeName;
         this.content = content;
     }
 
@@ -33,11 +42,11 @@ public class lessonItem {
         this.lessonItemID = lessonItemID;
     }
 
-    public String getLessonID() {
+    public int getLessonID() {
         return lessonID;
     }
 
-    public void setLessonID(String lessonID) {
+    public void setLessonID(int lessonID) {
         this.lessonID = lessonID;
     }
 
@@ -56,7 +65,13 @@ public class lessonItem {
     public void setContent(String content) {
         this.content = content;
     }
-    
-    
-    
+
+    public String getItemTypeName() {
+        return itemTypeName;
+    }
+
+    public void setItemTypeName(String itemTypeName) {
+        this.itemTypeName = itemTypeName;
+    }
+
 }
