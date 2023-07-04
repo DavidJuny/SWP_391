@@ -65,6 +65,14 @@
         <servlet-name>PaymentInfoController</servlet-name>
         <servlet-class>Controller.PaymentInfoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LessonController</servlet-name>
+        <servlet-class>Controller.LessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LessonItemController</servlet-name>
+        <servlet-class>Controller.LessonItemController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -124,6 +132,14 @@
     <servlet-mapping>
         <servlet-name>PaymentInfoController</servlet-name>
         <url-pattern>/PaymentInfoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LessonController</servlet-name>
+        <url-pattern>/LessonController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LessonItemController</servlet-name>
+        <url-pattern>/LessonItemController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

@@ -2,16 +2,35 @@ package Entity;
 
 public class topic {
     private int topicID;
-    private int courseID;
+    private String courseID;
     private String topicName;
     private String topicImage;
+    private course course;
 
-    public topic(int topicID, int courseID, String topicName, String topicImage) {
+    public topic(int topicID, String courseID, String topicName, String topicImage) {
         this.topicID = topicID;
         this.courseID = courseID;
         this.topicName = topicName;
         this.topicImage = topicImage;
     }
+
+    public topic(int topicID, String courseID, String topicName, String topicImage, course course) {
+        this.topicID = topicID;
+        this.courseID = courseID;
+        this.topicName = topicName;
+        this.topicImage = topicImage;
+        this.course = course;
+    }
+    
+    public course getCourse() {
+        return course;
+    }
+
+    public void setCourse(course course) {
+        this.course = course;
+    }
+    
+    
 
     public int getTopicID() {
         return topicID;
@@ -21,11 +40,11 @@ public class topic {
         this.topicID = topicID;
     }
 
-    public int getCourseID() {
+    public String getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(int courseID) {
+    public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 
