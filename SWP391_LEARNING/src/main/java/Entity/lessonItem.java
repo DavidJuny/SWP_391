@@ -9,54 +9,69 @@ package Entity;
  * @author admin
  */
 public class lessonItem {
-    
-    private int lessonItemID;
-    private String lessonID;
-    private String itemTypeID;
-    private String content;
 
-    public lessonItem() {
-    }
-    
-    public lessonItem(int lessonItemID, String lessonID, String itemTypeID, String content) {
-        this.lessonItemID = lessonItemID;
-        this.lessonID = lessonID;
-        this.itemTypeID = itemTypeID;
-        this.content = content;
-    }
+       private int lessonItemID;
+       private int lessonID;
+       private String itemTypeID;
+       private String itemTypeName;
+       private String content;
 
-    public int getLessonItemID() {
-        return lessonItemID;
-    }
+       public lessonItem() {
+       }
 
-    public void setLessonItemID(int lessonItemID) {
-        this.lessonItemID = lessonItemID;
-    }
+       public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String content) {
+              this.lessonItemID = lessonItemID;
+              this.lessonID = lessonID;
+              this.itemTypeID = itemTypeID;
+              this.content = content;
+       }
 
-    public String getLessonID() {
-        return lessonID;
-    }
+       public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String itemTypeName, String content) {
+              this.lessonItemID = lessonItemID;
+              this.lessonID = lessonID;
+              this.itemTypeID = itemTypeID;
+              this.itemTypeName = itemTypeName;
+              this.content = content;
+       }
 
-    public void setLessonID(String lessonID) {
-        this.lessonID = lessonID;
-    }
+       public int getLessonItemID() {
+              return lessonItemID;
+       }
 
-    public String getItemTypeID() {
-        return itemTypeID;
-    }
+       public void setLessonItemID(int lessonItemID) {
+              this.lessonItemID = lessonItemID;
+       }
 
-    public void setItemTypeID(String itemTypeID) {
-        this.itemTypeID = itemTypeID;
-    }
+       public int getLessonID() {
+              return lessonID;
+       }
 
-    public String getContent() {
-        return content;
-    }
+       public void setLessonID(int lessonID) {
+              this.lessonID = lessonID;
+       }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-    
-    
-    
+       public String getItemTypeID() {
+              return itemTypeID;
+       }
+
+       public void setItemTypeID(String itemTypeID) {
+              this.itemTypeID = itemTypeID;
+       }
+
+       public String getContent() {
+              return content;
+       }
+
+       public void setContent(String content) {
+              this.content = content;
+       }
+
+       public String getItemTypeName() {
+              return itemTypeName;
+       }
+
+       public void setItemTypeName(String itemTypeName) {
+              this.itemTypeName = itemTypeName;
+       }
+
 }
