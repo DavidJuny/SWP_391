@@ -68,7 +68,7 @@
                   <img src="images/pic-1.jpg" class="image" alt="">
                   <h3 class="name">${PARENT.parentName}</h3>
                   <p class="role">parent</p>
-                  <a href="editprofile.jsp" class="btn">Edit profile</a>
+                  <a href="editProfile.jsp" class="btn">Edit profile</a>
                </div>
 
                 <nav class="navbar"style="display: block;">

@@ -10,7 +10,6 @@ DAO\KidDAO.class
 DAO\ProductDAO.class
 Entity\admin.class
 Entity\question.class
-Controller\STTController.class
 DAO\PaymentDAO.class
 Entity\accountUser.class
 Entity\report.class
@@ -23,12 +22,8 @@ Entity\payment.class
 Entity\kidlearning.class
 Controller\PaymentController.class
 Entity\parent.class
-<<<<<<< Updated upstream
-=======
-Model\SpeechToTextResult.class
-Model\QuizResult.class
->>>>>>> Stashed changes
 Entity\kid.class
+Controller\Edit_ProfileController.class
 Controller\FeedbackController.class
 Controller\Kid_CourseController.class
 Controller\ParentController.class
@@ -36,7 +31,6 @@ Controller\Kid_RegisterController.class
 DAO\AccountDAO.class
 Controller\LoginController.class
 DBcontext\DBContext.class
-Model\SpeechToText.class
 Entity\lessonItem.class
 Controller\ViewPaymentController.class
 Entity\topic.class

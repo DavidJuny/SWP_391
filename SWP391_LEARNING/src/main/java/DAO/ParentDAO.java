@@ -101,5 +101,26 @@ public class ParentDAO {
         }
         return null;
     }
-
+    
+ public boolean editParent(String fullname, String sex, String number, String parentAccount) throws SQLException{
+        String query = "  UPDATE [dbo].[Parent] SET [dbo].[Parent].parentName = ?, [dbo].[Parent].parentSex = ?, [dbo].[Parent].parentNumber = ? FROM [dbo].[Parent] WHERE [dbo].[Parent].account = ?";
+        boolean checkUpdate = false;
+        try {
+         conn = DBContext.getConnection();
+         ps = conn.prepareStatement(query);
+         ps.setString(1, fullname);
+         ps.setString(2, sex);
+         ps.setString(3, number);
+         ps.setString(4, parentAccount);
+         ps.executeUpdate();
+         checkUpdate = true;
+     } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(ps!= null) ps.close();
+            if(conn!= null) conn.close();
+        }
+        return checkUpdate;
+        
+    }
 }

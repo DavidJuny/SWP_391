@@ -26,20 +26,24 @@
     
         <body>
 
+            
              <%@include file="sideBar.jsp" %>
                <!-- end sideBar -->
-
+              
+               
                 <div class="main">
               <div class="col-md-8 mt-1">
                   <div class="card mb-3 content">
+                       <form action="MainController" method="POST">
                       <h1 class="m-3 pt-3">Edit Profile</h1>
                       <div class="card-body">
                           <div class="row">
                               <div class="col-md-3">
+                                  
                                   <h5>Full Name</h5>
                               </div>
                               <div class="col-md-9 text-secondary">
-                                  <input class="editText" type="text" name="username" required="" value=01234>
+                                  <input class="editText" type="text" name="name" value="${PARENT.parentName}">
                               </div>
                           </div>
                           <hr>
@@ -48,7 +52,7 @@
                                   <h5>Phone</h5>
                               </div>
                               <div class="col-md-9 text-secondary">
-                                  <input class="editText" type="text" name="username" required="" value=01234>
+                                  <input class="editText" type="text" name="phone" value="${PARENT.parentPhone}">
                               </div>
                           </div>
                           <hr>
@@ -56,14 +60,21 @@
                               <div class="col-md-3">
                                   <h5>Sex</h5>
                                   <div class="col-md-9 text-secondary">
-                                      <select>
-                                      <option value="">Male</option>
+<!--                                      <select name="sex" >
+                                      <option value="Ma">Male</option>
                                       <option value="">Female</option>
-                                  </select>
+                                  </select>-->
+                                <input type="text" name="sex" value="${PARENT.parentSex}"/>
                                   </div>
                               </div>
                           </div>
+                                  <input type="hidden" name="account" value="${PARENT.parentAccount}">
                           <hr>
+                          <input class="inline-option-btn" type="submit" name="action" value="EditProfile"/> 
+                          
+                          
+                          ${MESS}
+                          </form>
                           <div class="card m-3 content">
                               <h3 class="m-3">Change UserName and Password</h3>
                               <div class="card-body">
@@ -72,16 +83,16 @@
                                       <h5>UserName</h5>
                                   </div>
                                   <div class="col-md-9 text-secondary">
-                                     <input class="editText" type="text" name="username" required="" value=01234>
+                                     <input class="editText" type="text" name="username" required="" value="${PARENT.parentAccount}">
                                   </div>    
                               </div>
                               <hr>
                                   <div class="row">
                                       <div class="col-md-3">
-                                          <h5>Password</h5>
+                                          <h5>New Password</h5>
                                       </div>
                                       <div class="col-md-9 text-secondary">
-                                     <input class="editText" type="text" name="username" required="" value=01234>
+                                          <input class="editText" type="password" name="password">
                                       </div>
                                   </div>
                               <hr>
@@ -90,7 +101,7 @@
                                       <h5>Confim Password</h5>
                                   </div>
                                   <div class="col-md-9 text-secondary">
-                                     <input class="editText" type="text" name="username" required="" value=01234>
+                                      <input class="editText" type="password" name="confimPassword">
                                   </div>
                               </div>
                           <hr>
@@ -100,5 +111,7 @@
                   </div>    
               </div>
           </div>
+                 
+            
         </body>
 </html>
