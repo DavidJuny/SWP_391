@@ -22,6 +22,8 @@ public class CourseDAO {
               courses.clear();
        }
 
+
+
        public ArrayList<course> GetCourses() {
               String query = "SELECT * FROM [Course]";
               try (Connection conn = DBContext.getConnection();

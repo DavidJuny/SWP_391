@@ -32,52 +32,54 @@
                      </div>
               </div>
               <section class="site-section" style="background-color: #ebebeb">
-                     <div class="container-fluid  ">
-                            <h1 class="heading mt-3">Course's info</h1>
-                            <br>
-                            <div class="line"></div>
-                            <br>
+                     <div class="container justify-content-center  ">
+                            <h1 class="heading mt-3 text-center">Course's info</h1>
+                            <hr>
+
+                            <c:if test="${KIDLEARNING == null}">
+                                   <p class ="text-center" style="color:red">You haven't buy any course yet !</p>
+                            </c:if>
                             <div class="row">
-
-                                   <c:if test="${KIDLEARNING != null}  ">
-
-                                          <c:forEach  var="i"  items="${KIDLEARNING}">
-                                                 <div class="col-md-4">
-                                                        <div class="box-container">
-                                                               <div class="box">
-                                                                      <div class='row'>
-                                                                             <div class="col-12">
-                                                                                    <div class="tutor">
-                                                                                           <img class="avatar" src="${KID.kidImage}" alt="">
-                                                                                           <div class="info">
-                                                                                                  <h3>${KID.kidName}</h3>
-                                                                                                  <h3>Course level: ${i.courseLevel}</h3>
-                                                                                           </div>
-                                                                                    </div>
-                                                                             </div>
-                                                                             <div class="col-12">
-                                                                                    <div class="thumb">
-                                                                                           <img src="${i.courseImage}" alt="">
-                                                                                    </div>
-                                                                                    <br>
-                                                                                    <h3 class="title">${i.courseName}</h3>
-                                                                             </div>
-                                                                             <div class="col-12">
-                                                                                    <c:if test="${(i.status).equals('Lock')}">
-                                                                                           <h5 ><a  href="#">Purchase</a> this course to start Learning !</h5>
-                                                                                    </c:if>
-                                                                                    <c:if test="${(i.status).equals('UnLock')}">
-                                                                                           <h5>Click <a style="color:green" href="#"> here !</a> to start course</h5>
-                                                                                    </c:if>
-                                                                             </div>
-                                                                      </div>
-                                                               </div>
+                                   <c:forEach var="i" items="${KIDLEARNING}">
+                                          <div class="col-lg-4">
+                                                 <div class="card" style="width: 25rem;">
+                                                        <img src="${i.courseImage}" class="card-img-top" alt="">
+                                                        <div class="card-body">
+                                                               <h5 class="card-title">${i.courseName}</h5>
+                                                               <p class="card-text">Course level : ${i.courseLevel}</p>
+                                                               <form action="LessonController" method ="post">
+                                                                      <input type="hidden" name="courseID" value="${i.courseID}">
+                                                                      <button type="submit" class="btn btn-primary">Let's start learning !</button>
+                                                               </form>
                                                         </div>
                                                  </div>
-                                          </c:forEach>
-                                   </c:if>
+                                          </div>
+                                   </c:forEach>
                             </div>
+                     </div>
               </section>
+              <div id="myModal" class="modal" tabindex="100">
+                     <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                   <div class="modal-header btn-warning">
+                                          <h5 class="modal-title ">Warning !!</h5>
+                                   </div>
+                                   <div class="modal-body">
+                                          <p>${msg}.</p>
+                                   </div>
+                                   <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                   </div>
+                            </div>
+                     </div>
+              </div>
               <%@include file="footer.jsp" %>
        </body>
+       <c:if test="${msg != null}">
+              <script type="text/javascript">
+                     $(window).on('load', function () {
+                            $('#myModal').modal('show');
+                     });
+              </script>
+       </c:if>
 </html>

@@ -73,16 +73,15 @@
                                    <nav class="site-navigation text-left mr-auto d-none d-lg-block" role="navigation">
                                           <ul class="site-menu main-menu js-clone-nav mr-auto ">
                                                  <li class="active"><a href="homepage.jsp" class="nav-link">Home</a></li>
+
+                                                 <li><a href="about.jsp" class="nav-link">About</a></li>
+                                                 <li><a href="gallery.jsp" class="nav-link">Gallery</a></li>
                                                         <c:if test="${ sessionScope.PARENT != null}">
                                                         <li><a href="Parent_CourseController" class="nav-link">Course</a></li>
                                                         </c:if>
-                                                        <c:if test="${ sessionScope.KID == null }">
-                                                        <li><a href="about.jsp" class="nav-link">About</a></li>
-                                                        <li><a href="gallery.jsp" class="nav-link">Gallery</a></li>
-                                                        </c:if>
-
-                                                 <c:if test="${ sessionScope.KID != null}">
+                                                        <c:if test="${ sessionScope.KID != null}">
                                                         <li><a href="Kid_CourseController" class="nav-link">Course</a></li>
+                                                        <li><a href="LessonController" class="nav-link">Lesson</a></li>
                                                         </c:if>
                                           </ul>
                                    </nav>
@@ -112,7 +111,7 @@
                                                         </a>
 
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                               <li><a class="dropdown-item"  href="kid_profile.jsp"><span class="fa fa-user fa-fw"></span>Profile</a></li>
+                                                               <li><a class="dropdown-item"  href="KidProfileController"><span class="fa fa-user fa-fw"></span>Profile</a></li>
 
                                                                <li><a  href="LogoutController"><span class=" fa fa-sign-out fa-fw""></span>Log out</a></li>
                                                         </ul>
