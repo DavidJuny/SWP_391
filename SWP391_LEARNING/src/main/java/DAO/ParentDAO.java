@@ -57,6 +57,7 @@ public class ParentDAO {
         }
         return parentList;
     }
+
     public void updateStatus(String account) {
         String query = "UPDATE [AccountUser] SET status = CASE WHEN status = 'active' THEN 'ban' ELSE 'active' END WHERE account = ?";
 
@@ -77,7 +78,6 @@ public class ParentDAO {
             // Close resources
         }
     }
-
 
     public void register(String username, String fullname, String sex, String number) {
         String query = "INSERT INTO dbo.Parent(account, parentName, parentSex, parentNumber) VALUES(?,?,?,?)";
@@ -102,4 +102,28 @@ public class ParentDAO {
         return null;
     }
 
+    public boolean editParent(String fullName, String sex, String number, String parentAccount) throws SQLException {
+        String query = "  UPDATE [dbo].[Parent] SET [dbo].[Parent].parentName = ?, [dbo].[Parent].parentSex = ?, [dbo].[Parent].parentNumber = ? FROM [dbo].[Parent] WHERE [dbo].[Parent].account = ?";
+        boolean checkUpdate = false;
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, fullName);
+            ps.setString(2, sex);
+            ps.setString(3, number);
+            ps.setString(4, parentAccount);
+            ps.executeUpdate();
+            checkUpdate = true;
+        } catch (ClassNotFoundException | SQLException e) {
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkUpdate;
+
+    }
 }

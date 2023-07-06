@@ -8,10 +8,9 @@
 <!DOCTYPE html>
 <html>
         <head>
-            <head>
            <meta charset="UTF-8">
            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-           <meta name="viewp<ort" content="width=device-width, initial-scale=1.0">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
            <title>Parent</title>
            
            <link rel="icon" type="image/x-icon" href="./assets/images/logo.png">
@@ -69,7 +68,7 @@
                   <img src="images/pic-1.jpg" class="image" alt="">
                   <h3 class="name">${PARENT.parentName}</h3>
                   <p class="role">parent</p>
-                  <a href="addChildren.jsp" class="btn">view profile</a>
+                  <a href="editProfile.jsp" class="btn">Edit profile</a>
                </div>
 
                 <nav class="navbar"style="display: block;">

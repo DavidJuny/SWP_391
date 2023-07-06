@@ -13,6 +13,7 @@ Controller\PaymentController.class
 Model\QuizResult.class
 Controller\KidProfileController.class
 DAO\QuizDAO.class
+Controller\Edit_ProfileController.class
 Controller\FeedbackController.class
 Controller\Kid_CourseController.class
 Controller\ParentController.class
