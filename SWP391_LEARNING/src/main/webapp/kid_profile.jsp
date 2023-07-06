@@ -39,10 +39,31 @@
                             </div>
 
                             <div class="row">
-                                   <div class="col-lg-8 mb-5" >
+                                   <div class="col-lg-8 mb-5 bg-white pt-3 pb-3 "  >
                                           <h3 class="center">Course enrolled</h3>
-                                          <c:if test="${COURSE==null}">
+                                          <c:if test="${COURSEINFO==null}">
                                                  <p style="color:red;"> You haven't enroll to any course yet !</p>
+                                          </c:if>
+                                          <c:if test="${COURSEINFO!=null}">
+
+                                                 <table class="table">
+                                                        <thead>
+                                                               <tr>
+                                                                      <th scope="col">Name</th>
+                                                                      <th scope="col">Level</th>
+                                                                      <th scope="col">Status</th>
+                                                               </tr>
+                                                        </thead>
+                                                        <c:forEach var="i" items="${COURSEINFO}">
+                                                               <tbody>
+                                                                      <tr>
+                                                                             <td>${i.courseName}</td>
+                                                                             <td>${i.courseLevel}</td>
+                                                                             <td>${i.status}</td>
+                                                                      </tr>
+                                                               </tbody>
+                                                        </c:forEach>
+                                                 </table>
                                           </c:if>
                                           <div class="course_box bg-white" ></div>
                                    </div>

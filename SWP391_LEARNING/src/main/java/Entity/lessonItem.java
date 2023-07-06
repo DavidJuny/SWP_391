@@ -10,68 +10,68 @@ package Entity;
  */
 public class lessonItem {
 
-    private int lessonItemID;
-    private int lessonID;
-    private String itemTypeID;
-    private String itemTypeName;
-    private String content;
+       private int lessonItemID;
+       private int lessonID;
+       private String itemTypeID;
+       private String itemTypeName;
+       private String content;
 
-    public lessonItem() {
-    }
+       public lessonItem() {
+       }
 
-    public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String content) {
-        this.lessonItemID = lessonItemID;
-        this.lessonID = lessonID;
-        this.itemTypeID = itemTypeID;
-        this.content = content;
-    }
+       public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String content) {
+              this.lessonItemID = lessonItemID;
+              this.lessonID = lessonID;
+              this.itemTypeID = itemTypeID;
+              this.content = content;
+       }
 
-    public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String itemTypeName, String content) {
-        this.lessonItemID = lessonItemID;
-        this.lessonID = lessonID;
-        this.itemTypeID = itemTypeID;
-        this.itemTypeName = itemTypeName;
-        this.content = content;
-    }
+       public lessonItem(int lessonItemID, int lessonID, String itemTypeID, String itemTypeName, String content) {
+              this.lessonItemID = lessonItemID;
+              this.lessonID = lessonID;
+              this.itemTypeID = itemTypeID;
+              this.itemTypeName = itemTypeName;
+              this.content = content;
+       }
 
-    public int getLessonItemID() {
-        return lessonItemID;
-    }
+       public int getLessonItemID() {
+              return lessonItemID;
+       }
 
-    public void setLessonItemID(int lessonItemID) {
-        this.lessonItemID = lessonItemID;
-    }
+       public void setLessonItemID(int lessonItemID) {
+              this.lessonItemID = lessonItemID;
+       }
 
-    public int getLessonID() {
-        return lessonID;
-    }
+       public int getLessonID() {
+              return lessonID;
+       }
 
-    public void setLessonID(int lessonID) {
-        this.lessonID = lessonID;
-    }
+       public void setLessonID(int lessonID) {
+              this.lessonID = lessonID;
+       }
 
-    public String getItemTypeID() {
-        return itemTypeID;
-    }
+       public String getItemTypeID() {
+              return itemTypeID;
+       }
 
-    public void setItemTypeID(String itemTypeID) {
-        this.itemTypeID = itemTypeID;
-    }
+       public void setItemTypeID(String itemTypeID) {
+              this.itemTypeID = itemTypeID;
+       }
 
-    public String getContent() {
-        return content;
-    }
+       public String getContent() {
+              return content;
+       }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+       public void setContent(String content) {
+              this.content = content;
+       }
 
-    public String getItemTypeName() {
-        return itemTypeName;
-    }
+       public String getItemTypeName() {
+              return itemTypeName;
+       }
 
-    public void setItemTypeName(String itemTypeName) {
-        this.itemTypeName = itemTypeName;
-    }
+       public void setItemTypeName(String itemTypeName) {
+              this.itemTypeName = itemTypeName;
+       }
 
 }
