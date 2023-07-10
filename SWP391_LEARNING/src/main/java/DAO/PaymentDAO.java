@@ -78,19 +78,61 @@ public class PaymentDAO {
     }
 
     public void AddDetailPayment(int paymentID, String courseID, float amountCourse, String datePayment, String status) {
-        String query = "INSERT INTO dbo.DetailPayment([paymentID],[courseID],[amountCourse],[datePayment],[status]) \n"
-                + " VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO dbo.DetailPayment(detailpaymentID,paymentID,kidlearningID,amountCourse,datePayment,status) \n"
+                + " VALUES (?,?,?,?,?,?)";
+        ProductDAO productDAO=new ProductDAO();
         try {
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, Integer.toString(paymentID));
-            ps.setString(2, courseID);
-            ps.setString(3, Float.toString(amountCourse));
-            ps.setString(4, datePayment);
-            ps.setString(5, status);
+            ps.setInt(1,GetNextDetailPaymentId());
+            ps.setInt(2, paymentID);
+            ps.setInt(3, GetLastKidLearningId());
+            ps.setFloat(4, amountCourse);
+            ps.setString(5, datePayment);
+            ps.setString(6, status);
             ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
         }
     }
+
+    private int GetNextDetailPaymentId()
+    {
+
+        String query="SELECT MAX(detailpaymentID) + 1 AS next_id FROM DetailPayment";
+        return GetNextId(query);
+    }
+
+
+    public int GetNextId(String query) {
+        int nextId=0;
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                nextId = rs.getInt("next_id");
+            }
+        }catch (ClassNotFoundException | SQLException e)
+        {}
+
+        return nextId;
+    }
+    public int GetLastKidLearningId()
+    {
+        int nextId=0;
+        String query="SELECT MAX(kidlearningID) AS next_id FROM KidLearning";
+        try {
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                nextId = rs.getInt("next_id");
+            }
+        }catch (ClassNotFoundException | SQLException e)
+        {}
+
+        return nextId;
+    }
+
 
 }

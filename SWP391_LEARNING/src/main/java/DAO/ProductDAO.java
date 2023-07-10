@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author admin
@@ -23,18 +24,29 @@ public class ProductDAO {
     ResultSet rs = null;
 
     public void addLearningKid(String kidID, String courseID) {
-        String query = "INSERT INTO dbo.KidLearning(kidID, courseID, status) VALUES(?,?,?)";
+        String query = "INSERT INTO dbo.KidLearning(kidlearningID,kidID, courseID, status) VALUES(?,?,?,?)";
 
         try {
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, kidID);
-            ps.setString(2, courseID);
-            ps.setString(3, "Learning");
+            ps.setString(1, Integer.toString(GetNextKidLearningId()));
+            ps.setString(2, kidID);
+            ps.setString(3, courseID);
+            ps.setString(4, "Learning");
             ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
         }
     }
+    public int GetNextKidLearningId()
+    {
+        String query="SELECT MAX(kidlearningID) + 1 AS next_id FROM KidLearning";
+        PaymentDAO paymentDAO = new PaymentDAO();
+        return  paymentDAO.GetNextId( query);
+    }
+
+
+
+
 
     public ArrayList<kidlearning> getAllKidlearningbyID(String kidID) {
         ArrayList<kidlearning> list = new ArrayList<>();

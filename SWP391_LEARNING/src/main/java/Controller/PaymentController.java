@@ -46,8 +46,8 @@ public class PaymentController extends HttpServlet {
                      if (proDAO.checkStatusKidLearning(kidID, courseID)) {
                             payment payment = paymentDAO.AddPayment(parentID);
                             int paymentID = payment.getPaymentID();
-                            paymentDAO.AddDetailPayment(paymentID, courseID, ammountCourse, formattedDate, "Done");
                             proDAO.addLearningKid(kidID, courseID);
+                            paymentDAO.AddDetailPayment(paymentID, courseID, ammountCourse, formattedDate, "Done");
                             request.setAttribute("msg", "Payment successfully");
                             url = SUCCESS;
                      } else {

@@ -6,6 +6,7 @@ import Entity.lessonItem;
 import Entity.question;
 import Model.QuizModel;
 import Model.QuizResult;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,6 +57,9 @@ public class QuestionController extends HttpServlet {
         request.setAttribute("lesson", lesson1);
         request.setAttribute("lessonItem", lessonItem);
         request.getRequestDispatcher(QUESTION).forward(request, response);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(new Gson().toJson(newquestions));
 
     }
 

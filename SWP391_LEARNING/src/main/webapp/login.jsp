@@ -71,7 +71,7 @@
                                                                </div>
 
                                                                <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
-                                                               <h6 class="h6" style="color:red">${msg}</h6
+                                                               <h6 class="h6" style="color:red">${login_msg}</h6
                                                                <p>Don't have an account? <a href="register.jsp" class="link-info">Register here</a></p>
 
                                                         </form>
