@@ -5,12 +5,15 @@
 package Controller;
 
 import DAO.AccountDAO;
+import DAO.AdminDAO;
 import DAO.KidDAO;
 import DAO.ParentDAO;
 import Entity.accountUser;
 import Entity.kid;
 import Entity.parent;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -71,6 +74,15 @@ public class LoginController extends HttpServlet {
 //                  cookieRemember.setMaxAge(60 * 60);
                     response.addCookie(cookieUsername);
                     response.addCookie(cookiePassword);
+                    AdminDAO adminDAO = new AdminDAO();
+                    request.setAttribute("Totalsale",adminDAO.CountTotalSale());
+                    LocalDate currentDate = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String TodayDate = currentDate.format(formatter);
+                    request.setAttribute("TodaysMoney",adminDAO.TodaysMoney(TodayDate));
+                    request.setAttribute("TotalUser",adminDAO.TotalUser());
+
+
 //                  response.addCookie(cookieRemember);
                     url = SUCCESS_ADMIN;
                 } else if (account.getRoleID().equals(KID) && account.getStatus().equalsIgnoreCase("active")) {

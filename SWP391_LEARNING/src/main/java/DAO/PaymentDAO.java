@@ -80,13 +80,14 @@ public class PaymentDAO {
     public void AddDetailPayment(int paymentID, String courseID, float amountCourse, String datePayment, String status) {
         String query = "INSERT INTO dbo.DetailPayment(detailpaymentID,paymentID,kidlearningID,amountCourse,datePayment,status) \n"
                 + " VALUES (?,?,?,?,?,?)";
-        ProductDAO productDAO=new ProductDAO();
+        int number1= GetNextDetailPaymentId();
+        int number2= GetLastKidLearningId();
         try {
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setInt(1,GetNextDetailPaymentId());
+            ps.setInt(1,number1);
             ps.setInt(2, paymentID);
-            ps.setInt(3, GetLastKidLearningId());
+            ps.setInt(3, number2);
             ps.setFloat(4, amountCourse);
             ps.setString(5, datePayment);
             ps.setString(6, status);

@@ -5,17 +5,18 @@ import DAO.KidDAO;
 import DAO.ParentDAO;
 import Entity.kid;
 import Entity.parent;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class AdminController extends HttpServlet {
-    private final static String TABLE ="tables.jsp";
+public class DashBoardController extends HttpServlet {
+    private static final String SUCCESS_ADMIN = "index_admin.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -38,13 +39,14 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        ParentDAO parentDAO= new ParentDAO();
-        KidDAO kidDAO = new KidDAO();
-        ArrayList<parent> parents= parentDAO.getAllParents();
-        ArrayList<kid> kids= kidDAO.getAllKids();
-        request.setAttribute("kids", kids);
-        request.setAttribute("parents", parents);
-        request.getRequestDispatcher(TABLE).forward(request, response);
+        AdminDAO adminDAO = new AdminDAO();
+        request.setAttribute("Totalsale",adminDAO.CountTotalSale());
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String TodayDate = currentDate.format(formatter);
+        request.setAttribute("TodaysMoney",adminDAO.TodaysMoney(TodayDate));
+        request.setAttribute("TotalUser",adminDAO.TotalUser());
+        request.getRequestDispatcher(SUCCESS_ADMIN).forward(request, response);
     }
 
     /**
@@ -58,27 +60,9 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        String action = request.getParameter("action");
-        if (action != null && action.equals("UpdateParent")) {
-            String parentAccount = request.getParameter("parentAccount");
-            ParentDAO parentDAO = new ParentDAO();
-
-            // Perform the necessary logic to update the parent's status
-            parentDAO.updateStatus(parentAccount);
-            response.sendRedirect("AdminController");
-        }else if (action != null && action.equals("UpdateKid")) {
-            String kidAccount = request.getParameter("kidAccount");
-            KidDAO kidDAO= new KidDAO();
-
-            // Perform the necessary logic to update the parent's status
-            kidDAO.updateStatus(kidAccount);
-            response.sendRedirect("AdminController");
-
-        }
 
 
-            // Redirect back to the original page or perform any other necessary actions
+        // Redirect back to the original page or perform any other necessary actions
 
     }
 
