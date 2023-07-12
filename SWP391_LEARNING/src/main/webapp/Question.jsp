@@ -118,7 +118,7 @@ Your browser does not support the audio element.
                         </c:forEach>
                     </ul>
                 </c:if>
-                <c:if test="${empty incorrectAnswers}">
+                <c:if test="${empty incorrectAnswers and points == fn:length(newquestions)}">
                     <p style="color: darkseagreen">All of the answers is correct</p>
                 </c:if>
             </div>
@@ -156,14 +156,20 @@ Your browser does not support the audio element.
                     <div class="col-12 col-lg-12">
                         <div class="justify-content-between align-items-center p-3 bg-white">
                             Make sure to check your answer before submit:
+                            <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
                             <input class="btn btn-primary" type="submit" name="action" value="Submit Answer">
                         </div>
                     </div>
                 </form>
                 </c:if>
-                <form method="get" action="QuestionController">
+                <form method="post" action="QuestionController">
+                    <input type="hidden" name="lessonItemID" value="${lessonItemID}">
                     <input  class="btn btn-primary" type="submit" name="action" value="Reload">
+                    <button class="btn btn-primary">
+                        <a style="color: white" href="LessonController" class="nav-link">Return To Lesson</a>
+                    </button>
                 </form>
+
             </div>
         </div>
     </div>

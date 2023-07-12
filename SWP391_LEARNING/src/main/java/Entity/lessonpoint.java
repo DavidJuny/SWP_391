@@ -3,17 +3,17 @@ package Entity;
 public class lessonpoint {
     public int LessonPointId;
     public String KidId;
-    public int LessonId;
+    public int LessonItemId;
     public float Point;
 
-    public lessonpoint(int lessonPointId, String kidId, int lessonId, float point) {
-        LessonPointId = lessonPointId;
-        KidId = kidId;
-        LessonId = lessonId;
-        Point = point;
+    public lessonpoint() {
     }
 
-    public lessonpoint() {
+    public lessonpoint(int lessonPointId, String kidId, int lessonItemId, float point) {
+        LessonPointId = lessonPointId;
+        KidId = kidId;
+        LessonItemId = lessonItemId;
+        Point = point;
     }
 
     public int getLessonPointId() {
@@ -32,12 +32,12 @@ public class lessonpoint {
         KidId = kidId;
     }
 
-    public int getLessonId() {
-        return LessonId;
+    public int getLessonItemId() {
+        return LessonItemId;
     }
 
-    public void setLessonId(int lessonId) {
-        LessonId = lessonId;
+    public void setLessonItemId(int lessonItemId) {
+        LessonItemId = lessonItemId;
     }
 
     public float getPoint() {
