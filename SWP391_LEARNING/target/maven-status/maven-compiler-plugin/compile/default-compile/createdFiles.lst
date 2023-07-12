@@ -26,6 +26,7 @@ Controller\PaymentInfoController.class
 Controller\RegisterController.class
 Entity\feedback.class
 Controller\MainController.class
+Controller\DashBoardController.class
 Controller\LessonController.class
 DAO\ParentDAO.class
 DAO\CourseDAO.class
