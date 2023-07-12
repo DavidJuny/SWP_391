@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.LessonPointDAO;
 import DAO.QuizDAO;
 import Entity.lesson;
 import Entity.lessonItem;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.sql.SQLException;
 import java.util.*;
 
 public class QuestionController extends HttpServlet {
@@ -37,6 +39,7 @@ public class QuestionController extends HttpServlet {
 
                 Answers.add(word);
             }
+            Collections.shuffle(Answers);
             QuizModel quizModel=new QuizModel(question.getQuestionID(),question.getTypeID(),question.getQuestion(),Answers);
             newQuestion.add(quizModel);
 
@@ -48,7 +51,7 @@ public class QuestionController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
         QuizDAO questionDAO= new QuizDAO();
-        int lessonItemType= 1;
+        int lessonItemType= 3;
         ArrayList<question> questions= questionDAO.GetListQuestionFromLessonItem(lessonItemType);
         lessonItem lessonItem= questionDAO.getLessonItemByLessonItemId(lessonItemType);
         ArrayList<QuizModel> newquestions= shuffleAnswers(questions);
@@ -67,6 +70,7 @@ public class QuestionController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
         String action = request.getParameter("action");
+        String KidId = "Kmanhvu";
         HashMap<Integer, String> submittedAnswers = new HashMap<>();
         ArrayList<Integer> questionIds = new ArrayList<>();
         for (String paramName : request.getParameterMap().keySet()) {
@@ -77,11 +81,18 @@ public class QuestionController extends HttpServlet {
                 questionIds.add(questionId);
             }
         }
+
         QuizDAO quizDAO=new QuizDAO();
+        LessonPointDAO lessonPointDAO= new LessonPointDAO();
         QuizResult quizResult = quizDAO.GetAnswerFromQuestion(questionIds, submittedAnswers);
+        try {
+            lessonPointDAO.AddLessonPointByKidId(KidId,3,quizResult.getPoints());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         request.setAttribute("points", quizResult.getPoints());
-        request.setAttribute("incorrectAnswers", quizResult.getIncorrectAnswers());
+            request.setAttribute("incorrectAnswers", quizResult.getIncorrectAnswers());
         request.getRequestDispatcher(QUESTION).forward(request, response);
     }
 }

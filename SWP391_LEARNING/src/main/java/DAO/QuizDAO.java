@@ -101,8 +101,8 @@ public class QuizDAO {
 
               for (question question : questions) {
                      int questionId = question.getQuestionID();
-                     String submittedAnswer = submittedAnswers.getOrDefault(questionId, "");
-                     String correctAnswer = question.getAnswer();
+                     String submittedAnswer = submittedAnswers.getOrDefault(questionId, "").trim();
+                     String correctAnswer = question.getAnswer().trim();
 
                      if (submittedAnswer.equals(correctAnswer)) {
                             totalPoints++;

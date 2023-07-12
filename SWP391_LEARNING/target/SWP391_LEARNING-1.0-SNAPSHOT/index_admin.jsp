@@ -34,21 +34,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
         <!-- CSS Files -->
         <link id="pagestyle" href="./assets-admin/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
-
     </head>
-    <style>
-        #chartContainer {
-            width: 400px;
-            height: 300px;
-            margin: 0 auto;
-        }
-
-        .bar {
-            background-color: #007bff;
-            margin-bottom: 10px;
-        }
-    </style>
 
     <body class="g-sidenav-show  bg-gray-200">
         <%
@@ -307,7 +293,6 @@
                             </div>
                     </div>
                 </div>
-                <div id="chartContainer"></div>
 
 
                 <%
@@ -657,32 +642,6 @@
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="./assets-admin/js/material-dashboard.min.js?v=3.0.0"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var ctx = document.getElementById("chartContainer").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "bar",
-                    data: {
-                        labels: ["Label 1", "Label 2", "Label 3", "Label 4"],
-                        datasets: [{
-                            label: "Bar Chart",
-                            data: [10, 20, 15, 30],
-                            backgroundColor: "#007bff"
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            });
-        </script>
-
     </body>
 
 </html>

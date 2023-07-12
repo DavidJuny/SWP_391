@@ -66,6 +66,7 @@
 </head>
 <body>
 
+<c:if test="${not empty newquestions}">
 <div class="question bg-white p-3 border-bottom">
     <div class="d-flex flex-row justify-content-between align-items-center mcq">
         <h4>${lesson.lessonName} Quiz
@@ -75,27 +76,37 @@
             Read the following paragraph and answer the question.There are ${fn:length(newquestions)} questions :
             <br>
             ${lessonItem.content}
+            <audio controls autoplay>
+  <source src="./ListeningAudio/${lessonItem.content}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
         </span>
     </h2>
 </div>
+</c:if>
 <%-- Check if the form is submitted --%>
 <c:if test="${not empty points}">
     <div class="container mt-5">
         <h3>Quiz Results</h3>
         <p>Points: ${points}</p>
-        <h4>Incorrect Answers:</h4>
         <c:if test="${not empty incorrectAnswers}">
+            <h4>Incorrect Answers:</h4>
             <ul>
                 <c:forEach var="entry" items="${incorrectAnswers}">
-                    <li>Q.${entry.key}, Submitted Answer: ${entry.value}</li>
+                    <li style="color: red">Q.${entry.key}, Submitted Answer: ${entry.value}</li>
                 </c:forEach>
             </ul>
         </c:if>
         <c:if test="${empty incorrectAnswers}">
-            <p>No incorrect answers.</p>
+            <p style="color: darkseagreen">All of the answers is correct</p>
         </c:if>
     </div>
 </c:if>
+<c:if test="${points ==0}">
+<p style="color: red"> No answer was submitted</p>
+</c:if>
+
+<c:if test="${not empty newquestions}">
 <form method="post" action="QuestionController">
 <c:forEach var ="question" items="${newquestions}">
 <div class="container mt-5">
@@ -125,6 +136,10 @@
         </div>
     </div>
 </div>
+</form>
+</c:if>
+<form method="get" action="QuestionController">
+    <input type="submit" name="action" value="Reload">
 </form>
 
 </body>
