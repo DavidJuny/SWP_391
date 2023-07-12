@@ -1,9 +1,11 @@
 package Controller;
 
+import DAO.AdminDAO;
 import DAO.KidDAO;
 import DAO.ParentDAO;
 import Entity.kid;
 import Entity.parent;
+import org.checkerframework.checker.units.qual.A;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +40,6 @@ public class AdminController extends HttpServlet {
         processRequest(request, response);
         ParentDAO parentDAO= new ParentDAO();
         KidDAO kidDAO = new KidDAO();
-
         ArrayList<parent> parents= parentDAO.getAllParents();
         ArrayList<kid> kids= kidDAO.getAllKids();
         request.setAttribute("kids", kids);
