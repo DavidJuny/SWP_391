@@ -19,39 +19,36 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class QuestionController extends HttpServlet {
-    private static final String QUESTION="Question.jsp";
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
+       private static final String QUESTION = "Question.jsp";
 
+       protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+               throws ServletException, IOException {
+              response.setContentType("text/html;charset=UTF-8");
 
+       }
 
+       public static ArrayList<QuizModel> shuffleAnswers(List<question> questions) {
+              ArrayList<QuizModel> newQuestion = new ArrayList<>();
+              for (question question : questions) {
+                     String answers = question.getAnswer();
+                     List<String> words = Arrays.asList(answers.split(","));
+                     ArrayList<String> Answers = new ArrayList<>();
+                     for (String word : words) {
 
-    }
-    public static ArrayList<QuizModel> shuffleAnswers(List<question> questions) {
-        ArrayList<QuizModel> newQuestion = new ArrayList<>();
-        for (question question : questions) {
-            String answers = question.getAnswer();
-            List<String> words = Arrays.asList(answers.split(","));
-            ArrayList<String> Answers = new ArrayList<>();
-            for (String word : words) {
-
-                Answers.add(word);
-            }
-            Collections.shuffle(Answers);
+                            Answers.add(word);
+                     }
+                    Collections.shuffle(Answers);
             QuizModel quizModel=new QuizModel(question.getQuestionID(),question.getTypeID(),question.getQuestion(),Answers);
             newQuestion.add(quizModel);
-
-        }
-        return newQuestion;
-    }
-
+              }
+              return newQuestion;
+       }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
         QuizDAO questionDAO= new QuizDAO();
-        int lessonItemType= 3;
+        int lessonItemType = Integer.parseInt(request.getParameter("lessonItemID"));
         ArrayList<question> questions= questionDAO.GetListQuestionFromLessonItem(lessonItemType);
         lessonItem lessonItem= questionDAO.getLessonItemByLessonItemId(lessonItemType);
         ArrayList<QuizModel> newquestions= shuffleAnswers(questions);
@@ -96,3 +93,4 @@ public class QuestionController extends HttpServlet {
         request.getRequestDispatcher(QUESTION).forward(request, response);
     }
 }
+
