@@ -71,17 +71,17 @@ public class LessonItemController extends HttpServlet {
        protected void doPost(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
-              String ItemType_ID = request.getParameter("ItemType_ID"); // 
-              ArrayList<lessonItem> list = (ArrayList<lessonItem>) request.getAttribute("LESSON_ITEM");
-              lessonItem item = new lessonItem();
-              for (lessonItem i : list) {
-                     if (i.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
-                            item = i;
-                            break;
-                     }
-              }
-              request.setAttribute("ITEM", item);
-              request.getRequestDispatcher(STUDY).forward(request, response);
+//              String ItemType_ID = request.getParameter("ItemType_ID"); // 
+//              ArrayList<lessonItem> list = (ArrayList<lessonItem>) request.getAttribute("LESSON_ITEM");
+//              lessonItem item = new lessonItem();
+//              for (lessonItem i : list) {
+//                     if (i.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
+//                            item = i;
+//                            break;
+//                     }
+//              }
+//              request.setAttribute("ITEM", item);
+//              request.getRequestDispatcher(STUDY).forward(request, response);
        }
 
        /**

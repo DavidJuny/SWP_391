@@ -11,119 +11,147 @@
 
 
 <html>
-<head>
-    <title>Quiz</title>
-    <style>
-        body{
-            background-color:#eee;
-        }
+       <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,400,700|Indie+Flower" rel="stylesheet">
+              <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+              <link rel="icon" type="image/x-icon" href="./assets/images/logo.png">
+              <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+              <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
+              <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
+              <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+              <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+              <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+              <link rel="stylesheet" href="assets/css/aos.css">
+              <link href="assets/css/course.css" rel="stylesheet" type="text/css"/>
+              <link href="assets/css/kid_profile.css" rel="stylesheet" type="text/css"/>
 
-        label.radio {
-            cursor: pointer;
-        }
 
-        label.radio input {
-            position: absolute;
-            top: 0;
-            left: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+              <!-- MAIN CSS -->
+              <link rel="stylesheet" href="assets/css/style.css">
 
-        label.radio span {
-            padding: 4px 0px;
-            border: 1px solid red;
-            display: inline-block;
-            color: red;
-            width: 100px;
-            text-align: center;
-            border-radius: 3px;
-            margin-top: 7px;
-            text-transform: uppercase;
-        }
 
-        label.radio input:checked + span {
-            border-color: red;
-            background-color: red;
-            color: #fff;
-        }
+              <title>Quiz</title>
+              <!--              <style>
+                                   body{
+                                          background-color:#eee;
+                                   }
+              
+                                   label.radio {
+                                          cursor: pointer;
+                                   }
+              
+                                   label.radio input {
+                                          position: absolute;
+                                          top: 0;
+                                          left: 0;
+                                          visibility: hidden;
+                                          pointer-events: none;
+                                   }
+              
+                                   label.radio span {
+                                          padding: 4px 0px;
+                                          border: 1px solid red;
+                                          display: inline-block;
+                                          color: red;
+                                          width: 100px;
+                                          text-align: center;
+                                          border-radius: 3px;
+                                          margin-top: 7px;
+                                          text-transform: uppercase;
+                                   }
+              
+                                   label.radio input:checked + span {
+                                          border-color: red;
+                                          background-color: red;
+                                          color: #fff;
+                                   }
+              
+                                   .ans {
+                                          margin-left: 36px !important;
+                                   }
+              
+                                   .btn:focus {
+                                          outline: 0 !important;
+                                          box-shadow: none !important;
+                                   }
+              
+                                   .btn:active {
+                                          outline: 0 !important;
+                                          box-shadow: none !important;
+                                   }
+                            </style>-->
+       </head>
+       <body>
+              <section class="site-section bg-light">
+                     <div class="container">
 
-        .ans {
-            margin-left: 36px !important;
-        }
+                            <div class="question bg-white p-3 border-bottom">
+                                   <h2 class="text-center ">${lesson.lessonName} Quiz</h2>
+                                   <h4>
+                                          <span>
+                                                 Read the following paragraph and answer the question. There are ${fn:length(newquestions)} questions :
+                                                 <br>
+                                                 ${lessonItem.content}
+                                          </span>
+                                   </h4>
+                            </div>
+                            <%-- Check if the form is submitted --%>
+                            <c:if test="${not empty points}">
+                                   <div class="container mt-5">
+                                          <h3>Quiz Results</h3>
+                                          <p>Points: ${points}</p>
+                                          <h4>Incorrect Answers:</h4>
+                                          <c:if test="${not empty incorrectAnswers}">
+                                                 <ul>
+                                                        <c:forEach var="entry" items="${incorrectAnswers}">
+                                                               <li>Q.${entry.key}, Submitted Answer: ${entry.value}</li>
+                                                               </c:forEach>
+                                                 </ul>
+                                          </c:if>
+                                          <c:if test="${empty incorrectAnswers}">
+                                                 <p>No incorrect answers.</p>
+                                          </c:if>
+                                   </div>
+                            </c:if>
 
-        .btn:focus {
-            outline: 0 !important;
-            box-shadow: none !important;
-        }
 
-        .btn:active {
-            outline: 0 !important;
-            box-shadow: none !important;
-        }
-    </style>
-</head>
-<body>
+                            <div class="container mt-5">
+                                   <div class="d-flex justify-content-center row">
+                                          <form method="post" action="QuestionController">
+                                                 <c:forEach var ="question" items="${newquestions}">
+                                                        <div class="col-12 col-lg-12">
+                                                               <div class="border">
+                                                                      <div class="question bg-white p-3 border-bottom">
+                                                                             <div class="d-flex flex-row align-items-center question-title">
+                                                                                    <h3 class="text-danger">Q.${question.questionID}: ${question.question}</h3>
+                                                                             </div>
+                                                                             <div class="row ">
+                                                                                    <div class="col-lg-4">
+                                                                                           <c:forEach var="answer" items="${question.answer}">
+                                                                                                  <label class="radio"> <input type="radio"  name="answers[${question.questionID}]" value="${answer}"> <span>${answer}</span>
+                                                                                                  </label>
 
-<div class="question bg-white p-3 border-bottom">
-    <div class="d-flex flex-row justify-content-between align-items-center mcq">
-        <h4>${lesson.lessonName} Quiz
-    </div>
-    <h2>
-        <span>
-            Read the following paragraph and answer the question.There are ${fn:length(newquestions)} questions :
-            <br>
-            ${lessonItem.content}
-        </span>
-    </h2>
-</div>
-<%-- Check if the form is submitted --%>
-<c:if test="${not empty points}">
-    <div class="container mt-5">
-        <h3>Quiz Results</h3>
-        <p>Points: ${points}</p>
-        <h4>Incorrect Answers:</h4>
-        <c:if test="${not empty incorrectAnswers}">
-            <ul>
-                <c:forEach var="entry" items="${incorrectAnswers}">
-                    <li>Q.${entry.key}, Submitted Answer: ${entry.value}</li>
-                </c:forEach>
-            </ul>
-        </c:if>
-        <c:if test="${empty incorrectAnswers}">
-            <p>No incorrect answers.</p>
-        </c:if>
-    </div>
-</c:if>
-<form method="post" action="QuestionController">
-<c:forEach var ="question" items="${newquestions}">
-<div class="container mt-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-10 col-lg-10">
-            <div class="border">
-
-                <div class="question bg-white p-3 border-bottom">
-                    <div class="d-flex flex-row align-items-center question-title">
-                        <h3 class="text-danger">Q.${question.questionID}</h3>
-                        <h5 class="mt-1 ml-2">${question.question}</h5>
-                    </div>
-                    <c:forEach var="answer" items="${question.answer}">
-                    <div class="ans ml-2">
-                    <label class="radio"> <input type="radio"  name="answers[${question.questionID}]" value="${answer}"> <span>${answer}</span>
-                    </label>
-                </div>
-
-                </div>
-                </c:forEach>
-                </c:forEach>
-
-                <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white">
-                    <input type="submit" name="action" value="Submit Answer">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</form>
-</body>
+                                                                                           </c:forEach>
+                                                                                    </div>
+                                                                             </div>
+                                                                      </div>
+                                                               </div>
+                                                        </div>
+                                                        <br>
+                                                 </c:forEach>
+                                                 <div class="col-12 col-lg-12">
+                                                        <div class="justify-content-between align-items-center p-3 bg-white">
+                                                               Make sure to check your answer before submit: 
+                                                               <input class="btn btn-primary" type="submit" name="action" value="Submit Answer">
+                                                        </div>
+                                                 </div>
+                                          </form>
+                                   </div>
+                            </div>
+                     </div>
+              </section>
+       </body>
 </html>
