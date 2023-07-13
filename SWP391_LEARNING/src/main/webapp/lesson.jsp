@@ -49,9 +49,9 @@
                                                                              </div>
                                                                              <div class="col-md-8">
                                                                                     <div class="card-body">
-                                                                                           <h5 class="card-title">${i.lessonName}</h5>
+                                                                                           <h5 class="card-title">${i.topic.topicName}</h5>
                                                                                            <p class="card-text">
-                                                                                                  Please study well so that you can participate in advanced courses</p>
+                                                                                                  Lesson: ${i.lessonName}</p>
                                                                                            <p class="card-text">
                                                                                                   Course enrolled: ${i.topic.course.courseName}<br>
                                                                                                   Course level: ${i.topic.course.courseLevel}</p>
