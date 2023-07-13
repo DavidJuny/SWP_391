@@ -88,6 +88,12 @@
     <servlet>
         <servlet-name>TopicController</servlet-name>
         <servlet-class>Controller.TopicController</servlet-class>
+        <servlet-name>ReportController</servlet-name>
+        <servlet-class>Controller.ReportController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortListController</servlet-name>
+        <servlet-class>Controller.SortListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -137,7 +143,6 @@
         <servlet-name>QuestionController</servlet-name>
         <url-pattern>/QuestionController</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ParentController</servlet-name>
         <url-pattern>/ParentController</url-pattern>
@@ -174,6 +179,12 @@
     <servlet-mapping>
         <servlet-name>TopicController</servlet-name>
         <url-pattern>/TopicController</url-pattern>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/ReportController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortListController</servlet-name>
+        <url-pattern>/SortListController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

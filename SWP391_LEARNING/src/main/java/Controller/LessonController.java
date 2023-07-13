@@ -38,16 +38,15 @@ public class LessonController extends HttpServlet {
        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               response.setContentType("text/html;charset=UTF-8");
-              try (PrintWriter out = response.getWriter()) {
-                     /* TODO output your page here. You may use following sample code. */
-                     HttpSession session = request.getSession();
-                     LessonDAO dao = new LessonDAO();
-                     kid kid = (kid) session.getAttribute("KID");
-                     ArrayList< lesson> list = dao.getLesson(kid.getKidID());
-                     request.setAttribute("LESSON_LIST", list);
-                     request.getRequestDispatcher("lesson.jsp").forward(request, response);
-
-              }
+              /* TODO output your page here. You may use following sample code. */
+              HttpSession session = request.getSession();
+              LessonDAO dao = new LessonDAO();
+              kid kid = (kid) session.getAttribute("KID");
+              String courseID = request.getParameter("courseID");
+              ArrayList< lesson> list = dao.getLesson(kid.getKidID());
+              request.setAttribute("LESSON_LIST", list);
+              request.setAttribute("COURSEID", courseID);
+              request.getRequestDispatcher("lesson.jsp").forward(request, response);
        }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,25 +4,18 @@
  */
 package Controller;
 
-import DAO.LessonDAO;
-import Entity.lessonItem;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author PC
  */
-public class LessonItemController extends HttpServlet {
-
-       private static final String VIEW = "learning.jsp"; // trang nay hien thi cac lessonItem cua mot Lesson de kid co the lua chon ma bat dau hoc Item nao truoc
-       private static final String STUDY = "learning.jsp"; // trang hien content cua lessonItem sau khi kid da chon Item de hoc
+public class ReportController extends HttpServlet {
 
        /**
         * Processes requests for both HTTP <code>GET</code> and
@@ -36,7 +29,18 @@ public class LessonItemController extends HttpServlet {
        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               response.setContentType("text/html;charset=UTF-8");
-
+              try (PrintWriter out = response.getWriter()) {
+                     /* TODO output your page here. You may use following sample code. */
+                     out.println("<!DOCTYPE html>");
+                     out.println("<html>");
+                     out.println("<head>");
+                     out.println("<title>Servlet ReportController</title>");                     
+                     out.println("</head>");
+                     out.println("<body>");
+                     out.println("<h1>Servlet ReportController at " + request.getContextPath() + "</h1>");
+                     out.println("</body>");
+                     out.println("</html>");
+              }
        }
 
        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,13 +56,6 @@ public class LessonItemController extends HttpServlet {
        protected void doGet(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
-              HttpSession session = request.getSession();
-              String lessonID_str = request.getParameter("lessonID");
-              int lessonID = Integer.parseInt(lessonID_str);
-              LessonDAO dao = new LessonDAO();
-              ArrayList<lessonItem> list = dao.getLessonItem(lessonID);
-              session.setAttribute("LESSON_ITEM", list);
-              request.getRequestDispatcher(VIEW).forward(request, response);
        }
 
        /**
@@ -73,17 +70,6 @@ public class LessonItemController extends HttpServlet {
        protected void doPost(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
-//              String ItemType_ID = request.getParameter("ItemType_ID"); // 
-//              ArrayList<lessonItem> list = (ArrayList<lessonItem>) request.getAttribute("LESSON_ITEM");
-//              lessonItem item = new lessonItem();
-//              for (lessonItem i : list) {
-//                     if (i.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
-//                            item = i;
-//                            break;
-//                     }
-//              }
-//              request.setAttribute("ITEM", item);
-//              request.getRequestDispatcher(STUDY).forward(request, response);
        }
 
        /**

@@ -4,10 +4,8 @@
  */
 package Controller;
 
-import DAO.LessonDAO;
 import Entity.lessonItem;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author PC
  */
-public class LessonItemController extends HttpServlet {
-
-       private static final String VIEW = "learning.jsp"; // trang nay hien thi cac lessonItem cua mot Lesson de kid co the lua chon ma bat dau hoc Item nao truoc
-       private static final String STUDY = "learning.jsp"; // trang hien content cua lessonItem sau khi kid da chon Item de hoc
+public class SortListController extends HttpServlet {
 
        /**
         * Processes requests for both HTTP <code>GET</code> and
@@ -36,10 +31,32 @@ public class LessonItemController extends HttpServlet {
        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               response.setContentType("text/html;charset=UTF-8");
-
+              try {
+                     /* TODO output your page here. You may use following sample code. */
+                     HttpSession session = request.getSession();
+                     String ItemType_ID = request.getParameter("ItemType_ID");
+                     ArrayList<lessonItem> list = (ArrayList<lessonItem>) session.getAttribute("LESSON_ITEM");
+                     ArrayList<lessonItem> sortlist = new ArrayList<>();
+                     if (list.isEmpty() || ItemType_ID.isEmpty()) {
+                            response.sendRedirect("homepage.jsp");
+                     }
+                     
+                     for (lessonItem item : list) {
+                            if (item.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
+                                   sortlist.add(item);
+                            } else if (ItemType_ID.equals("All")) {
+                                   session.removeAttribute("SORT_ITEM");
+                                   request.getRequestDispatcher("learning.jsp").forward(request, response);
+                            }
+                     }
+                     session.setAttribute("SORT_ITEM", sortlist);
+                     request.getRequestDispatcher("learning.jsp").forward(request, response);
+              } catch (Exception e) {
+                     e.printStackTrace();
+              }
        }
 
-       // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
        /**
         * Handles the HTTP <code>GET</code> method.
         *
@@ -52,13 +69,6 @@ public class LessonItemController extends HttpServlet {
        protected void doGet(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
-              HttpSession session = request.getSession();
-              String lessonID_str = request.getParameter("lessonID");
-              int lessonID = Integer.parseInt(lessonID_str);
-              LessonDAO dao = new LessonDAO();
-              ArrayList<lessonItem> list = dao.getLessonItem(lessonID);
-              session.setAttribute("LESSON_ITEM", list);
-              request.getRequestDispatcher(VIEW).forward(request, response);
        }
 
        /**
@@ -73,17 +83,6 @@ public class LessonItemController extends HttpServlet {
        protected void doPost(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
-//              String ItemType_ID = request.getParameter("ItemType_ID"); // 
-//              ArrayList<lessonItem> list = (ArrayList<lessonItem>) request.getAttribute("LESSON_ITEM");
-//              lessonItem item = new lessonItem();
-//              for (lessonItem i : list) {
-//                     if (i.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
-//                            item = i;
-//                            break;
-//                     }
-//              }
-//              request.setAttribute("ITEM", item);
-//              request.getRequestDispatcher(STUDY).forward(request, response);
        }
 
        /**
