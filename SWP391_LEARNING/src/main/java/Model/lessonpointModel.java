@@ -3,7 +3,7 @@ package Model;
 public class lessonpointModel {
     public int LessonPointId;
     public String KidId;
-    public int LessonId;
+    public int LessonItemId;
     public float Point;
     public String KidName;
     public String ParentId;
@@ -11,10 +11,10 @@ public class lessonpointModel {
     public lessonpointModel() {
     }
 
-    public lessonpointModel(int lessonPointId, String kidId, int lessonId, float point, String kidName, String parentId) {
+    public lessonpointModel(int lessonPointId, String kidId, int lessonItemId, float point, String kidName, String parentId) {
         LessonPointId = lessonPointId;
         KidId = kidId;
-        LessonId = lessonId;
+        LessonItemId = lessonItemId;
         Point = point;
         KidName = kidName;
         ParentId = parentId;
@@ -36,12 +36,12 @@ public class lessonpointModel {
         KidId = kidId;
     }
 
-    public int getLessonId() {
-        return LessonId;
+    public int getLessonItemId() {
+        return LessonItemId;
     }
 
-    public void setLessonId(int lessonId) {
-        LessonId = lessonId;
+    public void setLessonItemId(int lessonItemId) {
+        LessonItemId = lessonItemId;
     }
 
     public float getPoint() {

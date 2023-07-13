@@ -16,9 +16,9 @@ public class LessonPointDAO {
     ResultSet rs = null;
 
     public void AddLessonPointByKidId(String KidId,int lessonId,float Point) throws SQLException {
-        String queryCheck = "SELECT * FROM LessonPoint WHERE KidId = ? AND LessonId = ?";
-        String query = "INSERT INTO LessonPoint(kidID,lessonID,Point) VALUES (?,?,?)";
-        String queryUpdate = "UPDATE LessonPoint SET Point = ? WHERE KidId = ? AND LessonId = ?";
+        String queryCheck = "SELECT * FROM LessonPoint WHERE KidId = ? AND LessonItemId = ?";
+        String query = "INSERT INTO LessonPoint(kidID,LessonItemId,Point) VALUES (?,?,?)";
+        String queryUpdate = "UPDATE LessonPoint SET Point = ? WHERE KidId = ? AND LessonItemId = ?";
 
         try (Connection conn = DBContext.getConnection();
              PreparedStatement psCheck = conn.prepareStatement(queryCheck);
@@ -56,7 +56,7 @@ public class LessonPointDAO {
 
     public ArrayList<lessonpointModel> GetAllPointFromKidId(String kidId)
     {
-        String query="SELECT LessonPoint.LessonPointId, LessonPoint.KidId, LessonPoint.LessonId, LessonPoint.Point, Kids.kidName,Kids.parentID" +
+        String query="SELECT LessonPoint.LessonPointId, LessonPoint.KidId, LessonPoint.LessonItemId, LessonPoint.Point, Kids.kidName,Kids.parentID" +
                 "FROM LessonPoint" +
                 "JOIN Kids ON LessonPoint.KidId = Kids.KidId WHERE Kids.kidID=?";
         ArrayList<lessonpointModel> list = new ArrayList<>();

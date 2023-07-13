@@ -86,12 +86,18 @@
         <servlet-class>Controller.DashBoardController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ReportController</servlet-name>
-        <servlet-class>Controller.ReportController</servlet-class>
+        <servlet-name>TopicController</servlet-name>
+        <servlet-class>Controller.TopicController</servlet-class>
+
     </servlet>
+
     <servlet>
         <servlet-name>SortListController</servlet-name>
         <servlet-class>Controller.SortListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportController</servlet-name>
+        <servlet-class>Controller.ReportController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -165,6 +171,7 @@
         <servlet-name>LessonController</servlet-name>
         <url-pattern>/LessonController</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>LessonItemController</servlet-name>
         <url-pattern>/LessonItemController</url-pattern>
@@ -174,12 +181,17 @@
         <url-pattern>/DashBoardController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ReportController</servlet-name>
-        <url-pattern>/ReportController</url-pattern>
+        <servlet-name>TopicController</servlet-name>
+        <url-pattern>/TopicController</url-pattern>
+
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SortListController</servlet-name>
         <url-pattern>/SortListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/ReportController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

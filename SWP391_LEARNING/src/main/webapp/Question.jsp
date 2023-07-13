@@ -99,31 +99,81 @@
                                                  Your browser does not support the audio element.
                                           </audio>
 
-                                   </div>
-                            </c:if>
-                            <%-- Check if the form is submitted --%>
-                            <c:if test="${not empty points}">
-                                   <div class="container mt-5">
-                                          <h3>Quiz Results</h3>
-                                          <p>Points: ${points}</p>
-                                          <c:if test="${not empty incorrectAnswers}">
-                                                 <h4>Incorrect Answers:</h4>
-                                                 <ul>
-                                                        <c:forEach var="entry" items="${incorrectAnswers}">
-                                                               <li style="color: red">Q.${entry.key}, Submitted Answer: ${entry.value}</li>
-                                                               </c:forEach>
-                                                 </ul>
-                                          </c:if>
-                                          <c:if test="${empty incorrectAnswers}">
-                                                 <p style="color: darkseagreen">All of the answers is correct</p>
-                                          </c:if>
-                                   </div>
-                            </c:if>
-                            <c:if test="${points ==0}">
-                                   <form action="QuestionController" method="GET">
-                                          <button class="btn btn-primary" type="submit">Please try again</button>
-                                   </form>
-                            </c:if>
+                         label.radio span {
+                                padding: 4px 0px;
+                                border: 1px solid red;
+                                display: inline-block;
+                                color: red;
+                                width: 100px;
+                                text-align: center;
+                                border-radius: 3px;
+                                margin-top: 7px;
+                                text-transform: uppercase;
+                         }
+
+                         label.radio input:checked + span {
+                                border-color: red;
+                                background-color: red;
+                                color: #fff;
+                         }
+
+                         .ans {
+                                margin-left: 36px !important;
+                         }
+
+                         .btn:focus {
+                                outline: 0 !important;
+                                box-shadow: none !important;
+                         }
+
+                         .btn:active {
+                                outline: 0 !important;
+                                box-shadow: none !important;
+                         }
+                  </style>-->
+</head>
+<body>
+
+<section class="site-section bg-light">
+    <div class="container">
+        <c:if test="${not empty newquestions}">
+
+        <div class="question bg-white p-3 border-bottom">
+            <h2 class="text-center ">${lesson.lessonName} Quiz</h2>
+            <h4>
+                                          <span>
+                                                 Read the following paragraph and answer the question. There are ${fn:length(newquestions)} questions :
+                                                 <br>
+                                                 ${lessonItem.content}
+                                               <audio controls autoplay>
+  <source src="./ListeningAudio/${lessonItem.content}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+                                          </span>
+            </h4>
+        </div>
+        </c:if>
+        <%-- Check if the form is submitted --%>
+        <c:if test="${not empty points}">
+            <div class="container mt-5">
+                <h3>Quiz Results</h3>
+                <p>Points: ${points}</p>
+                <c:if test="${not empty incorrectAnswers}">
+                    <h4>Incorrect Answers:</h4>
+                    <ul>
+                        <c:forEach var="entry" items="${incorrectAnswers}">
+                            <li style="color: red">Q.${entry.key}, Submitted Answer: ${entry.value}</li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
+                <c:if test="${empty incorrectAnswers and points == fn:length(newquestions)}">
+                    <p style="color: darkseagreen">All of the answers is correct</p>
+                </c:if>
+            </div>
+        </c:if>
+        <c:if test="${points ==0}">
+            <p style="color: red"> No answer was submitted</p>
+        </c:if>
 
 
                             <c:if test="${not empty newquestions}">
@@ -167,7 +217,29 @@
 
                                    </div>
                             </div>
-                     </div>
-              </section>
-       </body>
+                        </div>
+                        <br>
+                    </c:forEach>
+                    <div class="col-12 col-lg-12">
+                        <div class="justify-content-between align-items-center p-3 bg-white">
+                            Make sure to check your answer before submit:
+                            <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
+                            <input class="btn btn-primary" type="submit" name="action" value="Submit Answer">
+                        </div>
+                    </div>
+                </form>
+                </c:if>
+                <form method="post" action="QuestionController">
+                    <input type="hidden" name="lessonItemID" value="${lessonItemID}">
+                    <input  class="btn btn-primary" type="submit" name="action" value="Reload">
+                    <button class="btn btn-primary">
+                        <a style="color: white" href="LessonController" class="nav-link">Return To Lesson</a>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
 </html>
