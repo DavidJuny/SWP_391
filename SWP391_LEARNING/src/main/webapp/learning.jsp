@@ -39,10 +39,13 @@
 
                                    <div class="row">
                                           <div class="col-12">
-                                                 <form action="SortItemController" method="POST">
+                                                 <form action="SortListController" method="POST">
                                                         <label  for="sltype">Please chose your Lesson Type: </label>
                                                         <select class="btn btn-warning m-0 p-2 pr-0" style="border-top-right-radius:0;border-bottom-right-radius: 0;" id="sltype" name="ItemType_ID" >
-                                                               <option value="READ" selected>READ</option>
+                                                               <option value="Read" selected>Read</option>
+                                                               <option value="Listening" >Listening</option>
+                                                               <option value="Speaking" >Speaking</option>
+
                                                         </select>
                                                         <button class=" btn btn-warning m-0 p-2 pl-0" style="border-top-left-radius:0;border-bottom-left-radius: 0;" type="submit">
                                                                <span class="fa fa-search" ></span>
@@ -50,28 +53,27 @@
                                                  </form>
                                           </div>
                                    </div>
+
                                    <hr>
                                    <div class='row'>
-                                          <c:if test="${ITEM==null }">
-                                                 <c:forEach var="i" items="${LESSON_ITEM}">
-                                                        <div class='col-12'>
-                                                               <div class="card">
-                                                                      <div class="card-body">
-                                                                             <h5 class="card-title">Lesson Type : ${i.itemTypeID} </h5>
+                                          <c:forEach var="i" items="${LESSON_ITEM}">
+                                                 <div class='col-12'>
+                                                        <div class="card">
+                                                               <div class="card-body">
+                                                                      <h5 class="card-title">Lesson Type : ${i.itemTypeID} </h5>
 
-                                                                             <p class="card-text">Content:</p>
-                                                                             <p ><textarea disabled class="form-control"> ${i.content}</textarea></p>
-                                                                             <form method="GET" action="QuestionController">
-                                                                                    <input type="hidden" name="lessonItemID" value="${i.lessonItemID}">
-                                                                                    <button type="submit" class="btn btn-primary" >
-                                                                                           Question
-                                                                                    </button>
-                                                                             </form>
-                                                                      </div>
+                                                                      <p class="card-text">Content:</p>
+                                                                      <p ><textarea disabled class="form-control"> ${i.content}</textarea></p>
+                                                                      <form method="GET" action="QuestionController">
+                                                                             <input type="hidden" name="lessonItemID" value="${i.lessonItemID}">
+                                                                             <button type="submit" class="btn btn-primary" >
+                                                                                    Question
+                                                                             </button>
+                                                                      </form>
                                                                </div>
                                                         </div>
-                                                 </c:forEach>
-                                          </c:if>
+                                                 </div>
+                                          </c:forEach>
                                    </div>
                             </div>
                      </div>
