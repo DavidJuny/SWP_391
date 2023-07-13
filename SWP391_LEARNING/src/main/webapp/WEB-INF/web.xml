@@ -85,6 +85,10 @@
         <servlet-name>DashBoardController</servlet-name>
         <servlet-class>Controller.DashBoardController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TopicController</servlet-name>
+        <servlet-class>Controller.TopicController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -158,6 +162,7 @@
         <servlet-name>LessonController</servlet-name>
         <url-pattern>/LessonController</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>LessonItemController</servlet-name>
         <url-pattern>/LessonItemController</url-pattern>
@@ -165,6 +170,10 @@
     <servlet-mapping>
         <servlet-name>DashBoardController</servlet-name>
         <url-pattern>/DashBoardController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TopicController</servlet-name>
+        <url-pattern>/TopicController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>
