@@ -1,3 +1,4 @@
+Controller\ReportController.class
 Controller\CourseController.class
 Controller\LogoutController.class
 DAO\LessonDAO.class
@@ -22,6 +23,7 @@ Controller\LessonItemController.class
 DAO\AccountDAO.class
 Controller\Parent_CourseController.class
 Entity\topic.class
+Controller\WordGenerateAPI.class
 Controller\PaymentInfoController.class
 Controller\RegisterController.class
 Entity\feedback.class
@@ -29,9 +31,12 @@ Controller\MainController.class
 Controller\DashBoardController.class
 Controller\LessonController.class
 DAO\ParentDAO.class
+Model\lessonpointModel.class
 DAO\CourseDAO.class
 DAO\KidDAO.class
 DAO\ProductDAO.class
+Entity\lessonpoint.class
+DAO\ReportDAO.class
 Entity\admin.class
 Entity\question.class
 DAO\PaymentDAO.class
@@ -40,6 +45,7 @@ Entity\course.class
 Controller\AdminController.class
 Entity\detail_payment.class
 Model\QuizModel.class
+Controller\SortListController.class
 Entity\parent.class
 Model\SpeechToTextResult.class
 Entity\kid.class
@@ -48,3 +54,4 @@ DBcontext\DBContext.class
 Model\SpeechToText.class
 Entity\lessonItem.class
 Controller\ViewPaymentController.class
+DAO\LessonPointDAO.class

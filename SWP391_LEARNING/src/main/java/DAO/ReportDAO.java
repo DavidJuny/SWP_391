@@ -24,7 +24,7 @@ public class ReportDAO {
        ResultSet rs = null;
        ArrayList<report> courses = new ArrayList<>();
 
-       public report getLastestReport() {
+//       public report getLastestReport() {
 //              report rp;
 //
 //              String query = "SELECT * "
@@ -41,5 +41,5 @@ public class ReportDAO {
 //              } catch (ClassNotFoundException | SQLException e) {
 //              }
 //              return rp;
-       }
+//       }
 }

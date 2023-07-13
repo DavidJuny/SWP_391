@@ -40,14 +40,16 @@ public class SortListController extends HttpServlet {
                      if (list.isEmpty() || ItemType_ID.isEmpty()) {
                             response.sendRedirect("homepage.jsp");
                      }
-
+                     
                      for (lessonItem item : list) {
                             if (item.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
                                    sortlist.add(item);
+                            } else if (ItemType_ID.equals("All")) {
+                                   session.removeAttribute("SORT_ITEM");
+                                   request.getRequestDispatcher("learning.jsp").forward(request, response);
                             }
                      }
-                     session.removeAttribute("LESSON_ITEM");
-                     session.setAttribute("LESSON_ITEM", sortlist);
+                     session.setAttribute("SORT_ITEM", sortlist);
                      request.getRequestDispatcher("learning.jsp").forward(request, response);
               } catch (Exception e) {
                      e.printStackTrace();
