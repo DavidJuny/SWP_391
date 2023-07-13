@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,11 +52,12 @@ public class LessonItemController extends HttpServlet {
        protected void doGet(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
+              HttpSession session = request.getSession();
               String lessonID_str = request.getParameter("lessonID");
               int lessonID = Integer.parseInt(lessonID_str);
               LessonDAO dao = new LessonDAO();
               ArrayList<lessonItem> list = dao.getLessonItem(lessonID);
-              request.setAttribute("LESSON_ITEM", list);
+              session.setAttribute("LESSON_ITEM", list);
               request.getRequestDispatcher(VIEW).forward(request, response);
        }
 
@@ -71,17 +73,17 @@ public class LessonItemController extends HttpServlet {
        protected void doPost(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
-              String ItemType_ID = request.getParameter("ItemType_ID"); // 
-              ArrayList<lessonItem> list = (ArrayList<lessonItem>) request.getAttribute("LESSON_ITEM");
-              lessonItem item = new lessonItem();
-              for (lessonItem i : list) {
-                     if (i.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
-                            item = i;
-                            break;
-                     }
-              }
-              request.setAttribute("ITEM", item);
-              request.getRequestDispatcher(STUDY).forward(request, response);
+//              String ItemType_ID = request.getParameter("ItemType_ID"); // 
+//              ArrayList<lessonItem> list = (ArrayList<lessonItem>) request.getAttribute("LESSON_ITEM");
+//              lessonItem item = new lessonItem();
+//              for (lessonItem i : list) {
+//                     if (i.getItemTypeID().equalsIgnoreCase(ItemType_ID)) {
+//                            item = i;
+//                            break;
+//                     }
+//              }
+//              request.setAttribute("ITEM", item);
+//              request.getRequestDispatcher(STUDY).forward(request, response);
        }
 
        /**

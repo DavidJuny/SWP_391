@@ -1,97 +1,101 @@
 package Entity;
 
 public class report {
-    private int reportID;
-    private int kidID;
-    private int courseID;
-    private int courseGrade;
-    private String detailReport;
-    private int quizGrade;
-    private int readingGrade;
-    private int listeningGrade;
-    private int speakingGrade;
 
-    public report(int reportID, int kidID, int courseID, int courseGrade, String detailReport, int quizGrade, int readingGrade, int listeningGrade, int speakingGrade) {
-        this.reportID = reportID;
-        this.kidID = kidID;
-        this.courseID = courseID;
-        this.courseGrade = courseGrade;
-        this.detailReport = detailReport;
-        this.quizGrade = quizGrade;
-        this.readingGrade = readingGrade;
-        this.listeningGrade = listeningGrade;
-        this.speakingGrade = speakingGrade;
-    }
+       private int reportID;
+       private int kidID;
+       private int courseID;
+       private int courseGrade;
+       private String detailReport;
+       private int quizGrade;
+       private int readingGrade;
+       private int listeningGrade;
+       private int speakingGrade;
 
-    public int getReportID() {
-        return reportID;
-    }
+       public report() {
+       }
 
-    public void setReportID(int reportID) {
-        this.reportID = reportID;
-    }
+       public report(int reportID, int kidID, int courseID, int courseGrade, String detailReport, int quizGrade, int readingGrade, int listeningGrade, int speakingGrade) {
+              this.reportID = reportID;
+              this.kidID = kidID;
+              this.courseID = courseID;
+              this.courseGrade = courseGrade;
+              this.detailReport = detailReport;
+              this.quizGrade = quizGrade;
+              this.readingGrade = readingGrade;
+              this.listeningGrade = listeningGrade;
+              this.speakingGrade = speakingGrade;
+       }
 
-    public int getKidID() {
-        return kidID;
-    }
+       public int getReportID() {
+              return reportID;
+       }
 
-    public void setKidID(int kidID) {
-        this.kidID = kidID;
-    }
+       public void setReportID(int reportID) {
+              this.reportID = reportID;
+       }
 
-    public int getCourseID() {
-        return courseID;
-    }
+       public int getKidID() {
+              return kidID;
+       }
 
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
-    }
+       public void setKidID(int kidID) {
+              this.kidID = kidID;
+       }
 
-    public int getCourseGrade() {
-        return courseGrade;
-    }
+       public int getCourseID() {
+              return courseID;
+       }
 
-    public void setCourseGrade(int courseGrade) {
-        this.courseGrade = courseGrade;
-    }
+       public void setCourseID(int courseID) {
+              this.courseID = courseID;
+       }
 
-    public String getDetailReport() {
-        return detailReport;
-    }
+       public int getCourseGrade() {
+              return courseGrade;
+       }
 
-    public void setDetailReport(String detailReport) {
-        this.detailReport = detailReport;
-    }
+       public void setCourseGrade(int courseGrade) {
+              this.courseGrade = courseGrade;
+       }
 
-    public int getQuizGrade() {
-        return quizGrade;
-    }
+       public String getDetailReport() {
+              return detailReport;
+       }
 
-    public void setQuizGrade(int quizGrade) {
-        this.quizGrade = quizGrade;
-    }
+       public void setDetailReport(String detailReport) {
+              this.detailReport = detailReport;
+       }
 
-    public int getReadingGrade() {
-        return readingGrade;
-    }
+       public int getQuizGrade() {
+              return quizGrade;
+       }
 
-    public void setReadingGrade(int readingGrade) {
-        this.readingGrade = readingGrade;
-    }
+       public void setQuizGrade(int quizGrade) {
+              this.quizGrade = quizGrade;
+       }
 
-    public int getListeningGrade() {
-        return listeningGrade;
-    }
+       public int getReadingGrade() {
+              return readingGrade;
+       }
 
-    public void setListeningGrade(int listeningGrade) {
-        this.listeningGrade = listeningGrade;
-    }
+       public void setReadingGrade(int readingGrade) {
+              this.readingGrade = readingGrade;
+       }
 
-    public int getSpeakingGrade() {
-        return speakingGrade;
-    }
+       public int getListeningGrade() {
+              return listeningGrade;
+       }
 
-    public void setSpeakingGrade(int speakingGrade) {
-        this.speakingGrade = speakingGrade;
-    }
+       public void setListeningGrade(int listeningGrade) {
+              this.listeningGrade = listeningGrade;
+       }
+
+       public int getSpeakingGrade() {
+              return speakingGrade;
+       }
+
+       public void setSpeakingGrade(int speakingGrade) {
+              this.speakingGrade = speakingGrade;
+       }
 }

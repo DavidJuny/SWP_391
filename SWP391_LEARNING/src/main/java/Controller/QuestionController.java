@@ -38,59 +38,59 @@ public class QuestionController extends HttpServlet {
 
                             Answers.add(word);
                      }
-                    Collections.shuffle(Answers);
-            QuizModel quizModel=new QuizModel(question.getQuestionID(),question.getTypeID(),question.getQuestion(),Answers);
-            newQuestion.add(quizModel);
+                     Collections.shuffle(Answers);
+                     QuizModel quizModel = new QuizModel(question.getQuestionID(), question.getTypeID(), question.getQuestion(), Answers);
+                     newQuestion.add(quizModel);
               }
               return newQuestion;
        }
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-        QuizDAO questionDAO= new QuizDAO();
-        int lessonItemType = Integer.parseInt(request.getParameter("lessonItemID"));
-        ArrayList<question> questions= questionDAO.GetListQuestionFromLessonItem(lessonItemType);
-        lessonItem lessonItem= questionDAO.getLessonItemByLessonItemId(lessonItemType);
-        ArrayList<QuizModel> newquestions= shuffleAnswers(questions);
-        lesson lesson1= questionDAO.getLessonByLessonItemID(lessonItemType);
-        request.setAttribute("newquestions", newquestions);
-        request.setAttribute("lesson", lesson1);
-        request.setAttribute("lessonItem", lessonItem);
-        request.getRequestDispatcher(QUESTION).forward(request, response);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(new Gson().toJson(newquestions));
 
-    }
+       @Override
+       protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+              processRequest(request, response);
+              QuizDAO questionDAO = new QuizDAO();
+              int lessonItemType = Integer.parseInt(request.getParameter("lessonItemID"));
+              ArrayList<question> questions = questionDAO.GetListQuestionFromLessonItem(lessonItemType);
+              lessonItem lessonItem = questionDAO.getLessonItemByLessonItemId(lessonItemType);
+              ArrayList<QuizModel> newquestions = shuffleAnswers(questions);
+              lesson lesson1 = questionDAO.getLessonByLessonItemID(lessonItemType);
+              request.setAttribute("newquestions", newquestions);
+              request.setAttribute("lesson", lesson1);
+              request.setAttribute("lessonItem", lessonItem);
+              request.getRequestDispatcher(QUESTION).forward(request, response);
+              response.setContentType("application/json");
+              response.setCharacterEncoding("UTF-8");
+              response.getWriter().write(new Gson().toJson(newquestions));
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-        String action = request.getParameter("action");
-        String KidId = "Kmanhvu";
-        HashMap<Integer, String> submittedAnswers = new HashMap<>();
-        ArrayList<Integer> questionIds = new ArrayList<>();
-        for (String paramName : request.getParameterMap().keySet()) {
-            if (paramName.startsWith("answers")) {
-                Integer questionId = Integer.parseInt(paramName.substring(paramName.indexOf('[') + 1, paramName.indexOf(']')));
-                String answer = request.getParameter(paramName);
-                submittedAnswers.put(questionId, answer);
-                questionIds.add(questionId);
-            }
-        }
+       }
 
-        QuizDAO quizDAO=new QuizDAO();
-        LessonPointDAO lessonPointDAO= new LessonPointDAO();
-        QuizResult quizResult = quizDAO.GetAnswerFromQuestion(questionIds, submittedAnswers);
-        try {
-            lessonPointDAO.AddLessonPointByKidId(KidId,3,quizResult.getPoints());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+       @Override
+       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+              processRequest(request, response);
+              String action = request.getParameter("action");
+              String KidId = "Kmanhvu";
+              HashMap<Integer, String> submittedAnswers = new HashMap<>();
+              ArrayList<Integer> questionIds = new ArrayList<>();
+              for (String paramName : request.getParameterMap().keySet()) {
+                     if (paramName.startsWith("answers")) {
+                            Integer questionId = Integer.parseInt(paramName.substring(paramName.indexOf('[') + 1, paramName.indexOf(']')));
+                            String answer = request.getParameter(paramName);
+                            submittedAnswers.put(questionId, answer);
+                            questionIds.add(questionId);
+                     }
+              }
 
-        request.setAttribute("points", quizResult.getPoints());
-            request.setAttribute("incorrectAnswers", quizResult.getIncorrectAnswers());
-        request.getRequestDispatcher(QUESTION).forward(request, response);
-    }
+              QuizDAO quizDAO = new QuizDAO();
+              LessonPointDAO lessonPointDAO = new LessonPointDAO();
+              QuizResult quizResult = quizDAO.GetAnswerFromQuestion(questionIds, submittedAnswers);
+              try {
+                     lessonPointDAO.AddLessonPointByKidId(KidId, 3, quizResult.getPoints());
+              } catch (SQLException throwables) {
+                     throwables.printStackTrace();
+              }
+
+              request.setAttribute("points", quizResult.getPoints());
+              request.setAttribute("incorrectAnswers", quizResult.getIncorrectAnswers());
+              request.getRequestDispatcher(QUESTION).forward(request, response);
+       }
 }
-
