@@ -54,6 +54,10 @@
         <servlet-class>Controller.ParentController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Edit_ProfileController</servlet-name>
+        <servlet-class>Controller.Edit_ProfileController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>QuestionController</servlet-name>
         <servlet-class>Controller.QuestionController</servlet-class>
     </servlet>
@@ -150,6 +154,10 @@
     <servlet-mapping>
         <servlet-name>ParentController</servlet-name>
         <url-pattern>/ParentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Edit_ProfileController</servlet-name>
+        <url-pattern>/Edit_ProfileController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Parent_CourseController</servlet-name>

@@ -18,6 +18,7 @@ body{
 }
 .content.editText{
     background-color: whitesmoke;
+    width: inherit;
 }
 
 /*h5{

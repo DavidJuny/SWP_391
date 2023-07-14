@@ -21,6 +21,8 @@ Controller\ParentController.class
 Controller\Kid_RegisterController.class
 Controller\LessonItemController.class
 DAO\AccountDAO.class
+Controller\TopicController.class
+DAO\TopicDAO.class
 Controller\Parent_CourseController.class
 Entity\topic.class
 Controller\WordGenerateAPI.class

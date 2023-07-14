@@ -46,7 +46,7 @@
                     </div>
                  </div>
                  <div class="thumb">
-                    <img src="images/thumb-5.png" alt="">
+                    <img src="${kid.kidImage}" alt="">
                  </div>
                  <h3 class="title">${kid.kidName}</h3>
                  <a href="#" class="inline-btn">view progess</a>

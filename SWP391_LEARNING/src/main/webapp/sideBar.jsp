@@ -45,12 +45,12 @@
                   </div>
 
                   <div class="profile">
-                     <img src="images/pic-1.jpg" class="image" alt="">
-                     <h3 class="name">shaikh anas</h3>
+                      <img src="assets/images/the-human-icon.jpg" class="image" alt="">
+                     <h3 class="name">${PARENT.parentName}</h3>
                      <p class="role">parent</p>
                      <a href="profile.jsp" class="btn">view profile</a>
                      <div class="flex-btn">
-                        <a href="#" class="option-btn">Logout</a>
+                        <a href="LogoutController" class="option-btn">Logout</a>
                      </div>
                   </div>
 
@@ -65,7 +65,7 @@
                </div>
 
                <div class="profile">
-                  <img src="images/pic-1.jpg" class="image" alt="">
+                   <img src="assets/images/the-human-icon.jpg" class="image" alt="">
                   <h3 class="name">${PARENT.parentName}</h3>
                   <p class="role">parent</p>
                   <a href="editProfile.jsp" class="btn">Edit profile</a>

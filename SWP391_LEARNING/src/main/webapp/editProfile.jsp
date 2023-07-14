@@ -25,12 +25,8 @@
     </head>
     
         <body>
-
-            
              <%@include file="sideBar.jsp" %>
                <!-- end sideBar -->
-              
-               
                 <div class="main">
               <div class="col-md-8 mt-1">
                   <div class="card mb-3 content">
@@ -60,11 +56,11 @@
                               <div class="col-md-3">
                                   <h5>Sex</h5>
                                   <div class="col-md-9 text-secondary">
-<!--                                      <select name="sex" >
-                                      <option value="Ma">Male</option>
-                                      <option value="">Female</option>
-                                  </select>-->
-                                <input type="text" name="sex" value="${PARENT.parentSex}"/>
+                                   <select  name="sex"  >
+                                      <option  value="Male">Male</option>
+                                      <option value="Female">Female</option>
+                                  </select>
+                                   <%--<input type="text" name="sex" value="${PARENT.parentSex}"/>--%>
                                   </div>
                               </div>
                           </div>
@@ -72,10 +68,9 @@
                           <hr>
                           <input class="inline-option-btn" type="submit" name="action" value="EditProfile"/> 
                           
-                          
                           ${MESS}
                           </form>
-                          <div class="card m-3 content">
+<%--                          <div class="card m-3 content">
                               <h3 class="m-3">Change UserName and Password</h3>
                               <div class="card-body">
                               <div class="row">
@@ -106,7 +101,7 @@
                               </div>
                           <hr>
                           </div>
-                              </div>
+                              </div>--%>
                       </div>
                   </div>    
               </div>
