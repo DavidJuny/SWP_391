@@ -1,5 +1,10 @@
 package Controller;
 
+import DAO.QuizDAO;
+import DAO.SpeechDAO;
+import Entity.lesson;
+import Entity.lessonItem;
+import Entity.question;
 import Model.SpeechToText;
 import Model.SpeechToTextResult;
 import org.languagetool.JLanguageTool;
@@ -12,11 +17,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class STTController extends HttpServlet {
-    private static final String STTRESULT="STT.jsp";
+    private static final String STTRESULT="Question.jsp";
+    private static final String SPEECHPAGE="QuestionController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -32,38 +39,38 @@ public class STTController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        SpeechDAO speechDAO= new SpeechDAO();
+        QuizDAO quizDAO= new QuizDAO();
         SpeechToText speechToText=new SpeechToText();
         SpeechToTextResult result= new SpeechToTextResult();
         speechToText.setText(request.getParameter("transcript"));
-        JLanguageTool langTool = new JLanguageTool(new AmericanEnglish());
+        String pattern = request.getParameter("pattern");
+        int lessonItemId = Integer.parseInt(request.getParameter("lessonItemID"));
+        lessonItem lessonItem= quizDAO.getLessonItemByLessonItemId(lessonItemId);
+        ArrayList<question> questions= quizDAO.GetListQuestionFromLessonItem(lessonItemId);
+
+        lesson lesson1= quizDAO.getLessonByLessonItemID(lessonItemId);
+
+        double point = speechDAO.SpeechAnalyze(speechToText.getText().trim(),pattern.trim());
+        DecimalFormat decimalFormat = new DecimalFormat("#");
+        String roundedNumber = decimalFormat.format(point);
         // comment in to use statistical ngram data:
         //langTool.activateLanguageModelRules(new File("/data/google-ngram-data"));
-        ArrayList<RuleMatch> matches = (ArrayList<RuleMatch>) langTool.check(speechToText.getText());
-        if(matches.size()==0)
-        {
+
             ArrayList<String> answer=new ArrayList<>();
             answer.add("Spell Correct");
             result.setTextSaid(speechToText.getText());
             result.setRecommendAnswers(answer);
             request.setAttribute("result",result.getRecommendAnswers());
-            request.setAttribute("text",result.getTextSaid());
-            System.out.println("Spell correct");
-            request.getRequestDispatcher(STTRESULT).forward(request, response);
-        }else {
-            for (RuleMatch match : matches) {
-                System.out.println("Potential error at characters " +
-                        match.getFromPos() + "-" + match.getToPos() + ": " +
-                        match.getMessage());
-                System.out.println("Suggested correction(s): " +
-                        match.getSuggestedReplacements());
-                result.setRecommendAnswers((ArrayList<String>) match.getSuggestedReplacements());
-            }
-            result.setTextSaid(speechToText.getText());
-            request.setAttribute("text",result.getTextSaid());
-            request.setAttribute("result",result.getRecommendAnswers());
+            request.setAttribute("speechPoint",roundedNumber);
+            request.setAttribute("lessonItemId",lessonItemId);
+        request.setAttribute("lesson", lesson1);
+        request.setAttribute("text",result.getTextSaid());
+        request.setAttribute("newquestions", questions);
+
+        request.setAttribute("lessonItem", lessonItem);
+
+        System.out.println("Spell correct");
             request.getRequestDispatcher(STTRESULT).forward(request, response);
         }
     }
-
-
-}

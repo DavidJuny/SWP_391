@@ -50,12 +50,12 @@ public class QuestionController extends HttpServlet {
        @Override
        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
            processRequest(request, response);
-           QuizDAO questionDAO = new QuizDAO();
+           QuizDAO quizDAO = new QuizDAO();
            int lessonItemType = Integer.parseInt(request.getParameter("lessonItemID"));
-           ArrayList<question> questions = questionDAO.GetListQuestionFromLessonItem(lessonItemType);
-           lessonItem lessonItem = questionDAO.getLessonItemByLessonItemId(lessonItemType);
+           ArrayList<question> questions = quizDAO.GetListQuestionFromLessonItem(lessonItemType);
+           lessonItem lessonItem = quizDAO.getLessonItemByLessonItemId(lessonItemType);
            ArrayList<QuizModel> newquestions = shuffleAnswers(questions);
-           lesson lesson1 = questionDAO.getLessonByLessonItemID(lessonItemType);
+           lesson lesson1 = quizDAO.getLessonByLessonItemID(lessonItemType);
            request.setAttribute("newquestions", newquestions);
            request.setAttribute("lesson", lesson1);
            request.setAttribute("lessonItem", lessonItem);
@@ -68,11 +68,14 @@ public class QuestionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
+        QuizDAO quizDAO = new QuizDAO();
         String action = request.getParameter("action");
         if(action.equals("Submit Answer")) {
             HttpSession session = request.getSession();
             kid kid = (kid) session.getAttribute("KID");
             int lessonItemID = Integer.parseInt(request.getParameter("lessonItemID"));
+            lessonItem lessonItem = quizDAO.getLessonItemByLessonItemId(lessonItemID);
+
             HashMap<Integer, String> submittedAnswers = new HashMap<>();
             ArrayList<Integer> questionIds = new ArrayList<>();
             for (String paramName : request.getParameterMap().keySet()) {
@@ -84,7 +87,6 @@ public class QuestionController extends HttpServlet {
                 }
             }
 
-            QuizDAO quizDAO = new QuizDAO();
             LessonPointDAO lessonPointDAO = new LessonPointDAO();
             QuizResult quizResult = quizDAO.GetAnswerFromQuestion(questionIds, submittedAnswers);
             try {
@@ -95,17 +97,16 @@ public class QuestionController extends HttpServlet {
 
             request.setAttribute("points", quizResult.getPoints());
             request.setAttribute("incorrectAnswers", quizResult.getIncorrectAnswers());
-            request.setAttribute("lessonItemID", lessonItemID);
+            request.setAttribute("lessonItem", lessonItem);
 
             request.getRequestDispatcher(QUESTION).forward(request, response);
         }else
         {
-            QuizDAO questionDAO= new QuizDAO();
             int lessonItemType = Integer.parseInt(request.getParameter("lessonItemID"));
-            ArrayList<question> questions= questionDAO.GetListQuestionFromLessonItem(lessonItemType);
-            lessonItem lessonItem= questionDAO.getLessonItemByLessonItemId(lessonItemType);
+            ArrayList<question> questions= quizDAO.GetListQuestionFromLessonItem(lessonItemType);
+            lessonItem lessonItem= quizDAO.getLessonItemByLessonItemId(lessonItemType);
             ArrayList<QuizModel> newquestions= shuffleAnswers(questions);
-            lesson lesson1= questionDAO.getLessonByLessonItemID(lessonItemType);
+            lesson lesson1= quizDAO.getLessonByLessonItemID(lessonItemType);
             request.setAttribute("newquestions", newquestions);
             request.setAttribute("lesson", lesson1);
             request.setAttribute("lessonItem", lessonItem);
