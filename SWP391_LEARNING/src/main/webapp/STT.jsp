@@ -34,7 +34,11 @@
                             <c:forEach var="answer" items="${result}">
                                    ${answer}
                             </c:forEach>
-                     </h4>
+                     </h4
+                            <h4>
+                                   SpeechPoint :
+                                   ${speechPoint}
+                            </h4>
               </c:if>
 
               <script>
