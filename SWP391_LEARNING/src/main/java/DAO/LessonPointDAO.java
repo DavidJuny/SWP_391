@@ -82,4 +82,27 @@ public class LessonPointDAO {
 
         return list;
     }
+    
+       public ArrayList<lessonpoint> GetPointFromKidId(String kidId){
+        String query= "SELECT * FROM LessonPoint WHERE kidID = ?";
+        ArrayList<lessonpoint> list = new ArrayList<>();
+        try {
+            conn = DBContext.getConnection(); // mo ket noi sql
+            ps = conn.prepareStatement(query); // quang cau lenh vao sql
+            ps.setString(1, kidId);
+            rs = ps.executeQuery(); // Tra ve ket qua
+            while(rs.next()){
+                 int LessonPointId= rs.getInt(1);
+                 kidId = rs.getString(2);
+                 int LessonItemId = rs.getInt(3);
+                 float Point = rs.getFloat(4);
+                 lessonpoint lp = new lessonpoint(LessonPointId, kidId, LessonItemId, Point);
+                 list.add(lp);
+            }
+            
+        } catch (ClassNotFoundException | SQLException  e) {
+        }
+        return list;
+    }
+    
 }

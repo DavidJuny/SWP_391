@@ -103,6 +103,10 @@
         <servlet-name>ReportController</servlet-name>
         <servlet-class>Controller.ReportController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>lessonPointController</servlet-name>
+        <servlet-class>Controller.lessonPointController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -200,6 +204,10 @@
     <servlet-mapping>
         <servlet-name>ReportController</servlet-name>
         <url-pattern>/ReportController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lessonPointController</servlet-name>
+        <url-pattern>/lessonPointController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

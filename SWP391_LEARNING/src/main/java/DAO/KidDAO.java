@@ -226,5 +226,16 @@ public class KidDAO {
         }
         return childrenList;
     }
+    
+            public ArrayList<kid> getAllKidbyID(String kidID) {
+        ArrayList<kid> kids = new ArrayList<>();
+        for (kid i : kidList) {
+            if (i.getKidID().equals(kidID)) {
+                kids.add(i);
+                break;
+            }
+        }
+        return kids;
+    }
 
 }

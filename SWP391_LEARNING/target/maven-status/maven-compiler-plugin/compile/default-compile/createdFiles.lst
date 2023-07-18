@@ -5,6 +5,7 @@ DAO\LessonDAO.class
 DAO\AdminDAO.class
 Controller\STTController.class
 Entity\accountUser.class
+Controller\lessonPointController.class
 DAO\FeedbackDAO.class
 Entity\lesson.class
 Entity\payment.class
@@ -22,6 +23,7 @@ Controller\Kid_RegisterController.class
 Controller\LessonItemController.class
 DAO\AccountDAO.class
 Controller\TopicController.class
+DAO\SpeechDAO.class
 DAO\TopicDAO.class
 Controller\Parent_CourseController.class
 Entity\topic.class
