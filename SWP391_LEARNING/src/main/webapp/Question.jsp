@@ -112,7 +112,7 @@ Your browser does not support the audio element.
                             Make sure to check your answer before submit:
                             <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
                             <input type="hidden" name="itemTypeID" value="${lessonItem.itemTypeID}">
-                            <input class="btn btn-primary" type="submit" name="action" value="Submit Answer">
+                            <input class="btn btn-success" type="submit" name="action" value="Submit Answer">
                         </div>
                     </div>
                 </form>
