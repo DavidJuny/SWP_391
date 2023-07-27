@@ -42,7 +42,7 @@
                             <div class="row justify-content-center">
                                    <c:forEach var="i" items="${KIDLEARNING}">
                                           <div class="col-3 m-3">
-                                                 <div class="card" style="width: 25rem;">
+                                                 <div class="card" style="width:300px;">
                                                         <img src="${i.courseImage}" class="card-img-top"  alt="">
                                                         <div class="card-body">
                                                                <h5 class="card-title">${i.courseName}</h5>

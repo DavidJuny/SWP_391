@@ -99,7 +99,9 @@
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                <li><a class="dropdown-item"  href="ParentController?parentID=${PARENT.parentID}"><span class="fa fa-user fa-fw"></span>Profile</a></li>
                                                                <li><a class="dropdown-item"  href="payment.jsp"><span class="fa fa-shopping-cart fa-fw"></span>Payment</a></li>
-                                                               <li><a class="dropdown-item"  href="report.jsp"><span class="fa fa-flag fa-fw"></span>Report</a></li>
+                                                               <li><a class="dropdown-item"  href="PaymentHistory"><span class="fa fa-history fa-fw"></span>View Payment</a></li>
+                                                               <li><a class="dropdown-item"  href="ReportController"><span class="fa fa-flag fa-fw"></span>Report</a></li>
+
                                                                <li><a  href="LogoutController"><span class="fa fa-sign-out fa-fw""></span>Log out</a></li>
                                                         </ul>
                                                  </div>

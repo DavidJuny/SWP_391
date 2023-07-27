@@ -4,12 +4,19 @@
  */
 package Controller;
 
+import DAO.KidDAO;
+import DAO.ReportDAO;
+import Entity.kid;
+import Entity.parent;
+import Entity.report;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,18 +36,16 @@ public class ReportController extends HttpServlet {
        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               response.setContentType("text/html;charset=UTF-8");
-              try (PrintWriter out = response.getWriter()) {
-                     /* TODO output your page here. You may use following sample code. */
-                     out.println("<!DOCTYPE html>");
-                     out.println("<html>");
-                     out.println("<head>");
-                     out.println("<title>Servlet ReportController</title>");                     
-                     out.println("</head>");
-                     out.println("<body>");
-                     out.println("<h1>Servlet ReportController at " + request.getContextPath() + "</h1>");
-                     out.println("</body>");
-                     out.println("</html>");
+              /* TODO output your page here. You may use following sample code. */
+              HttpSession session = request.getSession();
+              parent pa = (parent) session.getAttribute("PARENT");
+              KidDAO kdao = new KidDAO();
+              kdao.getAllKids();
+              ArrayList<kid> kids = kdao.getAllKidbyParentID(pa.getParentID());
+              if (!kids.isEmpty()) {
+                     session.setAttribute("KLIST", kids);
               }
+              request.getRequestDispatcher("report.jsp").forward(request, response);
        }
 
        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,6 +75,7 @@ public class ReportController extends HttpServlet {
        protected void doPost(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
+             
        }
 
        /**

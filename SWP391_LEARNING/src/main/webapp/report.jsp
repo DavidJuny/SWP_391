@@ -4,7 +4,7 @@
     Author     : PC
 --%>
 
-<%@page contentType="text/html" pageEncoding="windows-1252"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
        <head>
@@ -30,5 +30,72 @@
                             </div>
                      </div>
               </div>
+              <div class="site-section">
+                     <div class="container">
+                            <h2 class="text-center h2">Please review your kids report daily</h2>
+                            <hr>
+                            <div class="text-center mt-5">
+                                   <form action="ReportInfoController" method="post">
+                                          <p> Please choose your kids to view thier report: 
+                                                 <select class="form-select" name="kids" required="">
+                                                        <c:forEach var="kid" items="${KLIST}">
+                                                               <option value="${kid.kidID}">${kid.kidName}</option>
+                                                        </c:forEach>
+                                                 </select>
+                                                 <br>
+                                                 <button class= "btn-success ml-3" type="submit">View Report</button>
+                                          </p>
+                                   </form>
+                            </div>
+                            <c:if test="${REPORTKID != null}">
+                                   <div class="mt-5 p-5  border bg-light">
+                                          <h2 class="text-center">View ${KINFO.kidName} Report</h2>
+                                          <br>
+                                          <div class="row d-flex justify-content-center align-items-center h-100">
+                                                 <c:forEach var="i" items="${REPORTKID}">
+                                                        <div class="col col-lg-6 mb-4 mb-lg-0">
+                                                               <div class="card mb-3" style="border-radius: .5rem;">
+                                                                      <div class="row g-0">
+                                                                             <div class="col-md-4 gradient-custom text-center text-white"
+                                                                                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                                                                    <img src="${KINFO.kidImage}"
+                                                                                         alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                                                                                    <h5>${KINFO.kidName}</h5>
+                                                                                    <i class="far fa-edit mb-5"></i>
+                                                                             </div>
+                                                                             <div class="col-md-8">
+                                                                                    <div class="card-body p-4">
+                                                                                           <h6>Report</h6>
+                                                                                           <hr class="mt-0 mb-4">
+                                                                                           <div class="row pt-1">
+                                                                                                  <div class="col-6 mb-3">
+                                                                                                         <h6>Course ID :</h6>
+                                                                                                         <p class="text-muted">${i.courseID}</p>
+                                                                                                  </div>
+                                                                                                  <div class="col-6 mb-3">
+                                                                                                         <h6>Course Grade :</h6>
+                                                                                                         <p class="text-muted">${i.courseGrade}</p>
+                                                                                                  </div>
+                                                                                           </div>
+                                                                                           <h6>Details</h6>
+                                                                                           <hr class="mt-0 mb-4">
+                                                                                           <div class="row pt-1">
+                                                                                                  <div class="col-6 mb-3">
+                                                                                                         <h6>Report Details</h6>
+                                                                                                         <textarea class="form-control" disabled>${i.detailReport}</textarea>
+                                                                                                  </div>
+                                                                                           </div>
+                                                                                    </div>
+                                                                             </div>
+                                                                      </div>
+                                                               </div>
+                                                        </div>
+                                                 </c:forEach>
+                                          </div>
+                                   </div>
+                            </c:if>
+                     </div>
+              </div>
 
+              <%@include file="footer.jsp" %>
 </html>

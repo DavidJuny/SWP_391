@@ -92,9 +92,7 @@
     <servlet>
         <servlet-name>TopicController</servlet-name>
         <servlet-class>Controller.TopicController</servlet-class>
-
     </servlet>
-
     <servlet>
         <servlet-name>SortListController</servlet-name>
         <servlet-class>Controller.SortListController</servlet-class>
@@ -106,6 +104,10 @@
     <servlet>
         <servlet-name>lessonPointController</servlet-name>
         <servlet-class>Controller.lessonPointController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentHistory</servlet-name>
+        <servlet-class>Controller.PaymentHistory</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -183,7 +185,6 @@
         <servlet-name>LessonController</servlet-name>
         <url-pattern>/LessonController</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>LessonItemController</servlet-name>
         <url-pattern>/LessonItemController</url-pattern>
@@ -195,7 +196,6 @@
     <servlet-mapping>
         <servlet-name>TopicController</servlet-name>
         <url-pattern>/TopicController</url-pattern>
-
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SortListController</servlet-name>
@@ -208,6 +208,10 @@
     <servlet-mapping>
         <servlet-name>lessonPointController</servlet-name>
         <url-pattern>/lessonPointController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentHistory</servlet-name>
+        <url-pattern>/PaymentHistory</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>
