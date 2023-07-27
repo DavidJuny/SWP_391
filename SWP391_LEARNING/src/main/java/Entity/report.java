@@ -51,7 +51,7 @@ public class report {
               this.detailReport = detailReport;
        }
 
-       public report(String kidID, String courseID, float courseGrade, String detailReport) {
+       public report( String kidID, String courseID, float courseGrade, String detailReport) {
               this.kidID = kidID;
               this.courseID = courseID;
               this.courseGrade = courseGrade;

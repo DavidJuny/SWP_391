@@ -205,12 +205,106 @@
               <div class="center">
                      <form method="post" action="QuestionController">
                             <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
-                            <button class="btn btn-primary">
-                                   <a style="color: white" href="LessonItemController?lessonID=${lessonItem.lessonID}" class="nav-link">Return To Lesson</a>
-                            </button>
-                     </form>
-              </div>
-       </section>
+                            <input type="hidden" name="itemTypeID" value="${lessonItem.itemTypeID}">
+                            <input class="btn btn-success" type="submit" name="action" value="Submit Answer">
+                        </div>
+                    </div>
+                </form>
+                </c:if>
+                <form method="post" action="QuestionController">
+                    <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
+                    <input  class="btn btn-primary" type="submit" name="action" value="Reload">
+                    <button class="btn btn-primary">
+                        <a style="color: white" href="LessonItemController?lessonID=${lessonItem.lessonID}" class="nav-link">Return To Lesson</a>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+</c:if>
+<c:if test="${lessonItem.itemTypeID.equalsIgnoreCase('Speak')}">
+<section class="site-section bg-light">
+    <div class="container">
+        <div class="question bg-white p-3 border-bottom">
+            <h2 class="text-center ">${lesson.lessonName} Quiz</h2>
+            <h4>
+                                          <span>
+                                            This is the speaking practice test:
+                                                 <br>
+                                                 ${lessonItem.content}
+                                          </span>
+            </h4>
+        </div>
+        <c:if test="${not empty newquestions}">
+        <div class="container mt-5">
+            <div class="d-flex justify-content-center row" >
+                <c:forEach var="question" items="${newquestions}" varStatus="status">
+                        <div class="col-12 col-lg-12" style="padding: 1rem;">
+                            <div class="border">
+                                <div class="question bg-white p-3 border-bottom">
+                                    <div class="d-flex flex-row align-items-center question-title">
+                                        <h3 class="text-danger">Q.${question.questionID}: ${question.question}</h3>
+                                        <div class="speaker" style="display: flex;justify-content: space-between;width: 13rem;box-shadow: 0 0 13px #0000003d;border-radius: 5px;">
+                                            <p id="action-${question.questionID}" style="color: grey;font-weight: 800; padding: 0; padding-left: 2rem;"></p>
+                                            <button onclick="runSpeechRecog(${question.questionID})" style="border: transparent;padding: 0 0.5rem;">
+                                                Speech
+                                            </button>
+                                        </div>
+                                        <h3 id="output-${question.questionID}" class="hide"></h3>
+                                        <form id="speechForm-${question.questionID}" action="STTController" method="post">
+                                            <input id="transcriptInput-${question.questionID}" type="hidden" name="transcript">
+                                            <input type="hidden" name="pattern" value="${question.question}">
+                                            <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                    </c:forEach>
+    <c:if test="${speechPoint != null}">
+        <style>
+            .center {
+                text-align: center;
+            }
+        </style>
+        <script>
+            Swal.fire({
+                title: "Result",
+                html: `
+        <h4>Text you just said: ${text}</h4>
+        <h4>Score based on what you said is :</h4>
+        <div class="center">
+          <h4>${speechPoint}</h4>
+        </div>
+      `,
+                confirmButtonText: "Close"
+            });
+        </script>
+    </c:if>
+                </c:if>
+            </div>
+        </div>
+    <div class="center">
+    <form method="post" action="QuestionController">
+        <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
+        <button class="btn btn-primary">
+            <a style="color: white" href="LessonItemController?lessonID=${lessonItem.lessonID}" class="nav-link">Return To Lesson</a>
+        </button>
+    </form>
+    </div>
+</section>
 </c:if>
 </body>
 </html>
