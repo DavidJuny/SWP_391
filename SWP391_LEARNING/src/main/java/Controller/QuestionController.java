@@ -75,6 +75,7 @@ public class QuestionController extends HttpServlet {
             kid kid = (kid) session.getAttribute("KID");
             int lessonItemID = Integer.parseInt(request.getParameter("lessonItemID"));
             lessonItem lessonItem = quizDAO.getLessonItemByLessonItemId(lessonItemID);
+            ArrayList<question> questions = quizDAO.GetListQuestionFromLessonItem(lessonItemID);
 
             HashMap<Integer, String> submittedAnswers = new HashMap<>();
             ArrayList<Integer> questionIds = new ArrayList<>();
@@ -94,7 +95,7 @@ public class QuestionController extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
+            request.setAttribute("questions", questions);
             request.setAttribute("points", quizResult.getPoints());
             request.setAttribute("incorrectAnswers", quizResult.getIncorrectAnswers());
             request.setAttribute("lessonItem", lessonItem);

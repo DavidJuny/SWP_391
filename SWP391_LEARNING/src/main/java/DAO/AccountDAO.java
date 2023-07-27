@@ -94,5 +94,25 @@ public class AccountDAO {
         }
         return false;
     }
+    public  boolean isValidUsername(String username) {
+        // Define a regular expression pattern to check for special characters
+        Pattern specialCharsPattern = Pattern.compile("[^\\w\\s]");
+
+        // Check if the username contains any special characters
+        Matcher matcher = specialCharsPattern.matcher(username);
+        if (matcher.find()) {
+            return false;
+        }
+
+        // Check if the length of the username is within the desired range (e.g., 3 to 20 characters)
+        int minLength = 5;
+        int maxLength = 20;
+        if (username.length() < minLength || username.length() > maxLength) {
+            return false;
+        }
+
+        return true;
+    }
+
 
 }

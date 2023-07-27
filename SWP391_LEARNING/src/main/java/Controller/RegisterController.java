@@ -47,6 +47,11 @@ AccountDAO accountDAO=new AccountDAO();
                      request.setAttribute("msg", "Your password must be at least 6 and contain at least 1 special character!");
                      request.getRequestDispatcher("register.jsp").forward(request, response);
 
+              }else if(!accountDAO.isValidUsername(username)|| !accountDAO.isValidUsername(fullname))
+              {
+                     request.setAttribute("msg", "Your username or full name must be at least 5 characters and does not contain special character");
+                     request.getRequestDispatcher("register.jsp").forward(request, response);
+
               }
               else {
                      ParentDAO parentDAO = new ParentDAO();
