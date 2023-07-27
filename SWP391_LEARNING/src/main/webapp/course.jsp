@@ -39,22 +39,24 @@
                             <c:if test="${KIDLEARNING == null}">
                                    <p class ="text-center" style="color:red">You haven't buy any course yet !</p>
                             </c:if>
-                            <div class="row justify-content-center">
-                                   <c:forEach var="i" items="${KIDLEARNING}">
-                                          <div class="col-3 m-3">
-                                                 <div class="card" style="width:300px;">
-                                                        <img src="${i.courseImage}" class="card-img-top"  alt="">
-                                                        <div class="card-body">
-                                                               <h5 class="card-title">${i.courseName}</h5>
-                                                               <p class="card-text">Course level : ${i.courseLevel}</p>
-                                                               <form action="LessonController">
-                                                                      <input type="hidden" name="courseID" value="${i.courseID}">
-                                                                      <button type="submit" class="btn btn-primary">Let's start learning !</button>
-                                                               </form>
+                            <div class="container">
+                                   <div class="row justify-content-center">
+                                          <c:forEach var="i" items="${KIDLEARNING}">
+                                                 <div class="col-lg-4 mb-5 pb-5">
+                                                        <div class="card" style="width: 18rem;">
+                                                               <img src="${i.courseImage}" style="height: 200px" class="card-img-top" alt="">
+                                                               <div class="card-body">
+                                                                      <h5 class="card-title">${i.courseName}</h5>
+                                                                      <p class="card-text">Course level : ${i.courseLevel}</p>
+                                                                      <form action="LessonController">
+                                                                             <input type="hidden" name="courseID" value="${i.courseID}">
+                                                                             <button type="submit" class="btn btn-primary">Let's start learning</button>
+                                                                      </form>
+                                                               </div>
                                                         </div>
                                                  </div>
-                                          </div>
-                                   </c:forEach>
+                                          </c:forEach>
+                                   </div>    
                             </div>
                      </div>
               </section>

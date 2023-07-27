@@ -43,7 +43,7 @@
                                                  <c:forEach  var="i"  items="${COURSELIST}">
                                                         <div class="col-lg-4 mb-5 pb-5">
                                                                <div class="card" style="width: 18rem;">
-                                                                      <img src="${i.courseImage}" class="card-img-top" alt="">
+                                                                      <img src="${i.courseImage}" style="height: 200px" class="card-img-top" alt="">
                                                                       <div class="card-body">
                                                                              <h5 class="card-title">${i.courseName}</h5>
                                                                              <p class="card-text">Course Level : ${i.courseLevel}</p>
