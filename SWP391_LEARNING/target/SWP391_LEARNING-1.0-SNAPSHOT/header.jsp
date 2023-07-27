@@ -74,7 +74,7 @@
                                           <ul class="site-menu main-menu js-clone-nav mr-auto ">
                                                  <li class="active"><a href="homepage.jsp" class="nav-link">Home</a></li>
 
-                                                 <li><a href="about.jsp" class="nav-link">About</a></li>
+<!--                                                 <li><a href="about.jsp" class="nav-link">About</a></li>-->
                                                  <li><a href="gallery.jsp" class="nav-link">Gallery</a></li>
                                                         <c:if test="${ sessionScope.PARENT != null}">
                                                         <li><a href="Parent_CourseController" class="nav-link">Course</a></li>
