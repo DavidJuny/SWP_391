@@ -111,6 +111,10 @@ public class LoginController extends HttpServlet {
                     response.addCookie(cookiePassword);
                     response.addCookie(cookieRemember);
                     url = SUCCESS_PARENT;
+                }else
+                {
+                    String msg = "Your account has been banned.Contact Admin for more detail";
+                    request.setAttribute("login_msg", msg);
                 }
             }
         } catch (Exception e) {
