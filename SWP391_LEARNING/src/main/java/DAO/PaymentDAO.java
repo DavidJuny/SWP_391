@@ -38,6 +38,7 @@ public class PaymentDAO {
                             int paymentID = Integer.parseInt(rs.getString(2));
                             int kidLearningID = Integer.parseInt(rs.getString(3));
                             float ammount = Float.parseFloat(rs.getString(4));
+
                             String date = rs.getString(5);
                             String status = rs.getString(6);
                             String parentID = rs.getString(8);

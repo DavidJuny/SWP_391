@@ -37,37 +37,39 @@
                             <c:if test="${LESSON_LIST == null}">
                                    <p class ="text-center" style="color:red">Please buy course to begin your lesson !</p>
                             </c:if>
-                            <div class="row justify-content-center">
-                                   <c:if test="${ COURSEID != null }">
-                                          <c:forEach var="i" items="${LESSON_LIST}">
-                                                 <c:if test="${(i.topic.courseID) == COURSEID}">
-                                                        <div class='col-12'>
-                                                               <div class="card mb-3">
-                                                                      <div class="row g-0">
-                                                                             <div class="col-md-4">
-                                                                                    <img src="i.topic.topicImage" class="img-fluid rounded-start" alt="...">
-                                                                             </div>
-                                                                             <div class="col-md-8">
-                                                                                    <div class="card-body">
-                                                                                           <h5 class="card-title">${i.topic.topicName}</h5>
-                                                                                           <p class="card-text">
-                                                                                                  Lesson: ${i.lessonName}</p>
-                                                                                           <p class="card-text">
-                                                                                                  Course enrolled: ${i.topic.course.courseName}<br>
-                                                                                                  Course level: ${i.topic.course.courseLevel}</p>
-                                                                                           <form method="GET" action="LessonItemController" >
-                                                                                                  <input type="hidden" name="lessonID" value="${i.lessonID}">
-                                                                                                  <button type="submit" class="btn btn-primary">Let's Learn</button>
-                                                                                           </form>
+                            <div class="container">
+                                   <div class="row justify-content-center">
+                                          <c:if test="${ COURSEID != null }">
+                                                 <c:forEach var="i" items="${LESSON_LIST}">
+                                                        <c:if test="${(i.topic.courseID) == COURSEID}">
+                                                               <div class='col-12'>
+                                                                      <div class="card mb-3" >
+                                                                             <div class="row g-0">
+                                                                                    <div class="col-md-4">
+                                                                                           <img src="${i.topic.topicImage}" style="height: 230px; width: 320px; object-fit: fill;" class="img-fluid rounded-start" alt="..."/>
+                                                                                    </div>
+                                                                                    <div class="col-md-8">
+                                                                                           <div class="card-body">
+                                                                                                  <h5 class="card-title">${i.topic.topicName}</h5>
+                                                                                                  <p class="card-text">
+                                                                                                         Lesson: ${i.lessonName}</p>
+                                                                                                  <p class="card-text">
+                                                                                                         Course enrolled: ${i.topic.course.courseName}<br>
+                                                                                                         Course level: ${i.topic.course.courseLevel}</p>
+                                                                                                  <form method="GET" action="LessonItemController" >
+                                                                                                         <input type="hidden" name="lessonID" value="${i.lessonID}">
+                                                                                                         <button type="submit" class="btn btn-primary">Let's Learn</button>
+                                                                                                  </form>
+                                                                                           </div>
                                                                                     </div>
                                                                              </div>
                                                                       </div>
                                                                </div>
-                                                        </div>
-                                                 </c:if>
-                                          </c:forEach>
-                                   </c:if>
-                            </div>
+                                                        </c:if>
+                                                 </c:forEach>
+                                          </c:if>
+                                   </div>
+                            </div>  
                      </div>
               </section>
               <%@include file="footer.jsp" %>

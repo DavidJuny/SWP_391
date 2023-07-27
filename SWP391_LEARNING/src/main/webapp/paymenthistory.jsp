@@ -36,6 +36,7 @@
                                           <tr>
                                                  <th scope="col">#</th>
                                                  <th scope="col">Course ID</th>
+                                                 <th scope="col">Kid ID</th>
                                                  <th scope="col">Amount</th>
                                                  <th scope="col">Date</th>
                                                  <th scope="col">Status</th>
@@ -47,6 +48,7 @@
                                                  <tr>
                                                         <th scope="row"><%=i%></th>
                                                         <td>${i.kidlearning.courseID}</td>
+                                                        <td>${i.kidlearning.kidID}</td>
                                                         <td>${i.amountCourse}</td>
                                                         <td>${i.datePayment}</td>
                                                         <td>${i.status}</td>
