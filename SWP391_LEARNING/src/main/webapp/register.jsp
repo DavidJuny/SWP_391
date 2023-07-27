@@ -47,7 +47,7 @@
                                                                </div>
 
                                                                <div class="form-outline mb-3">
-                                                                      <input type="text" id="labelfullname" name="fullname" class="form-control"  required=""/>
+                                                                      <input type="text" id="labelfullname" name="fullname" class="form-control"  required/>
                                                                       <label class="form-label" for="labelfullname">Full Name</label>
                                                                </div>
 

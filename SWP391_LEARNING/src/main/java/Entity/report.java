@@ -3,28 +3,12 @@ package Entity;
 public class report {
 
        private int reportID;
-       private int kidID;
-       private int courseID;
-       private int courseGrade;
+       private String kidID;
+       private String courseID;
+       private float courseGrade;
        private String detailReport;
-       private int quizGrade;
-       private int readingGrade;
-       private int listeningGrade;
-       private int speakingGrade;
 
        public report() {
-       }
-
-       public report(int reportID, int kidID, int courseID, int courseGrade, String detailReport, int quizGrade, int readingGrade, int listeningGrade, int speakingGrade) {
-              this.reportID = reportID;
-              this.kidID = kidID;
-              this.courseID = courseID;
-              this.courseGrade = courseGrade;
-              this.detailReport = detailReport;
-              this.quizGrade = quizGrade;
-              this.readingGrade = readingGrade;
-              this.listeningGrade = listeningGrade;
-              this.speakingGrade = speakingGrade;
        }
 
        public int getReportID() {
@@ -35,27 +19,27 @@ public class report {
               this.reportID = reportID;
        }
 
-       public int getKidID() {
+       public String getKidID() {
               return kidID;
        }
 
-       public void setKidID(int kidID) {
+       public void setKidID(String kidID) {
               this.kidID = kidID;
        }
 
-       public int getCourseID() {
+       public String getCourseID() {
               return courseID;
        }
 
-       public void setCourseID(int courseID) {
+       public void setCourseID(String courseID) {
               this.courseID = courseID;
        }
 
-       public int getCourseGrade() {
+       public float getCourseGrade() {
               return courseGrade;
        }
 
-       public void setCourseGrade(int courseGrade) {
+       public void setCourseGrade(float courseGrade) {
               this.courseGrade = courseGrade;
        }
 
@@ -67,35 +51,10 @@ public class report {
               this.detailReport = detailReport;
        }
 
-       public int getQuizGrade() {
-              return quizGrade;
-       }
-
-       public void setQuizGrade(int quizGrade) {
-              this.quizGrade = quizGrade;
-       }
-
-       public int getReadingGrade() {
-              return readingGrade;
-       }
-
-       public void setReadingGrade(int readingGrade) {
-              this.readingGrade = readingGrade;
-       }
-
-       public int getListeningGrade() {
-              return listeningGrade;
-       }
-
-       public void setListeningGrade(int listeningGrade) {
-              this.listeningGrade = listeningGrade;
-       }
-
-       public int getSpeakingGrade() {
-              return speakingGrade;
-       }
-
-       public void setSpeakingGrade(int speakingGrade) {
-              this.speakingGrade = speakingGrade;
+       public report(String kidID, String courseID, float courseGrade, String detailReport) {
+              this.kidID = kidID;
+              this.courseID = courseID;
+              this.courseGrade = courseGrade;
+              this.detailReport = detailReport;
        }
 }

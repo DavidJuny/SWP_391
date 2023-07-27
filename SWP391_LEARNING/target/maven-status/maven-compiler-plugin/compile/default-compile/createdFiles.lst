@@ -3,6 +3,7 @@ Controller\CourseController.class
 Controller\LogoutController.class
 DAO\LessonDAO.class
 DAO\AdminDAO.class
+Controller\ReportInfoController.class
 Controller\STTController.class
 Entity\accountUser.class
 Controller\lessonPointController.class
@@ -41,6 +42,7 @@ DAO\KidDAO.class
 DAO\ProductDAO.class
 Entity\lessonpoint.class
 DAO\ReportDAO.class
+Controller\PaymentHistory.class
 Entity\admin.class
 Entity\question.class
 DAO\PaymentDAO.class

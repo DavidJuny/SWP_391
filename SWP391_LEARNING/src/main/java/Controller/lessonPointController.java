@@ -22,89 +22,88 @@ import javax.servlet.http.HttpSession;
  * @author Lenovo
  */
 public class lessonPointController extends HttpServlet {
-    private static final String SUCCES = "ViewProgress.jsp";
-    private static final String ERROR = "parentpage.jsp";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-        String kidID = request.getParameter("kidID");
+       private static final String SUCCES = "ViewProgress.jsp";
+       private static final String ERROR = "parentpage.jsp";
 
-             LessonPointDAO dao = new LessonPointDAO();
-              ArrayList<lessonpoint> list = dao.GetPointFromKidId(kidID);
-              KidDAO test = new KidDAO();
-              test.getAllKids();
-              ArrayList<kid> pa = test.getAllKidbyID(kidID);
-              
-              HttpSession session = request.getSession();
+       /**
+        * Processes requests for both HTTP <code>GET</code> and
+        * <code>POST</code> methods.
+        *
+        * @param request servlet request
+        * @param response servlet response
+        * @throws ServletException if a servlet-specific error occurs
+        * @throws IOException if an I/O error occurs
+        */
+       protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+               throws ServletException, IOException {
+              response.setContentType("text/html;charset=UTF-8");
+              String url = ERROR;
+              try {
+                     String kidID = request.getParameter("kidID");
 
-              if(!list.isEmpty()){
-             session.setAttribute("LISTPOINT", list);
-             if(!pa.isEmpty()){
-             session.setAttribute("GETKID", pa);
-              url = SUCCES;
-             }
+                     LessonPointDAO dao = new LessonPointDAO();
+                     ArrayList<lessonpoint> list = dao.GetPointFromKidId(kidID);
+                     KidDAO test = new KidDAO();
+                     test.getAllKids();
+                     ArrayList<kid> pa = test.getAllKidsbyID(kidID);
 
-         }else{
-              session.setAttribute("MESS", "HAVE NOT JIONED COURSE!");
-                url = ERROR;
-               }
-        } catch (Exception e) {
-        }finally {
-               request.getRequestDispatcher(url).forward(request, response);
-         }
-    }
-    
-    
+                     HttpSession session = request.getSession();
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+                     if (!list.isEmpty()) {
+                            session.setAttribute("LISTPOINT", list);
+                            if (!pa.isEmpty()) {
+                                   session.setAttribute("GETKID", pa);
+                                   url = SUCCES;
+                            }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+                     } else {
+                            session.setAttribute("MESS", "HAVE NOT JOIN COURSE!");
+                            url = ERROR;
+                     }
+              } catch (Exception e) {
+              } finally {
+                     request.getRequestDispatcher(url).forward(request, response);
+              }
+       }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+       // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+       /**
+        * Handles the HTTP <code>GET</code> method.
+        *
+        * @param request servlet request
+        * @param response servlet response
+        * @throws ServletException if a servlet-specific error occurs
+        * @throws IOException if an I/O error occurs
+        */
+       @Override
+       protected void doGet(HttpServletRequest request, HttpServletResponse response)
+               throws ServletException, IOException {
+              processRequest(request, response);
+       }
+
+       /**
+        * Handles the HTTP <code>POST</code> method.
+        *
+        * @param request servlet request
+        * @param response servlet response
+        * @throws ServletException if a servlet-specific error occurs
+        * @throws IOException if an I/O error occurs
+        */
+       @Override
+       protected void doPost(HttpServletRequest request, HttpServletResponse response)
+               throws ServletException, IOException {
+              processRequest(request, response);
+       }
+
+       /**
+        * Returns a short description of the servlet.
+        *
+        * @return a String containing servlet description
+        */
+       @Override
+       public String getServletInfo() {
+              return "Short description";
+       }// </editor-fold>
 
 }

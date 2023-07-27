@@ -3,7 +3,6 @@
     Created on : Jun 30, 2023, 12:16:16 PM
     Author     : PC
 --%>
-
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -117,6 +116,7 @@
                             </div>
                      </div>
               </div>
+
               <%@include file="footer.jsp" %>
        </body>
 </html>
