@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -78,6 +80,19 @@ public class AccountDAO {
             ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
         }
+    }
+
+    public boolean isPasswordValid(String password) {
+        // Check if the password is not null and its length is greater than 5 characters
+        if (password != null && password.length() > 5) {
+            // Define the regular expression pattern for the password
+            // It requires at least one special character and allows alphanumeric characters
+            String regex = "^(?=.*[@#$%^&+=])(?=\\S+$).{6,}$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(password);
+            return matcher.find();
+        }
+        return false;
     }
 
 }
