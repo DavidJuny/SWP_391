@@ -23,7 +23,7 @@ public class LessonPointDAO {
         try (Connection conn = DBContext.getConnection();
              PreparedStatement psCheck = conn.prepareStatement(queryCheck);
              PreparedStatement psInsert = conn.prepareStatement(query);
-             PreparedStatement psUpdate = conn.prepareStatement(queryUpdate)) {
+                     PreparedStatement psUpdate = conn.prepareStatement(queryUpdate)) {
 
             // Check if LessonPoint exists for KidId and LessonId
             psCheck.setString(1, KidId);

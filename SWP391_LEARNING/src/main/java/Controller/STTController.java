@@ -1,7 +1,9 @@
 package Controller;
 
+import DAO.LessonPointDAO;
 import DAO.QuizDAO;
 import DAO.SpeechDAO;
+import Entity.kid;
 import Entity.lesson;
 import Entity.lessonItem;
 import Entity.question;
@@ -16,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -54,6 +57,16 @@ public class STTController extends HttpServlet {
         double point = speechDAO.SpeechAnalyze(speechToText.getText().trim(),pattern.trim());
         DecimalFormat decimalFormat = new DecimalFormat("#");
         String roundedNumber = decimalFormat.format(point);
+        LessonPointDAO lessonPointDAO = new LessonPointDAO();
+        try
+        {
+            HttpSession session = request.getSession();
+            kid kid = (kid) session.getAttribute("KID");
+            lessonPointDAO.AddLessonPointByKidId(kid.getKidID(), lessonItemId, (float) point);
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
         // comment in to use statistical ngram data:
         //langTool.activateLanguageModelRules(new File("/data/google-ngram-data"));
 

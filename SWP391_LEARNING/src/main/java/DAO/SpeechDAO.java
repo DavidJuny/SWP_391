@@ -11,8 +11,7 @@ public class SpeechDAO {
     ResultSet rs = null;
 
 
-    public double SpeechAnalyze(String text,String pattern)
-    {
+    public double SpeechAnalyze(String text, String pattern) {
         int score = 0;
         int minLength = Math.min(text.length(), pattern.length());
 
@@ -23,7 +22,12 @@ public class SpeechDAO {
         }
 
         double matchPercentage = (double) score / pattern.length() * 100;
-        return matchPercentage;
+
+        // Calculate the scaled score between 0 and 10
+        double maxPoints = 10.0;
+        double scaledScore = (matchPercentage / 100.0) * maxPoints;
+
+        return scaledScore;
     }
 
     public ArrayList<Integer> kmpSearch(String text, String pattern) {

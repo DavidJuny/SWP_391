@@ -72,7 +72,7 @@
                                                                       </c:forEach>
                                                         </ul>
                                                  </c:if>
-                                                 <c:if test="${empty incorrectAnswers and points == fn:length(newquestions)}">
+                                                 <c:if test="${points == fn:length(questions)}">
                                                         <p style="color: darkseagreen">All of the answers is correct</p>
                                                  </c:if>
                                           </div>

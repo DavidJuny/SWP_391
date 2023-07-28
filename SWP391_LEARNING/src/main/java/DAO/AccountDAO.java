@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -79,5 +81,38 @@ public class AccountDAO {
         } catch (ClassNotFoundException | SQLException e) {
         }
     }
+
+    public boolean isPasswordValid(String password) {
+        // Check if the password is not null and its length is greater than 5 characters
+        if (password != null && password.length() > 5) {
+            // Define the regular expression pattern for the password
+            // It requires at least one special character and allows alphanumeric characters
+            String regex = "^(?=.*[@#$%^&+=])(?=\\S+$).{6,}$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(password);
+            return matcher.find();
+        }
+        return false;
+    }
+    public  boolean isValidUsername(String username) {
+        // Define a regular expression pattern to check for special characters
+        Pattern specialCharsPattern = Pattern.compile("[^\\w\\s]");
+
+        // Check if the username contains any special characters
+        Matcher matcher = specialCharsPattern.matcher(username);
+        if (matcher.find()) {
+            return false;
+        }
+
+        // Check if the length of the username is within the desired range (e.g., 3 to 20 characters)
+        int minLength = 5;
+        int maxLength = 20;
+        if (username.length() < minLength || username.length() > maxLength) {
+            return false;
+        }
+
+        return true;
+    }
+
 
 }

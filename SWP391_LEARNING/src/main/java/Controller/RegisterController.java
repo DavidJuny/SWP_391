@@ -31,7 +31,7 @@ public class RegisterController extends HttpServlet {
        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               response.setContentType("text/html;charset=UTF-8");
-
+AccountDAO accountDAO=new AccountDAO();
               String username = request.getParameter("username");
               String fullname = request.getParameter("fullname");
               String password = request.getParameter("password");
@@ -42,7 +42,18 @@ public class RegisterController extends HttpServlet {
               if (!password.equals(confirmpassword)) {
                      request.setAttribute("msg", "Your password is not match!");
                      request.getRequestDispatcher("register.jsp").forward(request, response);
-              } else {
+              }else if(!accountDAO.isPasswordValid(password))
+              {
+                     request.setAttribute("msg", "Your password must be at least 6 and contain at least 1 special character!");
+                     request.getRequestDispatcher("register.jsp").forward(request, response);
+
+              }else if(!accountDAO.isValidUsername(username)|| !accountDAO.isValidUsername(fullname))
+              {
+                     request.setAttribute("msg", "Your username or full name must be at least 5 characters and does not contain special character");
+                     request.getRequestDispatcher("register.jsp").forward(request, response);
+
+              }
+              else {
                      ParentDAO parentDAO = new ParentDAO();
                      AccountDAO accDAO = new AccountDAO();
                      accDAO.getAllAccount();
