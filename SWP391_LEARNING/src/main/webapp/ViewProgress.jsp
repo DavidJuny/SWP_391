@@ -30,7 +30,7 @@
                         </h2>
                    <ul class="responsive-table">
                    <li class="table-header">
-                      <div class="col col-2">Lession</div>
+                      <div class="col col-2">Lesson</div>
                       <div class="col col-3">Mark</div>
                       <div class="col col-4">Status</div>
                     </li>
@@ -47,13 +47,7 @@
                         <div class="col col-2" data-label="Customer Name">No.<%=point.getLessonItemId()%></div>
                       <div class="col col-3" data-label="Amount"><%=point.getPoint()%></div>
                       <div class="col col-4" data-label="Payment Status">
-                    <% if (point.getPoint() >= 8) { %>
-                                Excellent
-                              <% } else if (point.getPoint() >= 5) { %>
-                                Good
-                              <% } else { %>
-                                Try hard
-                              <% } %>
+                                Finish
                       </div>
                      </li>
                   </ul>

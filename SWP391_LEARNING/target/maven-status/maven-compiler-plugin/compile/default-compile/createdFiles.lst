@@ -46,6 +46,7 @@ Controller\PaymentHistory.class
 Entity\admin.class
 Entity\question.class
 DAO\PaymentDAO.class
+DAO\rp.class
 Entity\report.class
 Entity\course.class
 Controller\AdminController.class

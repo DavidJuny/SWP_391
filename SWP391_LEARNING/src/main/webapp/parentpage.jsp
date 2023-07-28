@@ -49,7 +49,7 @@
                     <img src="${kid.kidImage}" alt="">
                  </div>
                  <h3 class="title">${kid.kidName}</h3>
-                 <a href="lessonPointController?kidID=${kid.kidID}" class="inline-btn">view progess</a>
+                 <a href="lessonPointController?kidID=${kid.kidID}" class="inline-btn">view progress</a>
               </div>
                </c:forEach>
                 ${MESS}

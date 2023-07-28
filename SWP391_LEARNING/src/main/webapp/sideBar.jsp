@@ -73,8 +73,8 @@
 
                 <nav class="navbar"style="display: block;">
                   <a href="ParentController?parentID=${PARENT.parentID}"><i class="fa-solid fa-person"></i><span>your children</span></a>
-                  <a href="#"><i class="fas fa-question"></i><span>Buy course</span></a>
-                  <a href="course.jsp"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+<!--                  <a href="#"><i class="fas fa-question"></i><span>Buy course</span></a>-->
+                  <a href="Parent_CourseController"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
                   <a href="contact.jsp"><i class="fas fa-headset"></i><span>contact us</span></a>
                </nav>
             </div>
