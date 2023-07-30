@@ -1,8 +1,10 @@
 package Controller;
 
 import DAO.LessonDAO;
+import DAO.TopicDAO;
 import Entity.lesson;
 import Entity.lessonItem;
+import Entity.topic;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +35,11 @@ public class AdminLessonController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         LessonDAO lessonDAO=new LessonDAO();
+        TopicDAO topicDAO=new TopicDAO();
+        ArrayList<topic> topics= topicDAO.GetAllTopics();
         ArrayList<lesson> lessons = lessonDAO.GetAllLesson();
         request.setAttribute("lessons",lessons);
+        request.setAttribute("topics",topics);
         request.getRequestDispatcher("lesson_table.jsp").forward(request,response);
 
     }
