@@ -1,3 +1,6 @@
+<%@ page import="DAO.TopicDAO" %>
+<%@ page import="Entity.topic" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -77,7 +80,11 @@
             if (cookie.getName().equals("cookieUsername")) {
                 String name = cookie.getValue();
 %>
-
+<%
+    TopicDAO topicDAO = new TopicDAO();
+    ArrayList<topic> topics = topicDAO.GetAllTopics(); // Replace with your logic to retrieve the courses
+    session.setAttribute("topics", topics);
+%>
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -237,8 +244,8 @@
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3">Course table</h6>
-                            <button onclick="window.location.href = './CreateLessonForm.jsp'" class="btn btn-primary" style="color: white;">Add Course</button>
+                            <h6 class="text-white text-capitalize ps-3">Lesson table</h6>
+                            <button onclick="window.location.href = './CreateLessonForm.jsp'" class="btn btn-primary" style="color: white;">Add Lesson</button>
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
