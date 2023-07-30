@@ -163,5 +163,144 @@ public class QuizDAO {
 
               return lessonItem;
        }
+       public boolean insertQuestionWithDuplicateCheck(int lessonItemID, String question, String answer) {
+              boolean isDuplicate = false;
+
+              try {
+                     // Check if the question already exists in the table
+                     String selectQuery = "SELECT COUNT(*) FROM Question WHERE question = ? AND answer = ?";
+                     Connection conn = DBContext.getConnection();
+                     PreparedStatement ps = conn.prepareStatement(selectQuery);
+                     ps.setString(1, question);
+                     ps.setString(2, answer);
+
+                     ResultSet resultSet = ps.executeQuery();
+                     if (resultSet.next()) {
+                            int count = resultSet.getInt(1);
+                            if (count > 0) {
+                                   // The question is a duplicate
+                                   isDuplicate = true;
+                            }
+                     }
+                     resultSet.close();
+                     ps.close();
+
+                     if (!isDuplicate) {
+                            // If the question is not a duplicate, insert it into the table
+                            String insertQuery = "INSERT INTO Question (questionID, lessonItemID, question, answer) VALUES (?, ?, ?, ?)";
+                            Connection connection = DBContext.getConnection();
+                            PreparedStatement ps1 = conn.prepareStatement(insertQuery);
+                            int nextQuestionID = getNextQuestionID();
+                            ps1.setInt(1, nextQuestionID);
+                            ps1.setInt(2, lessonItemID);
+                            ps1.setString(3, question);
+                            ps1.setString(4, answer);
+
+                            int rowsAffected = ps1.executeUpdate();
+                            if (rowsAffected > 0) {
+                                   // The question was inserted successfully
+                                   System.out.println("Question inserted successfully.");
+                            }
+                            ps1.close();
+                     }
+              } catch (SQLException | ClassNotFoundException e) {
+                     e.printStackTrace();
+              }
+
+              return isDuplicate;
+       }
+       private int getNextQuestionID() throws SQLException, ClassNotFoundException {
+              String countQuery = "SELECT COUNT(*) FROM Question";
+              Connection connection = DBContext.getConnection();
+              PreparedStatement countStmt = connection.prepareStatement(countQuery);
+              ResultSet resultSet = countStmt.executeQuery();
+              resultSet.next();
+              int count = resultSet.getInt(1);
+              resultSet.close();
+              countStmt.close();
+
+              // Increment the count to get the next questionID
+              return count + 1;
+       }
+       public ArrayList<question> GetAllQuestions()
+       {
+              ArrayList<question> questions = new ArrayList<>();
+              String query = "SELECT * FROM Question";
+              try (Connection conn = DBContext.getConnection();
+                   PreparedStatement ps = conn.prepareStatement(query)) {
+                     try (ResultSet rs = ps.executeQuery()) {
+                            while (rs.next()) {
+                                   questions.add(new question(
+                                           rs.getInt(1),
+                                           rs.getInt(2),
+                                           rs.getString(3),
+                                           rs.getString(4)
+                                   ));
+                            }
+                     }
+              } catch (SQLException throwables) {
+                     throwables.printStackTrace();
+              } catch (ClassNotFoundException e) {
+                     e.printStackTrace();
+              }
+              return questions;
+       }
+
+       public void deleteQuestion(int questionID) {
+              String checkQuery = "SELECT COUNT(*) FROM [Question] WHERE questionID = ?";
+              String deleteQuery = "DELETE FROM [Question] WHERE questionID = ?";
+
+              try (Connection conn = DBContext.getConnection();
+                   PreparedStatement checkPs = conn.prepareStatement(checkQuery);
+                   PreparedStatement deletePs = conn.prepareStatement(deleteQuery)) {
+
+                     checkPs.setInt(1, questionID);
+                     ResultSet resultSet = checkPs.executeQuery();
+                     resultSet.next();
+                     int count = resultSet.getInt(1);
+
+                     if (count == 0) {
+                            System.out.println("Question does not exist.");
+                            return; // or throw an exception if desired
+                     }
+
+                     deletePs.setInt(1, questionID);
+                     deletePs.executeUpdate();
+              } catch (SQLException throwables) {
+                     throwables.printStackTrace();
+              } catch (ClassNotFoundException e) {
+                     e.printStackTrace();
+              }
+       }
+       public void updateQuestion(question updatedquestion) {
+              String checkQuery = "SELECT COUNT(*) FROM Question WHERE questionID = ?";
+              String updateQuery = "UPDATE Question SET lessonItemID = ?, question = ?, answer = ? WHERE questionID = ?";
+
+              try (Connection conn = DBContext.getConnection();
+                   PreparedStatement checkPs = conn.prepareStatement(checkQuery);
+                   PreparedStatement updatePs = conn.prepareStatement(updateQuery)) {
+
+                     checkPs.setInt(1, updatedquestion.getQuestionID());
+                     ResultSet resultSet = checkPs.executeQuery();
+                     resultSet.next();
+                     int count = resultSet.getInt(1);
+
+                     if (count == 0) {
+                            System.out.println("Course does not exist.");
+                            return; // or throw an exception if desired
+                     }
+
+                     updatePs.setInt(1, updatedquestion.getTypeID());
+                     updatePs.setString(2, updatedquestion.getQuestion());
+                     updatePs.setString(3, updatedquestion.getAnswer());
+                     updatePs.setInt(4, updatedquestion.getQuestionID());
+                     updatePs.executeUpdate();
+              } catch (SQLException throwables) {
+                     throwables.printStackTrace();
+              } catch (ClassNotFoundException e) {
+                     e.printStackTrace();
+              }
+       }
+
 
 }

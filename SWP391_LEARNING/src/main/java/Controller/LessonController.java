@@ -13,6 +13,7 @@ import Entity.lesson;
 import Entity.topic;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -76,7 +77,8 @@ public class LessonController extends HttpServlet {
        protected void doPost(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException {
               processRequest(request, response);
-       }
+
+              }
 
        /**
         * Returns a short description of the servlet.

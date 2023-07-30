@@ -113,6 +113,14 @@ public class AccountDAO {
 
         return true;
     }
+    public  boolean validatePhoneNumber(String phoneNumber) {
+        // Define the regular expression pattern for 10 digits
+        Pattern pattern = Pattern.compile("^\\d{10}$");
+        Matcher matcher = pattern.matcher(phoneNumber);
+
+        // Return true if the phone number matches the pattern (i.e., has exactly 10 digits)
+        return matcher.matches();
+    }
 
 
 }

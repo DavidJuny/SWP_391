@@ -1,10 +1,32 @@
 package Model;
 
+import java.util.Date;
+
 public class lessonpointModel {
     public int LessonPointId;
     public String KidId;
     public int LessonItemId;
     public float Point;
+    public Date DateTaken;
+
+    public Date getDateTaken() {
+        return DateTaken;
+    }
+
+    public void setDateTaken(Date dateTaken) {
+        DateTaken = dateTaken;
+    }
+
+    public lessonpointModel(int lessonPointId, String kidId, int lessonItemId, float point, Date dateTaken, String kidName, String parentId) {
+        LessonPointId = lessonPointId;
+        KidId = kidId;
+        LessonItemId = lessonItemId;
+        Point = point;
+        DateTaken = dateTaken;
+        KidName = kidName;
+        ParentId = parentId;
+    }
+
     public String KidName;
     public String ParentId;
 

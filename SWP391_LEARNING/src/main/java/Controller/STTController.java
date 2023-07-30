@@ -21,7 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class STTController extends HttpServlet {
@@ -62,7 +65,9 @@ public class STTController extends HttpServlet {
         {
             HttpSession session = request.getSession();
             kid kid = (kid) session.getAttribute("KID");
-            lessonPointDAO.AddLessonPointByKidId(kid.getKidID(), lessonItemId, (float) point);
+            LocalDateTime localDateTime = LocalDateTime.now();
+            Date dateTaken= Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            lessonPointDAO.AddLessonPointByKidId(kid.getKidID(), lessonItemId, (float) point,dateTaken);
         }catch (Exception ex)
         {
             ex.printStackTrace();
