@@ -1,10 +1,29 @@
 package Entity;
 
+import java.util.Date;
+
 public class lessonpoint {
     public int LessonPointId;
     public String KidId;
     public int LessonItemId;
     public float Point;
+    public Date DateTaken;
+
+    public Date getDateTaken() {
+        return DateTaken;
+    }
+
+    public void setDateTaken(Date dateTaken) {
+        DateTaken = dateTaken;
+    }
+
+    public lessonpoint(int lessonPointId, String kidId, int lessonItemId, float point, Date dateTaken) {
+        LessonPointId = lessonPointId;
+        KidId = kidId;
+        LessonItemId = lessonItemId;
+        Point = point;
+        DateTaken = dateTaken;
+    }
 
     public lessonpoint() {
     }

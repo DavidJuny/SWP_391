@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class QuestionController extends HttpServlet {
@@ -91,7 +93,9 @@ public class QuestionController extends HttpServlet {
             LessonPointDAO lessonPointDAO = new LessonPointDAO();
             QuizResult quizResult = quizDAO.GetAnswerFromQuestion(questionIds, submittedAnswers);
             try {
-                lessonPointDAO.AddLessonPointByKidId(kid.getKidID(), lessonItemID, quizResult.getPoints());
+                LocalDateTime localDateTime = LocalDateTime.now();
+                    Date dateTaken= Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+                lessonPointDAO.AddLessonPointByKidId(kid.getKidID(), lessonItemID, quizResult.getPoints(),dateTaken);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

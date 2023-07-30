@@ -53,8 +53,7 @@
 
                                                                <div class="form-outline mb-3">
                                                                       <select class="form-control form-control-lg"  id="labelsex"  name="sex"  required="">
-                                                                             <option selected >Please choose your gender</option>
-                                                                             <option value="Man">Male</option>
+                                                                             <option selected value="Man">Male</option>
                                                                              <option value="Woman">Female</option>
                                                                       </select>   
                                                                       <label class="form-label" for="labelsex">Sex</label>

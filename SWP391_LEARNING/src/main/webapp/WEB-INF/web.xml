@@ -17,6 +17,7 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>Controller.LogoutController</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>Controller.RegisterController</servlet-class>
@@ -109,6 +110,20 @@
         <servlet-name>PaymentHistory</servlet-name>
         <servlet-class>Controller.PaymentHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminLessonItemController</servlet-name>
+        <servlet-class>Controller.AdminLessonItemController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminLessonController</servlet-name>
+        <servlet-class>Controller.AdminLessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminQuestionController</servlet-name>
+        <servlet-class>Controller.AdminQuestionController</servlet-class>
+    </servlet>
+
+
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -212,6 +227,18 @@
     <servlet-mapping>
         <servlet-name>PaymentHistory</servlet-name>
         <url-pattern>/PaymentHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLessonItemController</servlet-name>
+        <url-pattern>/AdminLessonItemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLessonController</servlet-name>
+        <url-pattern>/AdminLessonController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminQuestionController</servlet-name>
+        <url-pattern>/AdminQuestionController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

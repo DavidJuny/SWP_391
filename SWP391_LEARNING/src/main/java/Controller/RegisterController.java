@@ -52,6 +52,11 @@ AccountDAO accountDAO=new AccountDAO();
                      request.setAttribute("msg", "Your username or full name must be at least 5 characters and does not contain special character");
                      request.getRequestDispatcher("register.jsp").forward(request, response);
 
+              }else if(!accountDAO.validatePhoneNumber(phone))
+              {
+                     request.setAttribute("msg", "Phone must be a number and have 10 digits");
+                     request.getRequestDispatcher("register.jsp").forward(request, response);
+
               }
               else {
                      ParentDAO parentDAO = new ParentDAO();

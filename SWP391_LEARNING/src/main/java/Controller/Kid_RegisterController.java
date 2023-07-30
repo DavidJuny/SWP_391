@@ -7,6 +7,8 @@ package Controller;
 import DAO.AccountDAO;
 import DAO.KidDAO;
 import Entity.accountUser;
+import org.checkerframework.checker.units.qual.A;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -42,10 +44,23 @@ public class Kid_RegisterController extends HttpServlet {
             String tmp = request.getParameter("kimage");
             String kimage = "assets\\images\\" + tmp;
             request.setAttribute("msg", "");
+            AccountDAO accountDAO=new AccountDAO();
             if (!kpassword.equals(kconfpassword)) {
                 request.setAttribute("msg", "Your password is not match!");
                 request.getRequestDispatcher("profile.jsp").forward(request, response);
-            } else {
+            }else if(!accountDAO.isValidUsername(kusername)|| !accountDAO.isValidUsername(kfullname))
+            {
+                request.setAttribute("msg", "Your username or full name must be at least 5 characters and does not contain special character");
+                request.getRequestDispatcher("profile.jsp").forward(request, response);
+
+            }else if(kbirthday == null||kbirthday=="")
+            {
+                request.setAttribute("msg", "Must submit Birthday");
+                request.getRequestDispatcher("profile.jsp").forward(request, response);
+
+            }
+
+            else {
                 KidDAO kidDAO = new KidDAO();
                 AccountDAO accDAO = new AccountDAO();
                 accDAO.getAllAccount();
