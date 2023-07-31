@@ -2,12 +2,10 @@ package Controller;
 
 import DAO.LessonPointDAO;
 import DAO.QuizDAO;
-import Entity.kid;
-import Entity.lesson;
-import Entity.lessonItem;
-import Entity.question;
+import Entity.*;
 import Model.QuizModel;
 import Model.QuizResult;
+import Model.lessonpointModel;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -54,6 +52,9 @@ public class QuestionController extends HttpServlet {
            processRequest(request, response);
            QuizDAO quizDAO = new QuizDAO();
            int lessonItemType = Integer.parseInt(request.getParameter("lessonItemID"));
+           HttpSession session = request.getSession();
+           kid kid = (kid) session.getAttribute("KID");
+           session.setAttribute("lessonItemID",lessonItemType);
            ArrayList<question> questions = quizDAO.GetListQuestionFromLessonItem(lessonItemType);
            lessonItem lessonItem = quizDAO.getLessonItemByLessonItemId(lessonItemType);
            ArrayList<QuizModel> newquestions = shuffleAnswers(questions);
@@ -76,6 +77,7 @@ public class QuestionController extends HttpServlet {
             HttpSession session = request.getSession();
             kid kid = (kid) session.getAttribute("KID");
             int lessonItemID = Integer.parseInt(request.getParameter("lessonItemID"));
+            session.setAttribute("lessonItemID",lessonItemID);
             lessonItem lessonItem = quizDAO.getLessonItemByLessonItemId(lessonItemID);
             ArrayList<question> questions = quizDAO.GetListQuestionFromLessonItem(lessonItemID);
 
