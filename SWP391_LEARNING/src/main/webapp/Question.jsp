@@ -1,4 +1,8 @@
-<%--
+<%@ page import="Entity.kid" %>
+<%@ page import="Entity.lessonpoint" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="DAO.LessonPointDAO" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 6/23/2023
@@ -36,11 +40,90 @@
                      .center {
                             text-align: center;
                      }
+                     #gradeTable {
+                            width: 75%;
+                            margin: 0 auto;
+                     }
+
+                     th.name-col, th.grade-col {
+                            cursor: pointer;
+                     }
+
+                     #gradeTable .checkbox-col {
+                            width: 80px;
+                            text-align: center;
+                     }
+
+                     #gradeTable .checkbox-col input {
+                            margin: 0;
+                            padding: 0;
+                            display: inline-block;
+                            width: auto;
+                     }
+
+                     #gradeTable .grade-col {
+                            text-align: right;
+                            width: 180px;
+                     }
+
+                     #gradeTable .grade-col input {
+                            display: inline-block;
+                            width: 100px;
+                     }
+
+                     #gradeTable .options-col {
+                            width: 60px;
+                            text-align: center;
+                     }
+
+                     #delete-all-checked-btn {
+                            color: red;
+                            font-size: 25px;
+                            line-height: 35px;
+                            vertical-align: middle;
+                            cursor: pointer;
+                     }
+
+                     .delete-row-btn {
+                            color: red;
+                            font-size: 20px;
+                     }
+
+                     .grade-pass {
+                            background: #5CC573;
+                            color: #023A14;
+                     }
+
+                     .grade-fail {
+                            background: #c55c68;
+                            color: #e8d5d7;
+                     }
+
+                     .editable {
+                            cursor: pointer;
+                     }
               </style>
 
               <title>Quiz</title>
        </head>
        <body>
+       <%@ page session="true" %>
+       <%
+              kid kid = (kid) session.getAttribute("KID");
+              int lessonItemID= (int) session.getAttribute("lessonItemID");
+              LessonPointDAO lessonPointDAO = new LessonPointDAO();
+              ArrayList<lessonpoint> PointFromKidAndLessonItems = null;
+              try {
+                     PointFromKidAndLessonItems = lessonPointDAO.GetPointFromKidIdAndLessonItemID(kid.getKidID(),lessonItemID);
+              } catch (SQLException throwables) {
+                     throwables.printStackTrace();
+              } catch (ClassNotFoundException e) {
+                     e.printStackTrace();
+              }
+
+
+       %>
+       <taglib:tag PointFromKidAndLessonItems="${PointFromKidAndLessonItems}" />
               <c:if test="${lessonItem.itemTypeID.equalsIgnoreCase('Read') or lessonItem.itemTypeID.equalsIgnoreCase('Listen')}">
 
                      <section class="site-section bg-light">
@@ -76,6 +159,26 @@
                                                         <p style="color: darkseagreen">All of the answers is correct</p>
                                                  </c:if>
                                           </div>
+                                          <table class="table table-bordered table-striped" id="gradeTable">
+                                                 <thead class="thead-dark">
+                                                 <tr>
+                                                        <th scope="col" class="name-col sortable" data-field="name">Name <span class="sort-arrow"></span></th>
+                                                        <th scope="col" class="grade-col sortable" data-field="grade">Grade/${fn:length(questions)} <span class="sort-arrow"></span></th>
+                                                        <th scope="col" class="name-col sortable" data-field="name">Date Taken: <span class="sort-arrow"></span></th>
+
+                                                 </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                 <% for  (lessonpoint lessonPoint : PointFromKidAndLessonItems) { %>
+                                                 <tr>
+                                                        <td class="name-col"><span class="editable" data-field="name"><%= lessonPoint.KidId %></span></td>
+                                                        <td class="grade-col ${gradeClass}"><span class="editable" data-field="grade"><%= lessonPoint.Point %></span></td>
+                                                        <td class="grade-col ${gradeClass}"><span class="editable" data-field="grade"><%= lessonPoint.DateTaken %></span></td>
+                                                 </tr>
+                                                 <% } %>
+                                                 </tbody>
+
+                                          </table>
                                    </c:if>
                                    <c:if test="${points ==0}">
                                           <p style="color: red"> No answer was submitted</p>
@@ -196,5 +299,34 @@
                             </div>
                      </section>
               </c:if>
+       <script>
+              // Function to sort the table by the specified column (fieldName)
+              function sortTable(fieldName) {
+                     const table = document.getElementById('gradeTable');
+                     const rows = Array.from(table.rows).slice(1); // Skip the header row
+                     const isAscending = table.getAttribute('data-sort') === fieldName;
+
+                     rows.sort((a, b) => {
+                            const aValue = a.cells[fieldName].innerText.trim();
+                            const bValue = b.cells[fieldName].innerText.trim();
+
+                            if (fieldName === '2') {
+                                   // Handle sorting for the DateTaken column (index 2)
+                                   return new Date(aValue) - new Date(bValue);
+                            } else {
+                                   return aValue.localeCompare(bValue);
+                            }
+                     });
+
+                     if (!isAscending) {
+                            rows.reverse();
+                     }
+
+                     table.tBodies[0].append(...rows);
+
+                     // Update the sorting indicator
+                     table.setAttribute('data-sort', isAscending ? '' : fieldName);
+              }
+       </script>
        </body>
 </html>
