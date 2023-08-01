@@ -8,85 +8,70 @@ public class lessonpointModel {
     public int LessonItemId;
     public float Point;
     public Date DateTaken;
-
-    public Date getDateTaken() {
-        return DateTaken;
-    }
-
-    public void setDateTaken(Date dateTaken) {
-        DateTaken = dateTaken;
-    }
-
-    public lessonpointModel(int lessonPointId, String kidId, int lessonItemId, float point, Date dateTaken, String kidName, String parentId) {
-        LessonPointId = lessonPointId;
-        KidId = kidId;
-        LessonItemId = lessonItemId;
-        Point = point;
-        DateTaken = dateTaken;
-        KidName = kidName;
-        ParentId = parentId;
-    }
-
-    public String KidName;
-    public String ParentId;
+    public String ItemTypeID;
 
     public lessonpointModel() {
     }
 
-    public lessonpointModel(int lessonPointId, String kidId, int lessonItemId, float point, String kidName, String parentId) {
-        LessonPointId = lessonPointId;
-        KidId = kidId;
-        LessonItemId = lessonItemId;
-        Point = point;
-        KidName = kidName;
-        ParentId = parentId;
+    public lessonpointModel(int LessonPointId, String KidId, int LessonItemId, float Point, Date DateTaken, String ItemTypeID) {
+        this.LessonPointId = LessonPointId;
+        this.KidId = KidId;
+        this.LessonItemId = LessonItemId;
+        this.Point = Point;
+        this.DateTaken = DateTaken;
+        this.ItemTypeID = ItemTypeID;
     }
 
+    
+    
     public int getLessonPointId() {
         return LessonPointId;
     }
 
-    public void setLessonPointId(int lessonPointId) {
-        LessonPointId = lessonPointId;
+    public void setLessonPointId(int LessonPointId) {
+        this.LessonPointId = LessonPointId;
     }
 
     public String getKidId() {
         return KidId;
     }
 
-    public void setKidId(String kidId) {
-        KidId = kidId;
+    public void setKidId(String KidId) {
+        this.KidId = KidId;
     }
 
     public int getLessonItemId() {
         return LessonItemId;
     }
 
-    public void setLessonItemId(int lessonItemId) {
-        LessonItemId = lessonItemId;
+    public void setLessonItemId(int LessonItemId) {
+        this.LessonItemId = LessonItemId;
     }
 
     public float getPoint() {
         return Point;
     }
 
-    public void setPoint(float point) {
-        Point = point;
+    public void setPoint(float Point) {
+        this.Point = Point;
     }
 
-    public String getKidName() {
-        return KidName;
+    public Date getDateTaken() {
+        return DateTaken;
     }
 
-    public void setKidName(String kidName) {
-        KidName = kidName;
+    public void setDateTaken(Date DateTaken) {
+        this.DateTaken = DateTaken;
     }
 
-    public String getParentId() {
-        return ParentId;
+    public String getItemTypeID() {
+        return ItemTypeID;
     }
 
-    public void setParentId(String parentId) {
-        ParentId = parentId;
+    public void setItemTypeID(String ItemTypeID) {
+        this.ItemTypeID = ItemTypeID;
     }
+
+
+  
 }

@@ -43,9 +43,11 @@ public class LessonPointDAO {
 
     public ArrayList<lessonpointModel> GetAllPointFromKidId(String kidId)
     {
-        String query="SELECT LessonPoint.LessonPointId, LessonPoint.KidId, LessonPoint.LessonItemId, LessonPoint.Point,lessonPoint.DateTaken, Kids.kidName,Kids.parentID" +
-                "FROM LessonPoint" +
-                "JOIN Kids ON LessonPoint.KidId = Kids.KidId WHERE Kids.kidID=?";
+        String query="  SELECT LessonPoint.LessonPointId, LessonPoint.KidId, LessonPoint.LessonItemId, LessonPoint.Point,lessonPoint.DateTaken,LessonItem.ItemTypeID\n" +
+                    "  FROM LessonPoint\n" +
+                    "  JOIN Kids ON LessonPoint.KidId = Kids.KidId \n" +
+                    "  JOIN LessonItem ON LessonPoint.LessonItemID = LessonItem.lessonItemID\n" +
+                    "  WHERE Kids.kidID=?";
         ArrayList<lessonpointModel> list = new ArrayList<>();
         try {
             conn = DBContext.getConnection();
@@ -55,20 +57,25 @@ public class LessonPointDAO {
             while (rs.next()) {
                 int lessonPointId= rs.getInt(1);
                 String KidId= rs.getString(2);
-                int lessonId= rs.getInt(3);
+                int LessonItemId= rs.getInt(3);
                 float point = rs.getFloat(4);
                 Date datetaken = rs.getDate(5);
-                String KidName = rs.getString(6);
-                String ParentId = rs.getString(7);
+                String ItemTypeID = rs.getString(6);
 
 
-                lessonpointModel lessonpointModel = new lessonpointModel(lessonPointId,KidId,lessonId,point,datetaken,KidName,ParentId);
+                lessonpointModel lessonpointModel = new lessonpointModel(lessonPointId, KidId, LessonItemId, point, datetaken, ItemTypeID);
                 list.add(lessonpointModel);
             }
         } catch (ClassNotFoundException | SQLException e) {
         }
-
         return list;
+    }
+        public static void main(String[] args) {
+        LessonPointDAO dao = new LessonPointDAO();
+        ArrayList<lessonpointModel> list  = dao.GetAllPointFromKidId("Ktrannguyenmanh");
+        for(lessonpointModel l : list){
+            System.out.println(l.getLessonPointId()+"-"+l.getKidId()+"-"+l.getLessonItemId()+"-"+l.getPoint()+"-"+l.getDateTaken()+"-"+l.getItemTypeID());
+        }
     }
     
        public ArrayList<lessonpoint> GetPointFromKidId(String kidId){

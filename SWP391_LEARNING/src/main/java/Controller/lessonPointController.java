@@ -7,9 +7,8 @@ package Controller;
 import DAO.KidDAO;
 import DAO.LessonPointDAO;
 import Entity.kid;
-import Entity.lessonpoint;
+import Model.lessonpointModel;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +42,7 @@ public class lessonPointController extends HttpServlet {
                      String kidID = request.getParameter("kidID");
 
                      LessonPointDAO dao = new LessonPointDAO();
-                     ArrayList<lessonpoint> list = dao.GetPointFromKidId(kidID);
+                     ArrayList<lessonpointModel> list = dao.GetAllPointFromKidId(kidID);
                      KidDAO test = new KidDAO();
                      test.getAllKids();
                      ArrayList<kid> pa = test.getAllKidsbyID(kidID);
