@@ -17,7 +17,6 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>Controller.LogoutController</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>Controller.RegisterController</servlet-class>
@@ -122,8 +121,14 @@
         <servlet-name>AdminQuestionController</servlet-name>
         <servlet-class>Controller.AdminQuestionController</servlet-class>
     </servlet>
-
-
+    <servlet>
+        <servlet-name>ShoppingCart</servlet-name>
+        <servlet-class>Controller.ShoppingCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>Controller.CheckoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -239,6 +244,14 @@
     <servlet-mapping>
         <servlet-name>AdminQuestionController</servlet-name>
         <url-pattern>/AdminQuestionController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShoppingCart</servlet-name>
+        <url-pattern>/ShoppingCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/CheckoutController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

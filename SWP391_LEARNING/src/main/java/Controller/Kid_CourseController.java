@@ -40,7 +40,14 @@ public class Kid_CourseController extends HttpServlet {
                      HttpSession session = request.getSession();
                      kid kidacc = (kid) session.getAttribute("KID");
                      if (kidacc != null) {
-                            ArrayList< kidlearning> kidlearningList = kidlearning.getAllKidlearningbyID(kidacc.getKidID());
+                            ArrayList< kidlearning> tmp = kidlearning.getAllKidlearningbyID(kidacc.getKidID());
+                            ArrayList< kidlearning> kidlearningList = new ArrayList<>();
+                            for (kidlearning kidlearn : tmp) {
+                                   if (kidlearn.getStatus().equalsIgnoreCase("Learning")) {
+                                          kidlearningList.add(kidlearn);
+                                   }
+                            }
+
                             request.setAttribute("KIDLEARNING", kidlearningList);
                             request.getRequestDispatcher("course.jsp").forward(request, response);
                      } else {

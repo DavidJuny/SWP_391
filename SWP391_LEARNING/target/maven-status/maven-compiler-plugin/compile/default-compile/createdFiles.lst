@@ -4,6 +4,7 @@ Controller\LogoutController.class
 DAO\LessonDAO.class
 DAO\AdminDAO.class
 Controller\ReportInfoController.class
+Controller\AdminLessonController.class
 Controller\STTController.class
 Entity\accountUser.class
 Controller\lessonPointController.class
@@ -25,6 +26,7 @@ Controller\LessonItemController.class
 DAO\AccountDAO.class
 Controller\TopicController.class
 DAO\SpeechDAO.class
+Controller\AdminLessonItemController.class
 DAO\TopicDAO.class
 Controller\Parent_CourseController.class
 Entity\topic.class
@@ -54,6 +56,7 @@ Entity\detail_payment.class
 Model\QuizModel.class
 Controller\SortListController.class
 Entity\parent.class
+Controller\ShoppingCart.class
 Model\SpeechToTextResult.class
 Entity\kid.class
 Controller\LoginController.class
@@ -62,3 +65,4 @@ Model\SpeechToText.class
 Entity\lessonItem.class
 Controller\ViewPaymentController.class
 DAO\LessonPointDAO.class
+Controller\AdminQuestionController.class
