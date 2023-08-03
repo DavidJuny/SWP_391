@@ -107,189 +107,172 @@
               <title>Quiz</title>
        </head>
        <body>
-       <%@ page session="true" %>
-       <%
-              kid kid = (kid) session.getAttribute("KID");
-              int lessonItemID= (int) session.getAttribute("lessonItemID");
-              LessonPointDAO lessonPointDAO = new LessonPointDAO();
-              ArrayList<lessonpoint> PointFromKidAndLessonItems = null;
-              try {
-                     PointFromKidAndLessonItems = lessonPointDAO.GetPointFromKidIdAndLessonItemID(kid.getKidID(),lessonItemID);
-              } catch (SQLException throwables) {
-                     throwables.printStackTrace();
-              } catch (ClassNotFoundException e) {
-                     e.printStackTrace();
-              }
+              <%@ page session="true" %>
+              <%
+                     kid kid = (kid) session.getAttribute("KID");
+                     int lessonItemID = (int) session.getAttribute("lessonItemID");
+                     LessonPointDAO lessonPointDAO = new LessonPointDAO();
+                     ArrayList<lessonpoint> PointFromKidAndLessonItems = null;
+                     try {
+                            PointFromKidAndLessonItems = lessonPointDAO.GetPointFromKidIdAndLessonItemID(kid.getKidID(), lessonItemID);
+                     } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                     } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                     }
 
 
-       %>
+              %>
        <taglib:tag PointFromKidAndLessonItems="${PointFromKidAndLessonItems}" />
-              <c:if test="${lessonItem.itemTypeID.equalsIgnoreCase('Read') or lessonItem.itemTypeID.equalsIgnoreCase('Listen')}">
+       <c:if test="${lessonItem.itemTypeID.equalsIgnoreCase('Read') or lessonItem.itemTypeID.equalsIgnoreCase('Listen')}">
+              <section class="site-section bg-light">
+                     <div class="container">
+                            <c:if test="${not empty newquestions}">
 
-                     <section class="site-section bg-light">
-                            <div class="container">
-                                   <c:if test="${not empty newquestions}">
-
-                                          <div class="question bg-white p-3 border-bottom">
-                                                 <h2 class="text-center ">${lesson.lessonName} Quiz</h2>
-                                                 <h4>Read the following paragraph and answer the question. There are ${fn:length(newquestions)} questions :</h4>
-                                                 <br>
-                                                 <p>${lessonItem.content}</p>
-                                                 <br>
-                                                 <audio controls autoplay>
-                                                        <source src="./ListeningAudio/${lessonItem.content}" type="audio/mpeg">
-                                                        Your browser does not support the audio element.
-                                                 </audio>
-                                          </div>
-                                   </c:if>
-                                   <%-- Check if the form is submitted --%>
-                                   <c:if test="${not empty points}">
-                                          <div class="container mt-5">
-                                                 <h3>Quiz Results</h3>
-                                                 <p>Points: ${points}</p>
-                                                 <c:if test="${not empty incorrectAnswers}">
-                                                        <h4>Incorrect Answers:</h4>
-                                                        <ul>
-                                                               <c:forEach var="entry" items="${incorrectAnswers}">
-                                                                      <li style="color: red">Q.${entry.key}, Submitted Answer: ${entry.value}</li>
-                                                                      </c:forEach>
-                                                        </ul>
-                                                 </c:if>
-                                                 <c:if test="${points == fn:length(questions)}">
-                                                        <p style="color: darkseagreen">All of the answers is correct</p>
-                                                 </c:if>
-                                          </div>
-                                          <table class="table table-bordered table-striped" id="gradeTable">
-                                                 <thead class="thead-dark">
+                                   <div class="question bg-white p-3 border-bottom">
+                                          <h2 class="text-center ">${lesson.lessonName}</h2>
+                                          <h4>Read the following paragraph and answer the question. There are ${fn:length(newquestions)} questions :</h4>
+                                          <br>
+                                          <p>${lessonItem.content}</p>
+                                          <br>
+                                          <audio controls autoplay>
+                                                 <source src="./ListeningAudio/${lessonItem.content}" type="audio/mpeg">
+                                                 Your browser does not support the audio element.
+                                          </audio>
+                                   </div>
+                            </c:if>
+                            <%-- Check if the form is submitted --%>
+                            <c:if test="${not empty points}">
+                                   <p><a class='text-body' href="LessonItemController?lessonID=${lessonItem.lessonID}" ><span class="fa fa-chevron-left fa-fw"></span>Return To Lesson</a></p>
+                                   <div class="container mt-5">
+                                          <h3>Quiz Results</h3>
+                                          <p>Points: ${points}</p>
+                                          <c:if test="${not empty incorrectAnswers}">
+                                                 <h4>Incorrect Answers:</h4>
+                                                 <ul>
+                                                        <c:forEach var="entry" items="${incorrectAnswers}">
+                                                               <li style="color: red">Q.${entry.key}, Submitted Answer: ${entry.value}</li>
+                                                               </c:forEach>
+                                                 </ul>
+                                          </c:if>
+                                          <c:if test="${points == fn:length(questions)}">
+                                                 <p style="color: darkseagreen">All of the answers is correct</p>
+                                          </c:if>
+                                   </div>
+                                   <br>
+                                   <table class="table table-bordered table-striped" id="gradeTable">
+                                          <thead class="thead-dark">
                                                  <tr>
                                                         <th scope="col" class="name-col sortable" data-field="name">Name <span class="sort-arrow"></span></th>
                                                         <th scope="col" class="grade-col sortable" data-field="grade">Grade/${fn:length(questions)} <span class="sort-arrow"></span></th>
                                                         <th scope="col" class="name-col sortable" data-field="name">Date Taken: <span class="sort-arrow"></span></th>
 
                                                  </tr>
-                                                 </thead>
-                                                 <tbody>
-                                                 <% for  (lessonpoint lessonPoint : PointFromKidAndLessonItems) { %>
+                                          </thead>
+                                          <tbody>
+                                                 <% for (lessonpoint lessonPoint : PointFromKidAndLessonItems) {%>
                                                  <tr>
-                                                        <td class="name-col"><span class="editable" data-field="name"><%= lessonPoint.KidId %></span></td>
-                                                        <td class="grade-col ${gradeClass}"><span class="editable" data-field="grade"><%= lessonPoint.Point %></span></td>
-                                                        <td class="grade-col ${gradeClass}"><span class="editable" data-field="grade"><%= lessonPoint.DateTaken %></span></td>
+                                                        <td class="name-col"><span class="editable" data-field="name"><%= lessonPoint.KidId%></span></td>
+                                                        <td class="grade-col ${gradeClass}"><span class="editable" data-field="grade"><%= lessonPoint.Point%></span></td>
+                                                        <td class="grade-col ${gradeClass}"><span class="editable" data-field="grade"><%= lessonPoint.DateTaken%></span></td>
                                                  </tr>
-                                                 <% } %>
-                                                 </tbody>
+                                                 <% }%>
+                                          </tbody>
+                                   </table>
+                            </c:if>
+                            <c:if test="${points ==0}">
+                                   <p style="color: red"> No answer was submitted</p>
+                            </c:if>
 
-                                          </table>
-                                   </c:if>
-                                   <c:if test="${points ==0}">
-                                          <p style="color: red"> No answer was submitted</p>
-                                   </c:if>
-
-
+                            <form method="post" action="QuestionController">
                                    <c:if test="${not empty newquestions}">
+
                                           <div class="container mt-5">
-                                                 <div class="d-flex justify-content-center row">
-                                                        <form method="post" action="QuestionController">
-                                                               <c:forEach var ="question" items="${newquestions}">
-                                                                      <div class="col-12 col-lg-12">
-                                                                             <div class="border">
-                                                                                    <div class="question bg-white p-3 border-bottom">
-                                                                                           <div class="d-flex flex-row align-items-center question-title">
-                                                                                                  <h3 style="color:#ff9900;">Q.${question.questionID}: ${question.question}</h3>
-                                                                                           </div>
-
-                                                                                           <c:forEach var="answer" items="${question.answer}">
-                                                                                                  <div class="row ">
-                                                                                                         <div class="col-lg-12">
-                                                                                                                <label class="radio"> <input type="radio"  name="answers[${question.questionID}]" value="${answer}"> <span>${answer}</span>
-                                                                                                                </label>
-                                                                                                         </div>
-                                                                                                  </div>
-                                                                                           </c:forEach>
-
-                                                                                    </div>
-                                                                             </div>
-                                                                      </div>
-                                                                      <br>
-                                                               </c:forEach>
-                                                               <div class="col-12 col-lg-12">
-                                                                      <div class="justify-content-between align-items-center p-3 bg-white">
-                                                                             Make sure to check your answer before submit:
-                                                                             <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
-                                                                             <input type="hidden" name="itemTypeID" value="${lessonItem.itemTypeID}">
-                                                                             <input class="btn btn-success" type="submit" name="action" value="Submit Answer">
-                                                                      </div>
-                                                               </div>
-                                                        </form>
-                                                 </c:if>
-                                                 <form method="post" action="QuestionController">
-                                                        <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
-                                                        <input  class="btn btn-primary" type="submit" name="action" value="Reload">
-                                                        <a class="btn btn-primary" href="LessonItemController?lessonID=${lessonItem.lessonID}" >Return To Lesson</a>
-                                                 </form>
-
-                                          </div>
-                                   </div>
-                            </div>
-                     </section>
-              </c:if>
-              <c:if test="${lessonItem.itemTypeID.equalsIgnoreCase('Speak')}">
-                     <section class="site-section bg-light">
-                            <div class="container">
-                                   <div class="question bg-white p-3 border-bottom">
-                                          <h2 class="text-center ">${lesson.lessonName} Quiz</h2>
-                                          <h4>
-                                                 This is the speaking practice test:
-                                          </h4>
-                                          <br>
-                                          <p>${lessonItem.content}</p>
-                                   </div>
-                                   <c:if test="${not empty newquestions}">
-                                          <div class="container mt-5">
-                                                 <div class="d-flex justify-content-center row" >
-                                                        <c:forEach var="question" items="${newquestions}" varStatus="status">
-                                                               <div class="col-12 col-lg-12" style="padding: 1rem;">
+                                                 <div class="row">
+                                                        <c:forEach var ="question" items="${newquestions}">
+                                                               <div class="col-12 mt-2">
                                                                       <div class="border">
                                                                              <div class="question bg-white p-3 border-bottom">
-                                                                                    <h4 class="text-danger">Q.${question.questionID}: ${question.question}</h4>
-                                                                                    <br>
-                                                                                    <div class="speaker" style="display: flex;justify-content: space-between;width: 13rem;box-shadow: 0 0 13px #0000003d;border-radius: 5px;">
-                                                                                           <p id="action-${question.questionID}" style="color: grey;font-weight: 800; padding: 0; padding-left: 2rem;"></p>
-                                                                                           <button class="btn-success" onclick="runSpeechRecog(${question.questionID})" style="border: transparent;padding: 0 0.5rem;">
-                                                                                                  Speech
-                                                                                           </button>
+                                                                                    <div class="d-flex flex-row align-items-center question-title">
+                                                                                           <h4 style="color:red;">Q.${question.questionID}: ${question.question}</h4>
                                                                                     </div>
-                                                                                    <h3 id="output-${question.questionID}" class="hide"></h3>
-                                                                                    <form id="speechForm-${question.questionID}" action="STTController" method="post">
-                                                                                           <input id="transcriptInput-${question.questionID}" type="hidden" name="transcript">
-                                                                                           <input type="hidden" name="pattern" value="${question.question}">
-                                                                                           <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
-                                                                                    </form>
+                                                                                    <c:forEach var="answer" items="${question.answer}">
+                                                                                           <div class="row ">
+                                                                                                  <div class="col-lg-12">
+                                                                                                         <label class="radio"> <input type="radio"  name="answers[${question.questionID}]" value="${answer}"> <span>${answer}</span>
+                                                                                                         </label>
+                                                                                                  </div>
+                                                                                           </div>
+                                                                                    </c:forEach>
                                                                              </div>
                                                                       </div>
                                                                </div>
                                                         </c:forEach>
+                                                        <div class="col-12 col-lg-12 mt-2">
+                                                               <div class="justify-content-between align-items-center p-3 bg-white border">
+
+
+                                                                      <p> Make sure to check your answer before submit:
+                                                                             <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
+                                                                             <input type="hidden" name="itemTypeID" value="${lessonItem.itemTypeID}">
+                                                                             <input class="btn btn-success" type="submit" name="action" value="Submit Answer">
+                                                                      </p>
+
+
+                                                               </div>
+                                                               <br>
+                                                               <div class="justify-content-center text-center">
+                                                                      <form method="post" action="QuestionController">
+                                                                             <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
+                                                                             <input  class="btn btn-primary" type="submit" name="action" value="Reload">
+                                                                             <a class="btn btn-primary" href="LessonItemController?lessonID=${lessonItem.lessonID}" >Return To Lesson</a>
+                                                                      </form>
+                                                               </div>
+                                                        </div>
                                                  </div>
                                           </div>
-
-                                          <br>
-
-                                          <c:if test="${speechPoint != null}">
-
-                                                 <script>
-                                                        Swal.fire({
-                                                               title: "Result",
-                                                               html: `
-                                             <h4>Text you just said: ${text}</h4>
-                                             <h4>Score based on what you said is :</h4>
-                                             <div class="center">
-                                               <h4>${speechPoint}</h4>
-                                             </div>
-                                           `,
-                                                               confirmButtonText: "Close"
-                                                        });
-                                                 </script>
-                                          </c:if>
-                                   </c:if>
+                            </div>
+                     </c:if>
+              </form>
+       </section>
+</c:if>
+<c:if test="${lessonItem.itemTypeID.equalsIgnoreCase('Speak')}">
+       <section class="site-section bg-light">
+              <div class="container">
+                     <div class="question bg-white p-3 border-bottom">
+                            <h2 class="text-center ">${lesson.lessonName} Quiz</h2>
+                            <h4>
+                                   This is the speaking practice test:
+                            </h4>
+                            <br>
+                            <p>${lessonItem.content}</p>
+                     </div>
+                     <c:if test="${not empty newquestions}">
+                            <div class="container mt-5">
+                                   <div class="d-flex justify-content-center row" >
+                                          <c:forEach var="question" items="${newquestions}" varStatus="status">
+                                                 <div class="col-12 col-lg-12" style="padding: 1rem;">
+                                                        <div class="border">
+                                                               <div class="question bg-white p-3 border-bottom">
+                                                                      <h4 class="text-danger">Q.${question.questionID}: ${question.question}</h4>
+                                                                      <br>
+                                                                      <div class="speaker" style="display: flex;justify-content: space-between;width: 13rem;box-shadow: 0 0 13px #0000003d;border-radius: 5px;">
+                                                                             <p id="action-${question.questionID}" style="color: grey;font-weight: 800; padding: 0; padding-left: 2rem;"></p>
+                                                                             <button class="btn-success" onclick="runSpeechRecog(${question.questionID})" style="border: transparent;padding: 0 0.5rem;">
+                                                                                    Speech
+                                                                             </button>
+                                                                      </div>
+                                                                      <h3 id="output-${question.questionID}" class="hide"></h3>
+                                                                      <form id="speechForm-${question.questionID}" action="STTController" method="post">
+                                                                             <input id="transcriptInput-${question.questionID}" type="hidden" name="transcript">
+                                                                             <input type="hidden" name="pattern" value="${question.question}">
+                                                                             <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
+                                                                      </form>
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                          </c:forEach>
+                                   </div>
                                    <div class="center">
                                           <form method="post" action="QuestionController">
                                                  <input type="hidden" name="lessonItemID" value="${lessonItem.lessonItemID}">
@@ -297,36 +280,57 @@
                                           </form>
                                    </div>
                             </div>
-                     </section>
-              </c:if>
-       <script>
-              // Function to sort the table by the specified column (fieldName)
-              function sortTable(fieldName) {
-                     const table = document.getElementById('gradeTable');
-                     const rows = Array.from(table.rows).slice(1); // Skip the header row
-                     const isAscending = table.getAttribute('data-sort') === fieldName;
 
-                     rows.sort((a, b) => {
-                            const aValue = a.cells[fieldName].innerText.trim();
-                            const bValue = b.cells[fieldName].innerText.trim();
+                            <br>
 
-                            if (fieldName === '2') {
-                                   // Handle sorting for the DateTaken column (index 2)
-                                   return new Date(aValue) - new Date(bValue);
-                            } else {
-                                   return aValue.localeCompare(bValue);
-                            }
-                     });
+                            <c:if test="${speechPoint != null}">
 
-                     if (!isAscending) {
-                            rows.reverse();
+                                   <script>
+                                          Swal.fire({
+                                                 title: "Result",
+                                                 html: `
+                               <h4>Text you just said: ${text}</h4>
+                               <h4>Score based on what you said is :</h4>
+                               <div class="center">
+                                 <h4>${speechPoint}</h4>
+                               </div>
+                             `,
+                                                 confirmButtonText: "Close"
+                                          });
+                                   </script>
+                            </c:if>
+                     </c:if>
+              </div>
+       </section>
+</c:if>
+<script>
+       // Function to sort the table by the specified column (fieldName)
+       function sortTable(fieldName) {
+              const table = document.getElementById('gradeTable');
+              const rows = Array.from(table.rows).slice(1); // Skip the header row
+              const isAscending = table.getAttribute('data-sort') === fieldName;
+
+              rows.sort((a, b) => {
+                     const aValue = a.cells[fieldName].innerText.trim();
+                     const bValue = b.cells[fieldName].innerText.trim();
+
+                     if (fieldName === '2') {
+                            // Handle sorting for the DateTaken column (index 2)
+                            return new Date(aValue) - new Date(bValue);
+                     } else {
+                            return aValue.localeCompare(bValue);
                      }
+              });
 
-                     table.tBodies[0].append(...rows);
-
-                     // Update the sorting indicator
-                     table.setAttribute('data-sort', isAscending ? '' : fieldName);
+              if (!isAscending) {
+                     rows.reverse();
               }
-       </script>
-       </body>
+
+              table.tBodies[0].append(...rows);
+
+              // Update the sorting indicator
+              table.setAttribute('data-sort', isAscending ? '' : fieldName);
+       }
+</script>
+</body>
 </html>

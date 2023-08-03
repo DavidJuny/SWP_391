@@ -28,10 +28,10 @@
                             </div>
                      </div>
               </div>
-              <div class="site-section bg-light">
+              <div class="site-section">
                      <h2 class="h2 text-center">View Payment History of ${PARENT.parentName}</h2>
-                     <div class="container mt-5">
-                            <table class="table table-success table-striped">
+                     <div class="container p-0 mt-5">
+                            <table class="table table-striped table-hover border shadow">
                                    <thead>
                                           <tr>
                                                  <th scope="col">#</th>
