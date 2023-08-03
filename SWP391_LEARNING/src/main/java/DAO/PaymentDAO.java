@@ -69,7 +69,7 @@ public class PaymentDAO {
 
        public static void main(String[] args) {
               PaymentDAO pdao = new PaymentDAO();
-             ArrayList<detail_payment> d = pdao.getAllPayment();
+              ArrayList<detail_payment> d = pdao.getAllPayment();
               ArrayList<detail_payment> pay = pdao.getAllPaymentbyParentID("Panguyen12");
               for (detail_payment object : d) {
                      System.out.println(object);
@@ -95,6 +95,10 @@ public class PaymentDAO {
               } catch (ClassNotFoundException | NumberFormatException | SQLException e) {
               }
               return payment;
+       }
+
+       public void UpdateDetailPayment(String status) {
+
        }
 
        public void AddDetailPayment(int paymentID, String courseID, float amountCourse, String datePayment, String status) {
