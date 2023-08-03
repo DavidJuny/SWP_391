@@ -9,21 +9,23 @@ public class lessonpointModel {
     public float Point;
     public Date DateTaken;
     public String ItemTypeID;
+    public String LessionName;
+    public String CourseName;
 
     public lessonpointModel() {
     }
 
-    public lessonpointModel(int LessonPointId, String KidId, int LessonItemId, float Point, Date DateTaken, String ItemTypeID) {
+    public lessonpointModel(int LessonPointId, String KidId, int LessonItemId, float Point, Date DateTaken, String ItemTypeID, String LessionName, String CourseName) {
         this.LessonPointId = LessonPointId;
         this.KidId = KidId;
         this.LessonItemId = LessonItemId;
         this.Point = Point;
         this.DateTaken = DateTaken;
         this.ItemTypeID = ItemTypeID;
+        this.LessionName = LessionName;
+        this.CourseName = CourseName;
     }
 
-    
-    
     public int getLessonPointId() {
         return LessonPointId;
     }
@@ -72,6 +74,19 @@ public class lessonpointModel {
         this.ItemTypeID = ItemTypeID;
     }
 
+    public String getLessionName() {
+        return LessionName;
+    }
 
-  
+    public void setLessionName(String LessionName) {
+        this.LessionName = LessionName;
+    }
+
+    public String getCourseName() {
+        return CourseName;
+    }
+
+    public void setCourseName(String CourseName) {
+        this.CourseName = CourseName;
+    }
 }

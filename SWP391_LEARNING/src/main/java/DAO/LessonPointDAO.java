@@ -41,13 +41,16 @@ public class LessonPointDAO {
     }
 
 
-    public ArrayList<lessonpointModel> GetAllPointFromKidId(String kidId)
+public ArrayList<lessonpointModel> GetAllPointFromKidId(String kidId)
     {
-        String query="  SELECT LessonPoint.LessonPointId, LessonPoint.KidId, LessonPoint.LessonItemId, LessonPoint.Point,lessonPoint.DateTaken,LessonItem.ItemTypeID\n" +
-                    "  FROM LessonPoint\n" +
-                    "  JOIN Kids ON LessonPoint.KidId = Kids.KidId \n" +
-                    "  JOIN LessonItem ON LessonPoint.LessonItemID = LessonItem.lessonItemID\n" +
-                    "  WHERE Kids.kidID=?";
+        String query="SELECT LessonPoint.LessonPointId, LessonPoint.KidId, LessonPoint.LessonItemId, LessonPoint.Point,lessonPoint.DateTaken,LessonItem.ItemTypeID,Lesson.lessonName,Course.courseName\n" +
+                        "FROM LessonPoint\n" +
+                        "JOIN Kids ON LessonPoint.KidId = Kids.KidId \n" +
+                        "JOIN LessonItem ON LessonPoint.LessonItemID = LessonItem.lessonItemID\n" +
+                        "JOIN Lesson on LessonItem.lessonID = Lesson.lessonID\n" +
+                        "JOIN Topic on  Lesson.topicID = Topic.topicID\n" +
+                        "JOIN Course on Course.CourseID = Topic.CourseID\n" +
+                        "WHERE Kids.kidID =?";
         ArrayList<lessonpointModel> list = new ArrayList<>();
         try {
             conn = DBContext.getConnection();
@@ -61,9 +64,10 @@ public class LessonPointDAO {
                 float point = rs.getFloat(4);
                 Date datetaken = rs.getDate(5);
                 String ItemTypeID = rs.getString(6);
+                String LessonName = rs.getString(7);
+                String CourseName = rs.getString(8);
 
-
-                lessonpointModel lessonpointModel = new lessonpointModel(lessonPointId, KidId, LessonItemId, point, datetaken, ItemTypeID);
+                lessonpointModel lessonpointModel = new lessonpointModel(lessonPointId, KidId, LessonItemId, point, datetaken, ItemTypeID, LessonName, CourseName);
                 list.add(lessonpointModel);
             }
         } catch (ClassNotFoundException | SQLException e) {
