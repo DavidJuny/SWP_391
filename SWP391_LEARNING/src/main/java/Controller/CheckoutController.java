@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.PaymentDAO;
+import DAO.ProductDAO;
 import Entity.detail_payment;
 import Entity.parent;
 import java.io.IOException;
@@ -36,19 +37,20 @@ public class CheckoutController extends HttpServlet {
               response.setContentType("text/html;charset=UTF-8");
               /* TODO output your page here. You may use following sample code. */
               PaymentDAO pdao = new PaymentDAO();
+              ProductDAO prodao = new ProductDAO();
               HttpSession session = request.getSession();
-              
+
               pdao.getAllPayment();
               parent pa = (parent) session.getAttribute("PARENT");
               ArrayList<detail_payment> tmp = pdao.getAllPaymentbyParentID(pa.getParentID());
-              
+
               for (detail_payment object : tmp) {
                      if (object.getStatus().equalsIgnoreCase("Pending")) {
-                            object.setStatus("Done");
-                            object.getKidlearning().setStatus("Learning");
+                            prodao.changeDetailPayment(object.getKidLearningID(), object.getPayment().getPaymentID());
+                            prodao.changeKidLearning(object.getKidlearning().getKidID(), object.getKidlearning().getCourseID());
                      }
               }
-              
+
               request.getRequestDispatcher("PaymentHistory").forward(request, response);
        }
 

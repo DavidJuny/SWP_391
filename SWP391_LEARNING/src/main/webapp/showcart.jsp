@@ -51,30 +51,28 @@
                                                                                     <p class="mb-0">You have ${ITEMS} items in your cart</p>
                                                                              </div>
                                                                       </div>
-                                                                      <form action="CheckoutController">
-                                                                             <c:forEach var="i" items="${CART}">
-                                                                                    <div class="card mb-3">
-                                                                                           <div class="card-body">
-                                                                                                  <div class="d-flex justify-content-between">
-                                                                                                         <div class="d-flex flex-row align-items-center">
-                                                                                                                <div class="ms-3">
-                                                                                                                       <h5>Course ${i.kidlearning.courseID} </h5>
-                                                                                                                       <p class="small mb-0">Paid for: ${i.kidlearning.kidID} <span class="ml-3">Date of Payment: ${i.datePayment}</span></p>
-                                                                                                                </div>
+                                                                      <c:forEach var="i" items="${CART}">
+                                                                             <div class="card mb-3">
+                                                                                    <div class="card-body">
+                                                                                           <div class="d-flex justify-content-between">
+                                                                                                  <div class="d-flex flex-row align-items-center">
+                                                                                                         <div class="ms-3">
+                                                                                                                <h5>Course ${i.kidlearning.courseID} </h5>
+                                                                                                                <p class="small mb-0">Paid for: ${i.kidlearning.kidID} <span class="ml-3">Date of Payment: ${i.datePayment}</span></p>
                                                                                                          </div>
-                                                                                                         <div class="d-flex flex-row align-items-center">
-                                                                                                                <div style="width: 80px;">
-                                                                                                                       <h5 class="mb-0">$${i.amountCourse}</h5>
-                                                                                                                </div>
-                                                                                                                <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                                                                  </div>
+                                                                                                  <div class="d-flex flex-row align-items-center">
+                                                                                                         <div style="width: 80px;">
+                                                                                                                <h5 class="mb-0">$${i.amountCourse}</h5>
                                                                                                          </div>
+                                                                                                         <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                                                                                                   </div>
                                                                                            </div>
                                                                                     </div>
-                                                                             </c:forEach>
-                                                                             <input type='hidden' name='checkout' value='${CART}'>
-                                                                             <p>Total amount: $${TOTAL} <span class="ml-4"><button class="btn btn-info" type='submit'>Checkout</button></span></p>
-                                                                      </form>
+                                                                             </div>
+                                                                      </c:forEach>
+                                                                      <input type='hidden' name='checkout' value='${CART}'>
+                                                                      <p>Total amount: $${TOTAL} <span class="ml-4"><a class="btn btn-info" href="CheckoutController">Checkout</a></span></p>
                                                                </div>
                                                         </div>
                                                  </div>

@@ -43,7 +43,6 @@ public class ProductDAO {
               return paymentDAO.GetNextId(query);
        }
 
-
        public ArrayList<kidlearning> getAllKidlearningbyID(String kidID) {
               ArrayList<kidlearning> list = new ArrayList<>();
               String query = "SELECT [kidlearningID],[kidID],[dbo].[KidLearning].[courseID],[courseName],[courseImage],[courseLevel],[status]\n"
@@ -91,8 +90,23 @@ public class ProductDAO {
 //        return list;
 //    }
 
+       public void changeDetailPayment(int kidlearningID, int paymentID) {
+              String query
+                      = "UPDATE [dbo].[DetailPayment]\n"
+                      + "SET [status]='Done'\n"
+                      + "WHERE [kidlearningID]=? AND [paymentID]=?";
+              try {
+                     conn = DBContext.getConnection();
+                     ps = conn.prepareStatement(query);
+                     ps.setInt(1, kidlearningID);
+                     ps.setInt(2, paymentID);
+                     ps.executeUpdate();
+              } catch (ClassNotFoundException | SQLException e) {
+              }
+       }
+
        public void changeKidLearning(String kidID, String courseID) {
-              String query = "UPDATE dbo.KidLearning SET [status] = 'Unlock' WHERE courseID = ? AND kidID = ?";
+              String query = "UPDATE dbo.KidLearning SET [status] = 'Learning' WHERE courseID = ? AND kidID = ?";
               try {
                      conn = DBContext.getConnection();
                      ps = conn.prepareStatement(query);
@@ -101,6 +115,11 @@ public class ProductDAO {
                      ps.executeUpdate();
               } catch (ClassNotFoundException | SQLException e) {
               }
+       }
+
+       public static void main(String[] args) {
+              ProductDAO pda = new ProductDAO();
+              pda.changeDetailPayment(26, 25);
        }
 
        public boolean checkStatusKidLearning(String kidID, String courseID) {
