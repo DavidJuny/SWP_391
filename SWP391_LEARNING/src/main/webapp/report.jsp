@@ -62,23 +62,22 @@
                                                                       <div class="card-body">
                                                                              <h5 class="card-title">Review Section</h5>
                                                                              <p class="card-text">${KINFO.kidName}'s academic level: <span class="text-red">${i.detailReport}</span></p>
-                                                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewReport<%=i%>">
+                                                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewReport<%=i%>">
                                                                                     View Detail
                                                                              </button>
                                                                              <div class="modal fade" id="viewReport<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                                                     <div class="modal-dialog" role="document">
                                                                                            <div class="modal-content">
-                                                                                                  <div class="modal-header">
-                                                                                                         <h5 class="modal-title" id="exampleModalLongTitle">Report Details</h5>
+                                                                                                  <div class="modal-header bg-success">
+                                                                                                         <h5 class="modal-title text-white" id="exampleModalLongTitle">Report Details</h5>
                                                                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                          </button>
                                                                                                   </div>
-                                                                                                  <div class="modal-body">
-                                                                                                         <div class="card mb-3" style="border-radius: .5rem;">
+                                                                                                  <div class="modal-body ">
+                                                                                                         <div class="mb-3" style="border-radius: .5rem;">
                                                                                                                 <div class="row g-0">
-
-                                                                                                                       <div class="col-md-8">
+                                                                                                                       <div class="col-md-12">
                                                                                                                               <div class="card-body p-4">
                                                                                                                                      <h6>${KINFO.kidName}'s Report</h6>
                                                                                                                                      <hr class="mt-0 mb-4">
@@ -105,8 +104,8 @@
                                                                                                                 </div>
                                                                                                          </div>
                                                                                                   </div>
-                                                                                                  <div class="modal-footer">
-                                                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                  <div class="modal-footer btn-close">
+                                                                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                                                                                   </div>
                                                                                            </div>
                                                                                     </div>
