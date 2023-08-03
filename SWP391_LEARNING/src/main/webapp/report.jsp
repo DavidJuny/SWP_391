@@ -52,37 +52,61 @@
                                           <h2 class="text-center">View ${KINFO.kidName} Report</h2>
                                           <br>
                                           <div class="row d-flex justify-content-center align-items-center h-100">
+                                                 <%int i = 1;%>
                                                  <c:forEach var="i" items="${REPORTKID}">
-                                                        <div class="col col-lg-6 mb-4 mb-lg-0">
-                                                               <div class="card mb-3" style="border-radius: .5rem;">
-                                                                      <div class="row g-0">
-                                                                             <div class="col-md-4 gradient-custom text-center text-white"
-                                                                                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                                                                    <img src="${KINFO.kidImage}"
-                                                                                         alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                                                                                    <h5>${KINFO.kidName}</h5>
-                                                                                    <i class="far fa-edit mb-5"></i>
-                                                                             </div>
-                                                                             <div class="col-md-8">
-                                                                                    <div class="card-body p-4">
-                                                                                           <h6>Report</h6>
-                                                                                           <hr class="mt-0 mb-4">
-                                                                                           <div class="row pt-1">
-                                                                                                  <div class="col-6 mb-3">
-                                                                                                         <h6>Course ID :</h6>
-                                                                                                         <p class="text-muted">${i.courseID}</p>
+                                                        <div class="col col-lg-8 mb-4 mb-lg-0 mt-3">
+                                                               <div class="card">
+                                                                      <div class="card-header">
+                                                                             <%=i%># Report 
+                                                                      </div>
+                                                                      <div class="card-body">
+                                                                             <h5 class="card-title">Review Section</h5>
+                                                                             <p class="card-text">${KINFO.kidName}'s academic level: <span class="text-red">${i.detailReport}</span></p>
+                                                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewReport<%=i%>">
+                                                                                    View Detail
+                                                                             </button>
+                                                                             <div class="modal fade" id="viewReport<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                           <div class="modal-content">
+                                                                                                  <div class="modal-header">
+                                                                                                         <h5 class="modal-title" id="exampleModalLongTitle">Report Details</h5>
+                                                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                         </button>
                                                                                                   </div>
-                                                                                                  <div class="col-6 mb-3">
-                                                                                                         <h6>Course Grade :</h6>
-                                                                                                         <p class="text-muted">${i.courseGrade}</p>
+                                                                                                  <div class="modal-body">
+                                                                                                         <div class="card mb-3" style="border-radius: .5rem;">
+                                                                                                                <div class="row g-0">
+
+                                                                                                                       <div class="col-md-8">
+                                                                                                                              <div class="card-body p-4">
+                                                                                                                                     <h6>${KINFO.kidName}'s Report</h6>
+                                                                                                                                     <hr class="mt-0 mb-4">
+                                                                                                                                     <div class="row pt-1">
+                                                                                                                                            <div class="col-6 mb-3">
+                                                                                                                                                   <h6>Course ID :</h6>
+                                                                                                                                                   <p class="text-muted">${i.courseID}</p>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-6 mb-3">
+                                                                                                                                                   <h6>Course Grade :</h6>
+                                                                                                                                                   <p class="text-muted">${i.courseGrade}</p>
+                                                                                                                                            </div>
+                                                                                                                                     </div>
+                                                                                                                                     <h6>Details</h6>
+                                                                                                                                     <hr class="mt-0 mb-4">
+                                                                                                                                     <div class="row pt-1">
+                                                                                                                                            <div class="col-6 mb-3">
+                                                                                                                                                   <h6>Report Details</h6>
+                                                                                                                                                   <textarea class="form-control" disabled>${i.detailReport}</textarea>
+                                                                                                                                            </div>
+                                                                                                                                     </div>
+                                                                                                                              </div>
+                                                                                                                       </div>
+                                                                                                                </div>
+                                                                                                         </div>
                                                                                                   </div>
-                                                                                           </div>
-                                                                                           <h6>Details</h6>
-                                                                                           <hr class="mt-0 mb-4">
-                                                                                           <div class="row pt-1">
-                                                                                                  <div class="col-6 mb-3">
-                                                                                                         <h6>Report Details</h6>
-                                                                                                         <textarea class="form-control" disabled>${i.detailReport}</textarea>
+                                                                                                  <div class="modal-footer">
+                                                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                                                                   </div>
                                                                                            </div>
                                                                                     </div>
@@ -90,12 +114,57 @@
                                                                       </div>
                                                                </div>
                                                         </div>
+                                                        <%i += 1;%>         
                                                  </c:forEach>
                                           </div>
                                    </div>
-                            </c:if>
+                            </div>
+
+                            <!-- Modal -->
+
+                            <!--                                                        <div class="col col-lg-6 mb-4 mb-lg-0">
+                                                                                           <div class="card mb-3" style="border-radius: .5rem;">
+                                                                                                  <div class="row g-0">
+                                                                                                         <div class="col-md-4 gradient-custom text-center text-white"
+                                                                                                              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                                                                                                <img src="${KINFO.kidImage}"
+                                                                                                                     alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                                                                                                                <h5>${KINFO.kidName}</h5>
+                                                                                                                <i class="far fa-edit mb-5"></i>
+                                                                                                         </div>
+                                                                                                         <div class="col-md-8">
+                                                                                                                <div class="card-body p-4">
+                                                                                                                       <h6>Report</h6>
+                                                                                                                       <hr class="mt-0 mb-4">
+                                                                                                                       <div class="row pt-1">
+                                                                                                                              <div class="col-6 mb-3">
+                                                                                                                                     <h6>Course ID :</h6>
+                                                                                                                                     <p class="text-muted">${i.courseID}</p>
+                                                                                                                              </div>
+                                                                                                                              <div class="col-6 mb-3">
+                                                                                                                                     <h6>Course Grade :</h6>
+                                                                                                                                     <p class="text-muted">${i.courseGrade}</p>
+                                                                                                                              </div>
+                                                                                                                       </div>
+                                                                                                                       <h6>Details</h6>
+                                                                                                                       <hr class="mt-0 mb-4">
+                                                                                                                       <div class="row pt-1">
+                                                                                                                              <div class="col-6 mb-3">
+                                                                                                                                     <h6>Report Details</h6>
+                                                                                                                                     <textarea class="form-control" disabled>${i.detailReport}</textarea>
+                                                                                                                              </div>
+                                                                                                                       </div>
+                                                                                                                </div>
+                                                                                                         </div>
+                                                                                                  </div>
+                                                                                           </div>
+                                                                                    </div>-->
+
                      </div>
               </div>
+       </c:if>
+</div>
+</div>
 
-              <%@include file="footer.jsp" %>
+<%@include file="footer.jsp" %>
 </html>
